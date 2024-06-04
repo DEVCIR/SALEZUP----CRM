@@ -131,7 +131,7 @@ export default function Page9() {
         });
     };
     return (
-        <div className={currentMode === "Dark" ? "dark" : ""}>
+        <div className={currentMode === "Dark" ? "" : ""}>
             <div className="relative flex dark:bg-main-dark-bg">
                 {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
                     <TooltipComponent content="Settings" position="Top">
@@ -169,7 +169,7 @@ export default function Page9() {
                         <div>
                             <div className="flex items-center justify-center h-screen">
                                 <div className="p-4 mx-auto lg:w-7/12 md:w-9/12 sm:w-10/12">
-                                    <div className="overflow-hidden dark:bg-[#305b4c] rounded-lg shadow-lg bg-[#c7d1cd]">
+                                    <div className="overflow-hidden dark:bg-[#305b4c] rounded-lg shadow-lg bg-[#d2ffef]">
                                         <div className="flex items-center justify-between px-6 py-3 bg-[#072D20]">
                                             <button onClick={handlePrevMonth} className="text-white">Previous</button>
                                             <h2 className="text-white">{monthNames[currentMonth]} {currentYear}</h2>

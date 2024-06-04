@@ -216,7 +216,7 @@ export default function Page8() {
   };
   //   for updating agent team_id to Null when its delete from any team
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
         {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">
@@ -292,8 +292,8 @@ export default function Page8() {
                 <div className="flex-grow">
                   <div className="grid grid-cols-2 gap-4 mt-6 md:grid-cols-4">
                     {teams.map(team => (
-                      <div key={team.id} className="w-3/4 mx-auto">
-                        <div className="flex flex-col p-2 bg-[#eef3f1] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
+                      <div key={team.id} className="w-full mx-5">
+                        <div className="flex flex-col p-2 bg-[#d2ffef] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
                           <div className="flex flex-col items-center text-center">
                             <div className="inline-block rounded-full ">
                             </div>
@@ -315,7 +315,7 @@ export default function Page8() {
                             {/* plus button functionality */}
                           </div>
                           {/* show names which added to the team */}
-                          <div className="max-w-lg p-4 mx-auto mt-4 border border-black rounded-2xl">
+                          <div className="max-w-xl p-4 mx-auto mt-4 border border-black rounded-2xl">
                             <h1 className="mb-4 text-lg font-bold dark:text-black">Team Members</h1>
                             {teamAgents[team.id] && teamAgents[team.id].map((agent, index) => (
                               <div key={index} className="flex items-center justify-between mb-2">

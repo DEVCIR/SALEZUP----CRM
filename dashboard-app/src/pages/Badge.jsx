@@ -272,7 +272,7 @@ export default function Page5() {
   return (
 
 
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
         {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">

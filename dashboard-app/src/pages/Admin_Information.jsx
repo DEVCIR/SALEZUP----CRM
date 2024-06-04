@@ -6,7 +6,6 @@ import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 
-
 const Page4 = ({ email }) => {
   const {
     setCurrentColor,
@@ -139,7 +138,7 @@ const Page4 = ({ email }) => {
   };
 
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
         {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">
@@ -215,20 +214,23 @@ const Page4 = ({ email }) => {
                       <div>
                         <div className="flex flex-col gap-8 ">
                           <h2 className="mt-8 text-xl text-center dark:text-gray-800 text-[#B2BEBA]"><b>Updating Admin</b></h2>
-                          <label className="font-semibold form-label dark:text-gray-800">First Name:
-                            <input type="text" className="dark:text-black text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="first_name" value={formData.first_name} onChange={handleInputChange} /> </label>
-                          <label className="font-semibold form-label dark:text-gray-800">Last Name:
-                            <input type="text" className="dark:text-black text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="last_name" value={formData.last_name} onChange={handleInputChange} />  </label>
-                          <label className="font-semibold form-label dark:text-gray-800">Email:
-                            <input type="text" className="dark:text-black text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="email" value={formData.email} onChange={handleInputChange} />  </label>
+                          <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">First Name:
+                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="first_name" value={formData.first_name} onChange={handleInputChange} />
+                          </label>
+                          <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">Last Name:
+                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="last_name" value={formData.last_name} onChange={handleInputChange} />
+                          </label>
+                          <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">Email:
+                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="email" value={formData.email} onChange={handleInputChange} />
+                          </label>
                           {/* <label className="font-bold text-md">Password :
                         <input type="password" className="p-2 ml-4 font-normal" name="password" value={formData.password} onChange={handleInputChange} />  </label> */}
                           <div className="flex flex-row items-center">
-                            <label htmlFor="password" className="font-semibold form-label dark:text-gray-800">Password :</label>
+                            <label htmlFor="password" className="flex flex-row items-center font-semibold form-label dark:text-gray-800">Password :</label>
                             <div className="relative flex">
                               <input
                                 type={isPasswordVisible ? 'text' : 'password'}
-                                className="dark:text-black text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black"
+                                className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black"
                                 name="password"
                                 value={formData.password}// Update value to reflect formData
                                 onChange={handleInputChange} />
@@ -236,7 +238,7 @@ const Page4 = ({ email }) => {
                                 type="button"
                                 className="absolute top-3 right-2"
                                 onClick={togglePasswordVisibility}>
-                                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                                {isPasswordVisible ? <FaEyeSlash className="text-white" /> : <FaEye className="text-white" />}
                               </button>
                             </div>
                           </div>

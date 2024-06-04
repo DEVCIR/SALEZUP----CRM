@@ -146,7 +146,7 @@ export default function Page6() {
     fetchTeams();
   }, []);
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
         {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">
@@ -184,7 +184,7 @@ export default function Page6() {
             <div>
               <div class="min-h-screen   py-6 flex flex-col justify-center sm:py-12">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-                  <div class="relative px-4 py-10 bg-[#dde2e1] dark:bg-[#B2BEBA] mx-8 md:mx-0 shadow rounded-3xl sm:p-10 border border-black">
+                  <div class="relative px-4 py-10 bg-[#d2ffef] dark:bg-[#B2BEBA] mx-8 md:mx-0 shadow rounded-3xl sm:p-10 border border-black">
                     <div class="max-w-md mx-auto">
                       <div class="flex items-center space-x-5">
                         <div class="block pl-2 font-semibold text-xl self-start text-black">
@@ -203,7 +203,7 @@ export default function Page6() {
                                 onChange={handleType}
                                 required
                               >
-                                <option className="border-4 border-black" value="">Select a type</option>
+                                <option className="border-4 border-black bg-transparent" value="">Select a type</option>
                                 <option value="Type 1">Type 1</option>
                                 <option value="Type 2">Type 2</option>
                                 <option value="Type 3">Type 3</option>
