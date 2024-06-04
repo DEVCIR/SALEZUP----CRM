@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs';
 import { FaEye, FaEyeSlash, FaMoon, FaSun } from 'react-icons/fa';
 import CryptoJS from 'crypto-js';
-import axios from "axios";
 
 
 export default function Admin_Login() {
@@ -15,82 +13,58 @@ export default function Admin_Login() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://crmapi.devcir.co/api/admin-registrations');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                console.log(data)
-                const filteredData = data.map(({ email, password, first_name, last_name }) => ({ email, password, first_name, last_name }));
-                setFilteredData(filteredData);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://crmapi.devcir.co/api/admin-registrations');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        };
-
-        fetchData();
-    }, []);
-
-    //   const handleLogin = async (e) => {
-    //     e.preventDefault();
-    //     const foundUser = filteredData.find(user => user.email === username);
-
-    //     if (foundUser) {
-    //         // Decrypt the stored password
-    //         const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
-
-    //         // Compare the decrypted password with the user-entered password
-    //         if (password === decryptedPassword) {
-    //             console.log("Decrypted Password: ",decryptedPassword)
-    //             console.log(" ----  Right User ----");
-    //             // Redirect or perform other actions upon successful login
-    //             navigate('/road_to_db',{ state: { email: foundUser.email } })
-    //         } else {
-    //             console.log("----  Wrong Password  ----");
-    //             alert("Wrong Password !!! Try Again")
-    //         }
-    //     } else {
-    //         console.log("User not found");
-    //         alert("User not found");
-    //     }
-    // };
+            const data = await response.json();
+            console.log(data);
+            const filteredData = data.map(({ email, password, first_name, last_name }) => ({ email, password, first_name, last_name }));
+            setFilteredData(filteredData);
+            return filteredData; // Return the filtered data for immediate use
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to handle it in handleLogin
+        }
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const foundUser = filteredData.find(user => user.email === username);
 
-        if (foundUser) {
-            // Decrypt the stored password
-            const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
+        try {
+            const filteredData = await fetchData(); // Wait for fetchData to complete and get the data
 
-            // Compare the decrypted password with the user-entered password
-            if (password === decryptedPassword) {
-                console.log("Decrypted Password: ", decryptedPassword)
-                console.log(" ----  Right User ----");
-                console.log("my user: ", foundUser)
-                // Redirect or perform other actions upon successful login
-                navigate('/My_Dashboard', { state: { foundUser } })
+            const foundUser = filteredData.find(user => user.email === username);
 
-                // used local storage to transfer variable value from one to other
+            if (foundUser) {
+                // Decrypt the stored password
+                const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
 
-                localStorage.setItem('userEmail', foundUser.email);
-
-                localStorage.setItem('userFName', foundUser.first_name);
-
-                localStorage.setItem('userLName', foundUser.last_name);
-
-                console.log("This is my email: ", foundUser.email)
+                // Compare the decrypted password with the user-entered password
+                if (password === decryptedPassword) {
+                    console.log("Decrypted Password: ", decryptedPassword);
+                    console.log("----  Right User ----");
+                    console.log("my user: ", foundUser);
+                    // Redirect or perform other actions upon successful login
+                    navigate('/My_Dashboard', { state: { foundUser } });
+                    // Use local storage to transfer variable value from one to another
+                    localStorage.setItem('userEmail', foundUser.email);
+                    localStorage.setItem('userFName', foundUser.first_name);
+                    localStorage.setItem('userLName', foundUser.last_name);
+                    console.log("This is my email: ", foundUser.email);
+                } else {
+                    console.log("----  Wrong Password  ----");
+                    alert("Wrong Password !!! Try Again");
+                }
             } else {
-                console.log("----  Wrong Password  ----");
-                alert("Wrong Password !!! Try Again")
+                console.log("User not found");
+                alert("User not found");
             }
-        } else {
-            console.log("User not found");
-            alert("User not found");
+        } catch (error) {
+            console.error('Error during login process:', error);
+            alert("An error occurred during the login process. Please try again.");
         }
     };
 
@@ -127,7 +101,7 @@ export default function Admin_Login() {
                                 <br />
                             </div>
 
-                            <form onSubmit={handleLogin}>
+                            <form>
                                 <div>
                                     <div className="flex -mx-3">
                                         <div className="w-full px-3 mb-5">
@@ -164,7 +138,7 @@ export default function Admin_Login() {
                                         </div>
                                     </div>
 
-                                    <button type="submit" className="bg-red-500 hover:bg-red-800 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+                                    <button type="submit" onClick={handleLogin} className="bg-red-500 hover:bg-red-800 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
                                 </div>
                             </form>
 

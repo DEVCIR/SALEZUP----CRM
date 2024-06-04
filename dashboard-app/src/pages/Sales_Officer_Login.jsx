@@ -12,46 +12,47 @@ const Sales_Officer_Login = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://crmapi.devcir.co/api/sales-officers');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                const filteredData = data.map(({ email, password }) => ({ email, password }));
-                setFilteredData(filteredData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://crmapi.devcir.co/api/sales-officers');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        };
-
-        fetchData();
-    }, []);
+            const data = await response.json();
+            const filteredData = data.map(({ email, password }) => ({ email, password }));
+            setFilteredData(filteredData);
+            return filteredData; // Return the filtered data for immediate use
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const foundUser = filteredData.find(user => user.email === username);
+        try {
+            const filteredData = await fetchData();
+            const foundUser = filteredData.find(user => user.email === username);
 
-        if (foundUser) {
-            // Decrypt the stored password
-            const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
-
-
-            // Compare the decrypted password with the user-entered password
-            if (password === decryptedPassword) {
-                console.log("Decrypted Password: ", decryptedPassword)
-                console.log(" ----  Right User ----");
-                // Redirect or perform other actions upon successful login
-                navigate('/sales_officer');
+            if (foundUser) {
+                // Decrypt the stored password
+                const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
+                // Compare the decrypted password with the user-entered password
+                if (password === decryptedPassword) {
+                    console.log("Decrypted Password: ", decryptedPassword)
+                    console.log(" ----  Right User ----");
+                    // Redirect or perform other actions upon successful login
+                    navigate('/sales_officer');
+                } else {
+                    console.log("----  Wrong Password  ----");
+                    alert("Wrong Password !!! Try Again")
+                }
             } else {
-                console.log("----  Wrong Password  ----");
-                alert("Wrong Password !!! Try Again")
+                console.log("User not found");
+                alert("User not found");
             }
-        } else {
-            console.log("User not found");
-            alert("User not found");
+        } catch (error) {
+            console.error('Error during login process:', error);
+            alert("An error occurred during the login process. Please try again.");
         }
     };
 

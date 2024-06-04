@@ -13,45 +13,58 @@ const Sales_Agent_Login_Form = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://crmapi.devcir.co/api/sales-agents');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                const filteredData = data.map(({ email, password }) => ({ email, password }));
-                console.log(filteredData);
-                setFilteredData(filteredData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://crmapi.devcir.co/api/sales-agents');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        };
-
-        fetchData();
-    }, []);
+            const data = await response.json();
+            console.log(data);
+            const filteredData = data.map(({ email, password }) => ({ email, password }));
+            console.log(filteredData);
+            setFilteredData(filteredData);
+            return filteredData; // Return the filtered data for immediate use
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to handle it in handleLogin
+        }
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const foundUser = filteredData.find(user => user.email === username);
 
-        if (foundUser) {
-            // Decrypt the stored password
-            const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
+        try {
+            const filteredData = await fetchData(); // Wait for fetchData to complete and get the data
+            console.log("Filtered Data: ", filteredData);
 
-            // Compare the decrypted password with the user-entered password
-            if (password === decryptedPassword) {
-                console.log("Decrypted Password: ", decryptedPassword)
-                console.log(" ----  Right User ----");
-                // Redirect or perform other actions upon successful login
+            const foundUser = filteredData.find(user => user.email === username);
+
+            if (foundUser) {
+                // Decrypt the stored password
+                const decryptedPassword = CryptoJS.AES.decrypt(foundUser.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8);
+
+                // Compare the decrypted password with the user-entered password
+                if (password === decryptedPassword) {
+                    console.log("Decrypted Password: ", decryptedPassword)
+                    console.log(" ----  Right User ----");
+                    setLoggedInUserEmail(username);
+                    console.log("Logged in User Email:", username);
+                    // navigate("/sales_agent_dashboard")
+
+                    navigate("/sales_agent_dashboard", { state: { loggedInUserEmail: username } });
+                    // Redirect or perform other actions upon successful login
+                } else {
+                    console.log("----  Wrong Password  ----");
+                    alert("Wrong Password !!! Try Again")
+                }
             } else {
-                console.log("----  Wrong Password  ----");
-                alert("Wrong Password !!! Try Again")
+                console.log("User not found");
+                alert("User not found");
             }
-        } else {
-            console.log("User not found");
-            alert("User not found");
+        } catch (error) {
+            console.error('Error during login process:', error);
+            alert("An error occurred during the login process. Please try again.");
         }
     };
 
