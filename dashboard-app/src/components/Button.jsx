@@ -18,13 +18,13 @@ const Button = ({
 
   const navigate = useNavigate();
 
-  
+
   const handleLogoutClick = () => {
     console.log("user loging out ");
 
     navigate('/admin_login')
 
-    
+
   };
 
   return (

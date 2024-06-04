@@ -428,7 +428,7 @@ export default function Page1() {
     return (
         <div className={currentMode === "Dark" ? "dark" : ""}>
             <div className="relative flex dark:bg-main-dark-bg">
-                <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
+                {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
                     <TooltipComponent content="Settings" position="Top">
                         <button
                             type="button"
@@ -439,7 +439,7 @@ export default function Page1() {
                             <FiSettings />
                         </button>
                     </TooltipComponent>
-                </div>
+                </div> */}
                 {activeMenu ? (
                     <div className="fixed bg-white w-72 sidebar dark:bg-secondary-dark-bg ">
                         <Sidebar />

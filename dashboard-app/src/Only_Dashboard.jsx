@@ -1,8 +1,5 @@
 
 import React, { useEffect } from "react";
-import { FiSettings } from "react-icons/fi";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 
 
@@ -131,18 +128,18 @@ export default function Only_Dashboard() {
 
       <div className={currentMode === "Dark" ? "dark" : ""}>
         <div className="relative flex dark:bg-main-dark-bg">
-          <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
+          {/* <div className="fixed right-4 bottom-4 hidden" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
                 style={{ background: currentColor, borderRadius: "50%" }}
-                className="p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray"
+                className="p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray hidden"
               >
                 <FiSettings />
               </button>
             </TooltipComponent>
-          </div>
+          </div> */}
           {activeMenu ? (
             <div className="fixed bg-white w-72 sidebar dark:bg-secondary-dark-bg ">
               <Sidebar />
