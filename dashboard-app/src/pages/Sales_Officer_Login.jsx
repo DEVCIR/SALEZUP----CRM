@@ -24,6 +24,7 @@ const Sales_Officer_Login = () => {
             return filteredData; // Return the filtered data for immediate use
         } catch (error) {
             console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to handle it in handleLogin
         }
     };
 
