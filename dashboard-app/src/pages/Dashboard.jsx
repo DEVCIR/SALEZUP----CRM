@@ -123,61 +123,76 @@ export default function Page1() {
         };
         return (
             <>
-                <table className="w-full mb-3 text-center border border-collapse border-[#072D20]">
-                    <thead>
-                        <tr className="">
-                            {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
-                            <th className="px-4 py-2 text-center  text-black bg-transparent border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">First Name</th>
-                            <th className="px-4 py-2 text-center  text-black bg-transparent border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Last Name</th>
-                            <th className="px-4 py-2 text-center  text-black bg-transparent border-r border-[#072D20] dark:text-white dark:bg-[#305b4c]">Email</th>
-                            <th className="px-4 py-2 text-center  text-black bg-transparent border-r border-[#072D20] dark:text-white dark:bg-[#305b4c]">Password</th>
-                            <th className="px-4 py-2 text-center  text-black bg-transparent border-r border-[#072D20] dark:text-white dark:bg-[#305b4c]">Status</th>
-                            <th className="px-4 py-2  text-center  text-black bgtransparent border-r border-[#072D20] dark:text-white dark:bg-[#305b4c]">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={index}>
-                                {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.first_name}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.last_name}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.email}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{CryptoJS.AES.decrypt(item.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8)}</td>
-                                {/* {!isSalesData && <td className="px-4 text-center text-black border border-black">{item.status}</td>} */}
-                                {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
-                                {!isSalesData && (
-                                    <td className="px-4 py-2 text-center border border-[#072D20]">
-                                        <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
-                                            Edit Details
-                                        </label>
-                                    </td>
-                                )}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="container mx-auto">
+                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                        <div className="overflow-x-auto"></div>
+                        <table className="min-w-full">
+                            <colgroup>
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                            </colgroup>
+                            <thead>
+                                <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                                    {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Name</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Last Name</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Email</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Password</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Status</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((item, index) => (
+                                    <tr key={index}>
+                                        {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.first_name}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.last_name}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.email}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{CryptoJS.AES.decrypt(item.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8)}</td>
+                                        {/* {!isSalesData && <td className="px-4 text-center text-black border border-black">{item.status}</td>} */}
+                                        {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
+                                        {!isSalesData && (
+                                            <td className="px-4 py-2 text-center border border-[#072D20]">
+                                                <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
+                                                    Edit Details
+                                                </label>
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 {/* Popup or modal */}
-                {selectedRow && (
-                    <div >
-                        <input className="modal-state" id="modal-1" type="checkbox" />
-                        <div className=" modal">
-                            <label className=" modal-overlay" htmlFor="modal-1"></label>
-                            {/* <div className="flex flex-col gap-6 modal-content "> */}
-                            <div className="flex flex-col gap-8 overflow-hidden text-[#B2BEBA] modal-content" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
-                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
-                                <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
-                                <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
-                                <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
-                                <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
-                                <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
-                                <div className="flex gap-3">
-                                    <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove_agent}>Approves</button>
-                                    <button className="btn btn-error btn-block  bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete_agent}>Delete</button>
+                {
+                    selectedRow && (
+                        <div >
+                            <input className="modal-state" id="modal-1" type="checkbox" />
+                            <div className=" modal">
+                                <label className=" modal-overlay" htmlFor="modal-1"></label>
+                                {/* <div className="flex flex-col gap-6 modal-content "> */}
+                                <div className="flex flex-col gap-8 overflow-hidden text-[#B2BEBA] modal-content" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
+                                    <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
+                                    <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
+                                    <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
+                                    <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
+                                    <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
+                                    <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
+                                    <div className="flex gap-3">
+                                        <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove_agent}>Approves</button>
+                                        <button className="btn btn-error btn-block  bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete_agent}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )
+                }
             </>
         );
     };
@@ -252,39 +267,53 @@ export default function Page1() {
         };
         return (
             <>
-                <table className="w-full mb-3 text-center border border-collapse border-[#072D20]">
-                    <thead>
-                        <tr className="dark:bg-[#305b4c]">
-                            {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
-                            <th className="px-4 py-2 text-center   bg-[#B2BEBA] border-r border-white text-black dark:bg-[#305b4c] dark:text-white">Badge Name</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Image Path</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Description</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Status</th>
-                            <th className="px-4 py-2 text-center bg-[#B2BEBA] border-r border-[#072D20] text-black dark:bg-[#305b4c] dark:text-white">Created At</th>
-                            <th className="px-4 py-2  text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={index}>
-                                {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.badge_name}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]"><img src={item.image_path} alt="Uploaded" className="w-32 h-32 ml-auto mr-auto" /></td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.description}</td>
-                                {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
-                                {/* {!isSalesData && <td className="px-4 py-2 text-center border border-black">{item.created_at}</td>} */}
-                                {!isSalesData && <td className="px-4 py-2 text-center text-black border border-[#072D20]">{formatDate(item.created_at)}</td>}
-                                {!isSalesData && (
-                                    <td className="px-4 text-center border border-[#072D20]">
-                                        <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.badge_name, item)}>
-                                            Edit Details
-                                        </label>
-                                    </td>
-                                )}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="container mx-auto">
+                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full">
+                                <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                                    <col />
+                                    <col />
+                                    <col />
+                                </colgroup>
+                                <thead>
+                                    <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                                        {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Badge Name</th>
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Image Path</th>
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Description</th>
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Status</th>
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Created At</th>
+                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {data.map((item, index) => (
+                                        <tr key={index}>
+                                            {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
+                                            <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.badge_name}</td>
+                                            <td className="px-4 py-2 text-center text-black border border-[#072D20]"><img src={item.image_path} alt="Uploaded" className="w-32 h-32 ml-auto mr-auto" /></td>
+                                            <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.description}</td>
+                                            {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
+                                            {/* {!isSalesData && <td className="px-4 py-2 text-center border border-black">{item.created_at}</td>} */}
+                                            {!isSalesData && <td className="px-4 py-2 text-center text-black border border-[#072D20]">{formatDate(item.created_at)}</td>}
+                                            {!isSalesData && (
+                                                <td className="px-4 text-center border border-[#072D20]">
+                                                    <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.badge_name, item)}>
+                                                        Edit Details
+                                                    </label>
+                                                </td>
+                                            )}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 {/* Popup or modal */}
                 {selectedRow && (
                     // badge popup
@@ -492,30 +521,30 @@ export default function Page1() {
                         <div>
                             {/* Content for Page1
             <p>This is Page1 content.</p> */}
-                            <div className='w-[90%] mt-10 mx-auto px-10 py-8 rounded-lg shadow-xl border border-[#072D20] bg-[#DAF1DE] basis-full'>
+                            <div className='w-[90%] mx-auto px-10 py-8 rounded-lg shadow-xl border border-[#072D20] bg-[#DAF1DE] basis-full mt-24'>
                                 <h1 className="mb-10 text-3xl font-bold text-center text-black">Main Dashboard</h1>
                                 {/* <details className="w-full mb-3 bg-white border-4 cursor-pointer border-gray-400/75"> */}
-                                <details className="w-full mb-3  border-4 rounded-md cursor-pointer border-[#072D20] ">
+                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20] p-5">
                                     <summary className="w-full bg-white dark:bg-gray-300 text-black font-bold flex justify-between px-4 py-3 after:content-['+']">Admin Data</summary>
-                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
+                                    <div className="px-4 py-3 overflow-x-auto bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable(adminData, true)}
                                     </div>
                                 </details>
-                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
+                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20] p-5">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3 after:content-['+']">Sales Officer Data</summary>
-                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
+                                    <div className="px-4 py-3 overflow-x-auto bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable(salesOfficerData, false)}
                                     </div>
                                 </details>
-                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
+                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20] p-5">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3  after:content-['+']">Sales Agent Data</summary>
-                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
+                                    <div className="px-4 py-3 overflow-x-auto bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable_agent(salesAgentData)}
                                     </div>
                                 </details>
-                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
+                                <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20] p-5">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3  after:content-['+']">Badges Data</summary>
-                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
+                                    <div className="px-4 py-3 overflow-x-auto bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable_badges(badgeData)}
                                     </div>
                                 </details>
