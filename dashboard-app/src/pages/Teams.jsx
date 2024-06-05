@@ -263,10 +263,10 @@ export default function Page8() {
           </div>
           <div>
             {themeSettings && <ThemeSettings />}
-            <div>
+            <div className="mt-20">
               <div className="flex flex-col h-screen">
                 {/* ____________________________________________________________________________________________________________________________ */}
-                <div className="flex-grow w-[40%] ml-auto mr-auto rounded-md  dark:text-black">
+                <div className="flex-grow w-full px-5 mx-auto rounded-md dark:text-black">
 
                   <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900 dark:text-white">
                     Welcome Teams
@@ -302,9 +302,9 @@ export default function Page8() {
                 <br />
                 {/* ____________________________________________________________________________________________________________________________ */}
                 <div className="flex-grow">
-                  <div className="grid grid-cols-2 gap-4 mt-6 md:grid-cols-4">
+                  <div className="flex flex-row flex-wrap justify-center gap-2">
                     {teams.map(team => (
-                      <div key={team.id} className="w-full mx-5">
+                      <div key={team.id} className="w-[250px] mx-5 ">
                         <div className="flex flex-col p-2 bg-[#DAF1DE] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
                           <div className="flex flex-col items-center text-center">
                             <div className="inline-block rounded-full ">
@@ -398,7 +398,7 @@ export default function Page8() {
                         <div className="flex flex-col w-full gap-5 p-7">
                           <label
                             htmlFor="modal-1"
-                            className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-black hover:text-white"
+                            className="absolute text-black btn btn-sm btn-circle btn-ghost right-2 top-2 hover:text-white"
                             onClick={() => setShowUpdateModal(false)}
                           >
                             ✕
@@ -414,7 +414,7 @@ export default function Page8() {
                                 <input
                                   placeholder="Type here"
                                   type="text"
-                                  className="max-w-full input bg-transparent text-gray-100"
+                                  className="max-w-full text-gray-100 bg-transparent input"
                                   value={newTeamName}
                                   onChange={(e) => setNewTeamName(e.target.value)}
                                 />

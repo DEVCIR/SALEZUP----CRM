@@ -241,14 +241,14 @@ export default function Page3() {
                 : "bg-main-bg dark:bg-[#1a1a1a6b] w-full min-h-screen flex-2 "
             }
           >
-            <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
+            <div className="fixed w-fpx-4 py-2 border-r-2 border-[#072D20]ull md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
               <Navbar />
             </div>
             <div>
               {themeSettings && <ThemeSettings />}
 
 
-        <div>
+        <div className="mt-24">
 
             <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit">
                 <FaPlusCircle className="w-6 h-6" />
@@ -258,17 +258,27 @@ export default function Page3() {
             {/* Render your table with mySalesAgent data */}
             <div className="flex h-screen">
                     <div className="container mx-auto">
-                        <table className="w-[90%] mx-auto mt-16 border border-solid table-auto">
+                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full">
+                            <colgroup>
+                              <col />
+                              <col />
+                              <col />
+                              <col />
+                              <col />
+                              <col />
+                              <col />
+                            </colgroup>
                             <thead>
                                 <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                                
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Name</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Last Name</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Email</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Password</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Team Id</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Status</th>
-                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Actions</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">First Name</th> 
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Last Name</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Email</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Password</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Team Id</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Status</th>
+                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Actions</th>
                                 </tr>
                             </thead>
                             {mySalesAgent.map((item, index) => (
@@ -294,6 +304,8 @@ export default function Page3() {
                             </tr>
                         ))}
                         </table>
+                        </div>
+                       </div>
                     </div>
                 </div>
    

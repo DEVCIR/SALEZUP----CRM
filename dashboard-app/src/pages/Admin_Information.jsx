@@ -182,36 +182,46 @@ const Page4 = ({ email }) => {
           <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
             <Navbar />
           </div>
-          <div>
+          <div className="flex items-center justify-center mt-20">
             {themeSettings && <ThemeSettings />}
             <div className="container mx-auto">
-              <table className="mt-8 border border-solid table-auto w-[90%] mx-auto">
-                <thead>
-                  <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                    <th className="px-4 py-2 border-r-2 border-[#072D20]">First Name</th>
-                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Last Name</th>
-                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Email</th>
-                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Password</th>
-                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {adminData && (
-                    <tr className="p-4 text-center text-black bg-black/65">
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.first_name}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.last_name}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.email}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.password}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
-                        <label htmlFor="my-modal" onClick={handleEditClick} className="bg-[#072D20] btn border border-white">
-                          Edit Admin
-                        </label>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-              {/* {editMode && ( */}
+              <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full">
+                    <colgroup>
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                    </colgroup>
+                    <thead className="dark:bg-gray-300">
+                      <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                        <th className="px-4 py-2 border-r-2 border-[#072D20]">First Name</th>
+                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Last Name</th>
+                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Email</th>
+                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Password</th>
+                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {adminData && (
+                        <tr className="p-4 text-center text-black bg-black/65">
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.first_name}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.last_name}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.email}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.password}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
+                            <label htmlFor="my-modal" onClick={handleEditClick} className="bg-[#072D20] btn border border-white text-sm sm:text-md">
+                              Edit Admin
+                            </label>
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
               {editMode && adminData && (
 
                 <div className="update-div">

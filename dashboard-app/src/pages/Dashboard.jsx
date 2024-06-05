@@ -369,59 +369,74 @@ export default function Page1() {
         };
         return (
             <>
-                <table className="w-full mt-6 mb-3 bg-white dark:bg-gray-300 text-center border border-collapse border-[#072D20]">
-                    <thead>
-                        <tr >
-                            {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">First Name</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Last Name</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Email</th>
-                            <th className="px-4 py-2 text-center  text-black bg-[#B2BEBA] border-r border-[#072D20] dark:bg-[#305b4c] dark:text-white">Password</th>
-                            {!isSalesData && <th className="px-4 py-2  text-center text-black bg-[#B2BEBA] dark:bg-[#305b4c] border-r border-[#072D20] dark:text-white">Status</th>}
-                            {!isSalesData && <th className="px-4 py-2  text-center text-black bg-[#B2BEBA] dark:bg-[#305b4c] border-r border-[#072D20] dark:text-white">Action</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={index}>
-                                {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.first_name}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.last_name}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.email}</td>
-                                <td className="px-4 py-2 text-center text-black border border-[#072D20]">{CryptoJS.AES.decrypt(item.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8)}</td>
-                                {!isSalesData && <td className={`px-4 text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
-                                {!isSalesData && (
-                                    <td className="px-4 py-2 text-center border border-[#072D20]">
-                                        <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
-                                            Edit Details
-                                        </label>
-                                    </td>
-                                )}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="container mx-auto">
+                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                        <div className="overflow-x-auto"></div>
+                        <table className="min-w-full">
+                            <colgroup>
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                {!isSalesData && <col />}
+                                {!isSalesData && <col />}
+                            </colgroup>
+                            <thead>
+                                <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                                    {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Name</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Last Name</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Email</th>
+                                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Password</th>
+                                    {!isSalesData && <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Status</th>}
+                                    {!isSalesData && <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Action</th>}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((item, index) => (
+                                    <tr key={index}>
+                                        {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.first_name}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.last_name}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{item.email}</td>
+                                        <td className="px-4 py-2 text-center text-black border border-[#072D20]">{CryptoJS.AES.decrypt(item.password, 'DBBDRSSR54321').toString(CryptoJS.enc.Utf8)}</td>
+                                        {!isSalesData && <td className={`px-4 text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
+                                        {!isSalesData && (
+                                            <td className="px-4 py-2 text-center border border-[#072D20]">
+                                                <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
+                                                    Edit Details
+                                                </label>
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 {/* Popup or modal */}
-                {selectedRow && (
-                    <div>
-                        <input className="modal-state " id="modal-1" type="checkbox" />
-                        <div className="modal ">
-                            <label className="modal-overlay" htmlFor="modal-1"></label>
-                            <div className="flex flex-col gap-8 overflow-hidden modal-content text-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
-                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
-                                <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
-                                <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
-                                <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
-                                <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
-                                <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
-                                <div className="flex gap-6">
-                                    <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove}>Approve</button>
-                                    <button className="btn btn-error btn-block bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete}>Delete</button>
+                {
+                    selectedRow && (
+                        <div>
+                            <input className="modal-state " id="modal-1" type="checkbox" />
+                            <div className="modal ">
+                                <label className="modal-overlay" htmlFor="modal-1"></label>
+                                <div className="flex flex-col gap-8 overflow-hidden modal-content text-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
+                                    <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
+                                    <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
+                                    <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
+                                    <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
+                                    <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
+                                    <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
+                                    <div className="flex gap-6">
+                                        <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove}>Approve</button>
+                                        <button className="btn btn-error btn-block bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )
+                }
             </>
         );
     };
@@ -482,25 +497,25 @@ export default function Page1() {
                                 {/* <details className="w-full mb-3 bg-white border-4 cursor-pointer border-gray-400/75"> */}
                                 <details className="w-full mb-3  border-4 rounded-md cursor-pointer border-[#072D20] ">
                                     <summary className="w-full bg-white dark:bg-gray-300 text-black font-bold flex justify-between px-4 py-3 after:content-['+']">Admin Data</summary>
-                                    <div className="px-4 py-3 bg-white dark:bg-gray-300 border-t-2 border-black">
+                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable(adminData, true)}
                                     </div>
                                 </details>
                                 <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3 after:content-['+']">Sales Officer Data</summary>
-                                    <div className="px-4 py-3 bg-white dark:bg-gray-300 border-t-2 border-black">
+                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable(salesOfficerData, false)}
                                     </div>
                                 </details>
                                 <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3  after:content-['+']">Sales Agent Data</summary>
-                                    <div className="px-4 py-3 bg-white dark:bg-gray-300 border-t-2 border-black">
+                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable_agent(salesAgentData)}
                                     </div>
                                 </details>
                                 <details className="w-full mb-3 bg-white dark:bg-gray-300 border-4 rounded-md cursor-pointer border-[#072D20]">
                                     <summary className="w-full font-bold bg-white dark:bg-gray-300 text-black  flex justify-between px-4 py-3  after:content-['+']">Badges Data</summary>
-                                    <div className="px-4 py-3 bg-white dark:bg-gray-300 border-t-2 border-black">
+                                    <div className="px-4 py-3 bg-white border-t-2 border-black dark:bg-gray-300">
                                         {RenderTable_badges(badgeData)}
                                     </div>
                                 </details>

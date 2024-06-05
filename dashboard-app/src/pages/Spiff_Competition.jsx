@@ -195,7 +195,7 @@ export default function Page6() {
           </div>
           <div>
             {themeSettings && <ThemeSettings />}
-            <div>
+            <div className="mt-20 md:mt-0">
               <div class="min-h-screen   py-6 flex flex-col justify-center sm:py-12">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                   <div class="relative px-4 py-10 bg-[#DAF1DE] dark:bg-[#B2BEBA] mx-8 md:mx-0 shadow rounded-3xl sm:p-10 border border-black">
@@ -217,7 +217,7 @@ export default function Page6() {
                                 onChange={handleType}
                                 required
                               >
-                                <option className="border-4 border-black bg-transparent" value="">Select a type</option>
+                                <option className="bg-transparent border-4 border-black" value="">Select a type</option>
                                 <option value="Type 1">Type 1</option>
                                 <option value="Type 2">Type 2</option>
                                 <option value="Type 3">Type 3</option>

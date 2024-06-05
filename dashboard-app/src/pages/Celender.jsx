@@ -98,45 +98,53 @@ export default function Page7() {
 
 
 
-            <div>
+            <div className="mt-20">
+              <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full">
+                    <colgroup>
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                    </colgroup>
+                    <thead>
+                      <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Type</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Prize</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Prize Value</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Team</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Point</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white" >Start Time</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">End Time</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Duration</th>
+                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Winner</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {competitionData.map(entry => (
+                        <tr key={entry.id}>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.type}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.prize}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.prize_value}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.team}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.point}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.start_time}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.end_time}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.duration}</td>
+                          <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.winner}</td>
+                        </tr>
+                      ))}
+                    </tbody>
 
-
-              <table className="w-full mt-16 border border-solid table-auto">
-                <thead>
-                  <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Type</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Prize</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Prize Value</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Team</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Point</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white" >Start Time</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">End Time</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Duration</th>
-                    <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Winner</th>
-
-                  </tr>
-                </thead>
-
-
-                <tbody >
-                  {competitionData.map(entry => (
-                    <tr key={entry.id}>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.type}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.prize}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.prize_value}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.team}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.point}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.start_time}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.end_time}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.duration}</td>
-                      <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-700">{entry.winner}</td>
-                    </tr>
-                  ))}
-                </tbody>
-
-              </table>
-
+                  </table>
+                </div>
+              </div>
             </div>
 
 

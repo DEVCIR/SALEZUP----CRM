@@ -201,7 +201,7 @@ export default function Page2() {
                     </div>
                     <div>
                         {themeSettings && <ThemeSettings />}
-                        <div>
+                        <div className="mt-24">
                             <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit">
                                 <FaPlusCircle className="w-6 h-6" />
                                 <span htmlFor="modal-1" className="ml-8 font-bold " >Add New Sales Officer</span>
@@ -209,31 +209,44 @@ export default function Page2() {
                             {/* Render your table with mySalesOfficer data */}
                             <div className="flex h-screen">
                                 <div className="container mx-auto">
-                                    <table className="w-[90%] mx-auto mt-16 border border-solid table-auto">
-                                        <thead>
-                                            <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                                                <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Names</th>
-                                                <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Last Name</th>
-                                                <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Email</th>
-                                                <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Password</th>
-                                                <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Status</th>
-                                                <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        {mySalesOfficer.map((item, index) => (
-                                            <tr className="bg-black/65" key={index}>
-                                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.first_name}</td>
-                                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.last_name}</td>
-                                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.email}</td>
-                                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.password}</td>
-                                                {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.status}</td> */}
-                                                <td className={`px-4 py-2 text-center dark:border-white  text-white border-2 border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-700 text-white font-bold'}`}>{item.status}</td>
-                                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
-                                                    <label htmlFor="my-modal" className="bg-[#072D20] btn border border-white" onClick={() => handleEditClick(item)}>Update</label>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </table>
+                                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                                        <div className="overflow-x-auto">
+                                            <table className="min-w-full">
+                                                <colgroup>
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                </colgroup>
+                                                <thead>
+                                                    <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Names</th>
+                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Last Name</th>
+                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Email</th>
+                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Password</th>
+                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Status</th>
+                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                {mySalesOfficer.map((item, index) => (
+                                                    <tr className="bg-black/65" key={index}>
+                                                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.first_name}</td>
+                                                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.last_name}</td>
+                                                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.email}</td>
+                                                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.password}</td>
+                                                        {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.status}</td> */}
+                                                        <td className={`px-4 py-2 text-center dark:border-white  text-white border-2 border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-700 text-white font-bold'}`}>{item.status}</td>
+                                                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
+                                                            <label htmlFor="my-modal" className="bg-[#072D20] btn border border-white" onClick={() => handleEditClick(item)}>Update</label>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <article>
@@ -285,9 +298,9 @@ export default function Page2() {
                                                                 name="password" />
                                                             <button
                                                                 type="button"
-                                                                className="absolute top-3 right-2 bg-transparent hover:bg-transparent"
+                                                                className="absolute bg-transparent top-3 right-2 hover:bg-transparent"
                                                                 onClick={togglePasswordVisibility1}>
-                                                                {isPasswordVisible1 ? <FaEyeSlash className="dark:text-gray-800 text-white" /> : <FaEye className="dark:text-gray-800 text-white" />}
+                                                                {isPasswordVisible1 ? <FaEyeSlash className="text-white dark:text-gray-800" /> : <FaEye className="text-white dark:text-gray-800" />}
                                                             </button>
                                                         </div>
                                                     </div>

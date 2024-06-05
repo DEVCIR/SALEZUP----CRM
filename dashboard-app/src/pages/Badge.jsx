@@ -308,7 +308,7 @@ export default function Page5() {
             {themeSettings && <ThemeSettings />}
 
 
-            <div className="mt-12">
+            <div className="mt-24">
 
               <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit gap-5">
                 <FaPlusCircle className="w-6 h-6" />
@@ -318,41 +318,53 @@ export default function Page5() {
               {/* Render your table with mySalesOfficer data */}
               <div className="flex h-screen">
                 <div className="container mx-auto">
-                  <table className="w-[90%] mx-auto mt-8 border border-solid table-auto">
-                    <thead>
-                      <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Badge Name</th>
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Image Path</th>
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Badge Description</th>
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Badge Status</th>
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white" >Created At</th>
-                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">Action</th>
-                      </tr>
-                    </thead>
+                  <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full">
+                        <colgroup>
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                        </colgroup>
+                        <thead>
+                          <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]">Badge Name</th>
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]">Image Path</th>
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]">Badge Description</th>
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]">Badge Status</th>
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]" >Created At</th>
+                            <th className="px-4 py-2 border-r-2 border-[#072D20]">Action</th>
+                          </tr>
+                        </thead>
 
-                    {badges.filter(item => item.status === 'activated').map((item, index) => (
-                      <tr className="bg-black/65" key={index}>
+                        {badges.filter(item => item.status === 'activated').map((item, index) => (
+                          <tr className="bg-black/65" key={index}>
 
-                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.badge_name}</td>
+                            <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.badge_name}</td>
 
-                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10"><img src={item.image_path} alt="Uploaded" className="w-32 h-32 ml-auto mr-auto" /></td>
-
-
+                            <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10"><img src={item.image_path} alt="Uploaded" className="w-32 h-32 ml-auto mr-auto" /></td>
 
 
-                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.description}</td>
-                        <td className={`px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10`}>{item.status}</td>
 
-                        {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.created_at}</td> */}
 
-                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{formatDate(item.created_at)}</td>
+                            <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.description}</td>
+                            <td className={`px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10`}>{item.status}</td>
 
-                        <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
-                          <label htmlFor="my-modal" className="bg-[#072D20] btn border border-white" onClick={() => handleEditClick(item)}>Update</label>
-                        </td>
-                      </tr>
-                    ))}
-                  </table>
+                            {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.created_at}</td> */}
+
+                            <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{formatDate(item.created_at)}</td>
+
+                            <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
+                              <label htmlFor="my-modal" className="bg-[#072D20] btn border border-white" onClick={() => handleEditClick(item)}>Update</label>
+                            </td>
+                          </tr>
+                        ))}
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -365,7 +377,7 @@ export default function Page5() {
                 <div className="modal">
                   <label className="modal-overlay" htmlFor="modal-1"></label>
                   <div className="flex flex-col w-full gap-5 overflow-hidden modal-content p-7">
-                    <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost text-white hover:text-white right-2 top-2">✕</label>
+                    <label htmlFor="modal-1" className="absolute text-white btn btn-sm btn-circle btn-ghost hover:text-white right-2 top-2">✕</label>
                     <div className="flex flex-col gap-2">
                       <h2 className="text-2xl font-semibold text-center text-[#B2BEBA] dark:text-[#B2BEBA]">Add New Badge</h2>
                       <p className="max-w-xs mx-auto text-sm text-content text-[#B2BEBA] dark:text-[#B2BEBA]">Enter Badge Details</p>

@@ -129,11 +129,11 @@ export default function Page10() {
           <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
             <Navbar />
           </div>
-          <div>
+          <div className="flex items-center justify-center mt-20">
             {themeSettings && <ThemeSettings />}
-            <div >
+            <div className="w-full">
               <div className="flex flex-col items-center mt-8 ml-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <div className="flex flex-col sm:w-1/2">
+                <div className="flex flex-col w-full">
                   <label className="leading-loose dark:text-white">
                     <b>Start Date</b>
                   </label>
@@ -146,7 +146,7 @@ export default function Page10() {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col sm:w-1/2">
+                <div className="flex flex-col w-full">
                   <label className="leading-loose dark:text-white">
                     <b>End Date</b>
                   </label>
@@ -203,7 +203,7 @@ export default function Page10() {
             <div className="flex flex-col w-full gap-5 p-7">
               <label
                 htmlFor="modal-1"
-                className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-black hover:text-white"
+                className="absolute text-black btn btn-sm btn-circle btn-ghost right-2 top-2 hover:text-white"
                 onClick={() => setShowUpdateModal(false)}
               >
                 ✕
@@ -216,7 +216,7 @@ export default function Page10() {
               <section>
                 <div className="form-group">
                   <div className="form-field">
-                    <label className="font-semibold form-label text-black">
+                    <label className="font-semibold text-black form-label">
                       Enter Winner Name
                     </label>
                     <input
