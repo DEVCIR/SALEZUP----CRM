@@ -1,30 +1,27 @@
 
 
 import React, { useState,useEffect } from "react";
-import { FaPlusCircle, FaMoon, FaSun } from 'react-icons/fa';
+import { FaPlusCircle} from 'react-icons/fa';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import bcrypt from "bcryptjs";
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-
 
 import { useStateContext } from "../contexts/ContextProvider";
-
-import { FiSettings } from "react-icons/fi";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
-import { GiConsoleController } from "react-icons/gi";
+import { useAdminContext } from "../contexts/AdminContextProvider";
 
 
 
 
 
 export default function Page3() {
-
+  const navigate = useNavigate();
+  const { isAdminLoggedIn } = useAdminContext();
+  if (!isAdminLoggedIn) {
+      console.log("admin is not logged in");
+      navigate('/admin_login');
+  }
 
     const {
         setCurrentColor,

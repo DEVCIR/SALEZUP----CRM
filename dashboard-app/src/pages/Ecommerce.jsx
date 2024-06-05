@@ -6,6 +6,8 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
+import { useAdminContext } from "../contexts/AdminContextProvider";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -19,7 +21,8 @@ ChartJS.register(
   LineController);
 
 export default function Main_Dashboard() {
-
+  const { isAdminLoggedIn } = useAdminContext();
+  const navigate = useNavigate();
   const {
     setCurrentColor,
     setCurrentMode,
@@ -87,6 +90,11 @@ export default function Main_Dashboard() {
       },
     },
   };
+
+  if (!isAdminLoggedIn) {
+    console.log("admin is not logged in");
+    navigate('/admin_login');
+  }
 
   return (
     <div className={currentMode === "Dark" ? "" : ""}>

@@ -5,8 +5,16 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
+import { useAdminContext } from "../contexts/AdminContextProvider";
 
 export default function Page1() {
+    const navigate = useNavigate();
+    const { isAdminLoggedIn } = useAdminContext();
+    if (!isAdminLoggedIn) {
+        console.log("admin is not logged in");
+        navigate('/admin_login');
+    }
+
     const {
         setCurrentColor,
         setCurrentMode,
@@ -25,7 +33,7 @@ export default function Page1() {
             setCurrentMode(currentThemeMode);
         }
     }, []);
-    const navigate = useNavigate();
+
     useEffect(() => {
         // Fetching competition calender data
         // Fetching competition data
@@ -424,6 +432,7 @@ export default function Page1() {
             </>
         );
     };
+
     // __________________________________________________________________________________________________________________________________________________
     return (
         <div className={currentMode === "Dark" ? "" : ""}>

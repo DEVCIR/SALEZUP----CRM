@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash, FaMoon, FaSun } from 'react-icons/fa';
 import CryptoJS from 'crypto-js';
+import { useAdminContext } from "../contexts/AdminContextProvider";
 
 
 export default function Admin_Login() {
     const navigate = useNavigate();
+
+    const { setIsAdminLoggedIn } = useAdminContext();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -54,6 +57,7 @@ export default function Admin_Login() {
                     localStorage.setItem('userFName', foundUser.first_name);
                     localStorage.setItem('userLName', foundUser.last_name);
                     console.log("This is my email: ", foundUser.email);
+                    setIsAdminLoggedIn(true);
                 } else {
                     console.log("----  Wrong Password  ----");
                     alert("Wrong Password !!! Try Again");
@@ -110,6 +114,7 @@ export default function Admin_Login() {
                                                 <div className="z-10 flex items-center justify-center w-10 pl-1 text-center pointer-events-none">
                                                     <i className="text-lg text-gray-400 mdi mdi-email-outline"></i>
                                                 </div>
+                                                {/* w-full py-2 pl-10 pr-3 -ml-10 border-2 border-gray-200 rounded-lg outline-none bg-white dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 focus:border-red-500 */}
                                                 <input type="text" name="username" className="w-full py-2 pl-10 pr-3 -ml-10 border-2 border-gray-200 rounded-lg outline-none dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 focus:border-red-500" placeholder="johnsmith@example.com" value={username} onChange={(e) => setUsername(e.target.value)} required />
                                             </div>
                                         </div>

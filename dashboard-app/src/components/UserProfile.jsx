@@ -2,7 +2,7 @@ import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 
 import { Button } from ".";
-import {Button1} from "."
+import { Button1 } from "."
 import { userProfileData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 import avatar from "../data/avatar.jpg";
@@ -11,23 +11,16 @@ import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
-
   const navigate = useNavigate();
-
   const userFname = localStorage.getItem('userFName');
-
   const userLname = localStorage.getItem('userLName');
-
   const userEmail = localStorage.getItem('userEmail');
-
-
+  const { setIsAdminLoggedIn } = useStateContext();
 
   const handleLogoutClick = () => {
     console.log("user loging out ");
-
+    setIsAdminLoggedIn(false);
     navigate('/admin_login')
-
-    
   };
 
 
@@ -52,7 +45,7 @@ const UserProfile = () => {
         <div>
           <p className="text-xl font-semibold dark:text-white ">
             {" "}
-            {userFname+" "+userLname}
+            {userFname + " " + userLname}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {" "}
@@ -60,7 +53,7 @@ const UserProfile = () => {
           </p>
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">
             {" "}
-           {userEmail}
+            {userEmail}
           </p>
         </div>
       </div>

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { useAdminContext } from "../contexts/AdminContextProvider";
 
 export default function Page10() {
+  const navigate = useNavigate();
+  const { isAdminLoggedIn } = useAdminContext();
+  if (!isAdminLoggedIn) {
+    console.log("admin is not logged in");
+    navigate('/admin_login');
+  }
   const {
     setCurrentColor,
     setCurrentMode,
