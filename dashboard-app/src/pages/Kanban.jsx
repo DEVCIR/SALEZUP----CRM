@@ -16,6 +16,11 @@ const Kanban = () => {
   if (!isAdminLoggedIn) {
     console.log("admin is not logged in");
     navigate('/admin_login');
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+      </div>
+    );
   }
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">

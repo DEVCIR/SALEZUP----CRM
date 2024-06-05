@@ -4,19 +4,13 @@ import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useStateContext } from "../contexts/ContextProvider";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 import { useAdminContext } from "../contexts/AdminContextProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function Page2() {
     const navigate = useNavigate();
-    const { isAdminLoggedIn } = useAdminContext();
-    if (!isAdminLoggedIn) {
-        console.log("admin is not logged in");
-        navigate('/admin_login');
-    }
+
     const {
         setCurrentColor,
         setCurrentMode,
@@ -160,6 +154,17 @@ export default function Page2() {
         setIsPasswordVisible1(prevState => !prevState);
     };
 
+    const { isAdminLoggedIn } = useAdminContext();
+    if (!isAdminLoggedIn) {
+        console.log("admin is not logged in");
+        navigate('/admin_login');
+        return (
+            <div className="flex items-center justify-center h-screen bg-white">
+                <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+            </div>
+        );
+    }
+    
     return (
         <div className={currentMode === "Dark" ? "" : ""}>
             <div className="relative flex dark:bg-main-dark-bg">

@@ -10,11 +10,7 @@ import { useAdminContext } from "../contexts/AdminContextProvider";
 
 export default function Page3() {
   const navigate = useNavigate();
-  const { isAdminLoggedIn } = useAdminContext();
-  if (!isAdminLoggedIn) {
-      console.log("admin is not logged in");
-      navigate('/admin_login');
-  }
+  
 
     const {
         setCurrentColor,
@@ -204,9 +200,17 @@ export default function Page3() {
         setIsPasswordVisible1(prevState => !prevState);
       };
 
+      const { isAdminLoggedIn } = useAdminContext();
+      if (!isAdminLoggedIn) {
+        console.log("admin is not logged in");
+        navigate('/admin_login');
+        return (
+          <div className="flex items-center justify-center h-screen bg-white">
+            <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+          </div>
+        );
+      }
     return (
-
-
         <div className={currentMode === "Dark" ? "" : ""}>
         <div className="relative flex dark:bg-main-dark-bg">
           {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>

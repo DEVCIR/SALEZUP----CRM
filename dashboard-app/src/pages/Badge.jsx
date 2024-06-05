@@ -8,15 +8,7 @@ import { useAdminContext } from "../contexts/AdminContextProvider";
 
 
 export default function Page5() {
-  const navigate = useNavigate();
-  const { isAdminLoggedIn } = useAdminContext();
-  if (!isAdminLoggedIn) {
-    console.log("admin is not logged in");
-    navigate('/admin_login');
-  }
-
   const [mySalesOfficer, setMySalesOfficer] = useState([]);
-
   const [prizevalueData, setPrizeValueData] = useState('');
 
   const [badgeName, setBadgeName] = useState('');
@@ -26,8 +18,6 @@ export default function Page5() {
   const [badgeDescription, setBadgeDescription] = useState('');
   const [badges, setBadges] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-
-
   const {
     setCurrentColor,
     setCurrentMode,
@@ -37,6 +27,11 @@ export default function Page5() {
     themeSettings,
     setThemeSettings,
   } = useStateContext();
+
+
+  const navigate = useNavigate();
+
+
 
 
   useEffect(() => {
@@ -261,6 +256,16 @@ export default function Page5() {
     return `${day}-${month}-${year}`;
   };
 
+  const { isAdminLoggedIn } = useAdminContext();
+  if (!isAdminLoggedIn) {
+    console.log("admin is not logged in");
+    navigate('/admin_login');
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+      </div>
+    );
+  }
 
 
   return (

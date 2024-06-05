@@ -6,11 +6,7 @@ import { useAdminContext } from "../contexts/AdminContextProvider";
 
 export default function Page9() {
     const navigate = useNavigate();
-    const { isAdminLoggedIn } = useAdminContext();
-    if (!isAdminLoggedIn) {
-        console.log("admin is not logged in");
-        navigate('/admin_login');
-    }
+
     const {
         setCurrentColor,
         setCurrentMode,
@@ -135,6 +131,16 @@ export default function Page9() {
             console.log('Team:', entry.team); // Added line for team
         });
     };
+    const { isAdminLoggedIn } = useAdminContext();
+    if (!isAdminLoggedIn) {
+        console.log("admin is not logged in");
+        navigate('/admin_login');
+        return (
+            <div className="flex items-center justify-center h-screen bg-white">
+                <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+            </div>
+        );
+    }
     return (
         <div className={currentMode === "Dark" ? "" : ""}>
             <div className="relative flex dark:bg-main-dark-bg">

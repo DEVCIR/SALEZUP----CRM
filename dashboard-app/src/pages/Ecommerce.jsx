@@ -21,7 +21,6 @@ ChartJS.register(
   LineController);
 
 export default function Main_Dashboard() {
-  const { isAdminLoggedIn } = useAdminContext();
   const navigate = useNavigate();
   const {
     setCurrentColor,
@@ -91,9 +90,15 @@ export default function Main_Dashboard() {
     },
   };
 
+  const { isAdminLoggedIn } = useAdminContext();
   if (!isAdminLoggedIn) {
     console.log("admin is not logged in");
     navigate('/admin_login');
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+      </div>
+    );
   }
 
   return (
