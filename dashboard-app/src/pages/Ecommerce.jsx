@@ -315,7 +315,7 @@ export default function Main_Dashboard() {
                   {/* Chart */}
                   {/* <Line data={lineChartData} options={lineChartOptions} /> */}
                 </div>
-                <div className="bg-[#679b89] p-4 rounded-lg mb-6">
+                <div className="bg-gray-100 p-4 rounded-lg mb-6">
                   <h3 className="mb-4 text-black">SPFT Summary</h3>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
@@ -345,11 +345,11 @@ export default function Main_Dashboard() {
                     </div>
                     <div className="space-y-4">
                       {[
-                        { name: 'Jack Williams', earnings: 18000, image: 'https://s3-alpha-sig.figma.com/img/62b2/de86/3e5c02d1c4d27a7ec3537a08183734bc?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=DMYG1PgxzsvNT6usLqPgm~WZIyOqVLPhSKWICK6oTG72-22VvbioUrAgmR8ow4VGwGYOsjor3t3S2ucB81pYNEGPL489dm2SR3w2Ua~QEEv8b3qG-rqAIreHu2cdc3zZu7YSThVsVLuXR7MgUwlHGgKqM0JhZ~s~ehfaBdZxKog8N8Buyusk4GooeEXeLg4NiIZPFPTwfzB7SesiJx27I9LOsevEjpyQLS7IC-nOqaDqkRKyxqDJBmQiOvA1WqV7Xgfw5V9kNynR5Pog3QNeMCUMPPDI3NgFw1qYOXU3X-07i203tUwZ4nyf0PCzqz-M~GDt03IS--xxi3M8vbhZMQ__', rank: 1 },
-                        { name: 'Elisa Sanchez', earnings: 17500, image: 'https://s3-alpha-sig.figma.com/img/d0b7/bdd7/10448a702ae55f979910bb4ae3034622?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qP9bp-tqbulFuRBqBE5awnaaUivhUTT9rw0hU3j9ys3loBhClM~DLNdsZdX8qzz3xkfUy2Xql6FDNw476BoN0LlLUhHzthQRGuAe0dDLMMcManrcP4yWyKpqDq9XqSqcMOle~6DJTE~zForuadOMqJwuaRftePO2FrYgTH-h5CLgoK5KH4ak7XD4bLzmy88AKbcnOVF4PHIMRL-HA6~weHc7aRxT~oMyLQnnTyhDOkSv47wMMY2zLY2g5IBkVYHIFrDhk6kIJQWrRc~UJUgSK0OTU8cdGavMFp-3Q3Jt7qTgCH0b1sVRne7ahk5Jp1QNIzx2rgNAadgx08GdhK3j2Q__', rank: 2 },
-                        { name: 'Mario Fernandez', earnings: 16000, image: 'https://s3-alpha-sig.figma.com/img/7fb0/cfc1/0e87bd1e664d7d447307e274003434cd?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mNFxjuoUImt4OAcHE6hkAcZoJozVXPysCuuV~TJWkvVxSYvqyjPnntWg3LkjaK5JIKH5EJBQ3N~ChFQFFVnEyV2hVnQlhIhKQte9SAx6CNDlgayz2Eobzg0GMpK4VP1A8kP-voBZAZKX3PB5kmrs7JwNDeYhwxr9Z6Uo8UN9uOZ1zQz9pVeEMnr0c~-1YCOiGOpbHDWpDZdttXYdlTqjdwyw-ys2lANbQS-0G4wpfUBWTQHM3~taI1EU8TvYi7~e-H7xd1epvLLRSw24Xpu-XMzsfi~KJgjc1UWNMToeSuRcoYd6e9BDcmziZXlPvwy25a58cvKvfwQ1TguA1ryFuQ__', rank: 3 },
-                        { name: 'Eddie Jones', earnings: 9000, image: 'https://s3-alpha-sig.figma.com/img/d0b7/bdd7/10448a702ae55f979910bb4ae3034622?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qP9bp-tqbulFuRBqBE5awnaaUivhUTT9rw0hU3j9ys3loBhClM~DLNdsZdX8qzz3xkfUy2Xql6FDNw476BoN0LlLUhHzthQRGuAe0dDLMMcManrcP4yWyKpqDq9XqSqcMOle~6DJTE~zForuadOMqJwuaRftePO2FrYgTH-h5CLgoK5KH4ak7XD4bLzmy88AKbcnOVF4PHIMRL-HA6~weHc7aRxT~oMyLQnnTyhDOkSv47wMMY2zLY2g5IBkVYHIFrDhk6kIJQWrRc~UJUgSK0OTU8cdGavMFp-3Q3Jt7qTgCH0b1sVRne7ahk5Jp1QNIzx2rgNAadgx08GdhK3j2Q__', rank: 4 },
-                        { name: 'Marcus J. Schneider', earnings: 3000, image: 'https://s3-alpha-sig.figma.com/img/5c73/c6c2/83004abb594407a237b5d29e77e8f61b?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=q4fgf~rWT-OPUnDBVaEoFQymxt9hjMjTsHNIPgq~0a510osCJZ8jgYeFGdwSQF14JLTBTeLee9IHbQrqrGHenvVtJdvrXv5KjAj3Ymla6S-SaGZZ-IHzMsmWyK8BRz1zbp3Ce7roCk23rgTaWuTTXT0mENzThVka~ZMx12mCQ-hJYfTPegEQDwiZ-ONmtnQdhyzzaOV9MLxa9lqKtClxqUIZjXfLfQYTRzbdgOEBEywsL4DYg3cvWBm4gFRgsMvvgFx4VsdKrGrEbUzSFE3aBZheG1r7FLYbVwOvvQQFmpimeRJ03ht7peWe4vUULO2h8Di22AtxSbyVi3goHzUH4w__', rank: 5 },
+                        { name: 'John Doene', earnings: 18000, image: 'https://s3-alpha-sig.figma.com/img/62b2/de86/3e5c02d1c4d27a7ec3537a08183734bc?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=DMYG1PgxzsvNT6usLqPgm~WZIyOqVLPhSKWICK6oTG72-22VvbioUrAgmR8ow4VGwGYOsjor3t3S2ucB81pYNEGPL489dm2SR3w2Ua~QEEv8b3qG-rqAIreHu2cdc3zZu7YSThVsVLuXR7MgUwlHGgKqM0JhZ~s~ehfaBdZxKog8N8Buyusk4GooeEXeLg4NiIZPFPTwfzB7SesiJx27I9LOsevEjpyQLS7IC-nOqaDqkRKyxqDJBmQiOvA1WqV7Xgfw5V9kNynR5Pog3QNeMCUMPPDI3NgFw1qYOXU3X-07i203tUwZ4nyf0PCzqz-M~GDt03IS--xxi3M8vbhZMQ__', rank: 1 },
+                        { name: 'Jane Smith', earnings: 17500, image: 'https://s3-alpha-sig.figma.com/img/d0b7/bdd7/10448a702ae55f979910bb4ae3034622?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qP9bp-tqbulFuRBqBE5awnaaUivhUTT9rw0hU3j9ys3loBhClM~DLNdsZdX8qzz3xkfUy2Xql6FDNw476BoN0LlLUhHzthQRGuAe0dDLMMcManrcP4yWyKpqDq9XqSqcMOle~6DJTE~zForuadOMqJwuaRftePO2FrYgTH-h5CLgoK5KH4ak7XD4bLzmy88AKbcnOVF4PHIMRL-HA6~weHc7aRxT~oMyLQnnTyhDOkSv47wMMY2zLY2g5IBkVYHIFrDhk6kIJQWrRc~UJUgSK0OTU8cdGavMFp-3Q3Jt7qTgCH0b1sVRne7ahk5Jp1QNIzx2rgNAadgx08GdhK3j2Q__', rank: 2 },
+                        { name: 'Paul White', earnings: 16000, image: 'https://s3-alpha-sig.figma.com/img/7fb0/cfc1/0e87bd1e664d7d447307e274003434cd?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mNFxjuoUImt4OAcHE6hkAcZoJozVXPysCuuV~TJWkvVxSYvqyjPnntWg3LkjaK5JIKH5EJBQ3N~ChFQFFVnEyV2hVnQlhIhKQte9SAx6CNDlgayz2Eobzg0GMpK4VP1A8kP-voBZAZKX3PB5kmrs7JwNDeYhwxr9Z6Uo8UN9uOZ1zQz9pVeEMnr0c~-1YCOiGOpbHDWpDZdttXYdlTqjdwyw-ys2lANbQS-0G4wpfUBWTQHM3~taI1EU8TvYi7~e-H7xd1epvLLRSw24Xpu-XMzsfi~KJgjc1UWNMToeSuRcoYd6e9BDcmziZXlPvwy25a58cvKvfwQ1TguA1ryFuQ__', rank: 3 },
+                        { name: 'Mari Green', earnings: 19000, image: 'https://s3-alpha-sig.figma.com/img/d0b7/bdd7/10448a702ae55f979910bb4ae3034622?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qP9bp-tqbulFuRBqBE5awnaaUivhUTT9rw0hU3j9ys3loBhClM~DLNdsZdX8qzz3xkfUy2Xql6FDNw476BoN0LlLUhHzthQRGuAe0dDLMMcManrcP4yWyKpqDq9XqSqcMOle~6DJTE~zForuadOMqJwuaRftePO2FrYgTH-h5CLgoK5KH4ak7XD4bLzmy88AKbcnOVF4PHIMRL-HA6~weHc7aRxT~oMyLQnnTyhDOkSv47wMMY2zLY2g5IBkVYHIFrDhk6kIJQWrRc~UJUgSK0OTU8cdGavMFp-3Q3Jt7qTgCH0b1sVRne7ahk5Jp1QNIzx2rgNAadgx08GdhK3j2Q__', rank: 4 },
+                        { name: 'Mark Stone', earnings: 13000, image: 'https://s3-alpha-sig.figma.com/img/5c73/c6c2/83004abb594407a237b5d29e77e8f61b?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=q4fgf~rWT-OPUnDBVaEoFQymxt9hjMjTsHNIPgq~0a510osCJZ8jgYeFGdwSQF14JLTBTeLee9IHbQrqrGHenvVtJdvrXv5KjAj3Ymla6S-SaGZZ-IHzMsmWyK8BRz1zbp3Ce7roCk23rgTaWuTTXT0mENzThVka~ZMx12mCQ-hJYfTPegEQDwiZ-ONmtnQdhyzzaOV9MLxa9lqKtClxqUIZjXfLfQYTRzbdgOEBEywsL4DYg3cvWBm4gFRgsMvvgFx4VsdKrGrEbUzSFE3aBZheG1r7FLYbVwOvvQQFmpimeRJ03ht7peWe4vUULO2h8Di22AtxSbyVi3goHzUH4w__', rank: 5 },
                       ].map((user) => (
                         <div key={user.rank} className="flex items-center justify-between">
                           <span className="flex items-center space-x-3">
@@ -360,12 +360,12 @@ export default function Main_Dashboard() {
                             />
                             <span>{user.name}</span>
                           </span>
-                          <span className="w-1/2 h-6 overflow-hidden bg-gray-200 rounded-full">
+                          <span className="w-[400px] h-6 overflow-hidden bg-gray-200 rounded-full">
                             <div
                               className="h-6 border-2 border-black rounded-full "
                               style={{
                                 width: `${(user.earnings / 20000) * 100}%`,
-                                backgroundImage: 'linear-gradient(to right, #B2BEBA 40%, #072D20 80%)'
+                                backgroundImage: 'linear-gradient(to right, #DAF1DE, #072D20)'
                               }}
                             ></div>
                           </span>
