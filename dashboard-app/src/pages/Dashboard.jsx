@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 import { useStateContext } from "../contexts/ContextProvider";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 import { useAdminContext } from "../contexts/AdminContextProvider";
 
@@ -79,7 +77,6 @@ export default function Page1() {
 
             const id = selectedRow.id;
             fetch(` https://crmapi.devcir.co/api/sales-agents/${id}`, {
-
                 method: 'DELETE'
             })
                 .then(response => {

@@ -365,7 +365,7 @@ export default function Page5() {
                 <div className="modal">
                   <label className="modal-overlay" htmlFor="modal-1"></label>
                   <div className="flex flex-col w-full gap-5 overflow-hidden modal-content p-7">
-                    <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost text-black hover:text-white right-2 top-2">✕</label>
+                    <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost text-white hover:text-white right-2 top-2">✕</label>
                     <div className="flex flex-col gap-2">
                       <h2 className="text-2xl font-semibold text-center text-[#B2BEBA] dark:text-[#B2BEBA]">Add New Badge</h2>
                       <p className="max-w-xs mx-auto text-sm text-content text-[#B2BEBA] dark:text-[#B2BEBA]">Enter Badge Details</p>
@@ -398,7 +398,7 @@ export default function Page5() {
                               rows={3}
                               cols={45}
                               placeholder="Type description"
-                              className="border rounded-xl p-2 border-[#B2BEBA] bg-transparent dark:bg-[#B2BEBA] text-[#B2BEBA]"
+                              className="rounded-[12px] p-2 bg-transparent dark:bg-[#B2BEBA] text-[#B2BEBA]"
                             />
                             <label className="form-label">
                               <span className="form-label-alt text-[#B2BEBA]">Please enter a description.</span>
@@ -408,9 +408,9 @@ export default function Page5() {
 
                           <div className="form-field text-[#B2BEBA]" >
                             <label htmlFor="status text-[#B2BEBA]">Status:</label>
-                            <select id="status" value={status} onChange={handleStatusChange} className="bg-transparent border-[#B2BEBA] dark:text-[#B2BEBA] border dark:border-gray-800 rounded">
-                              <option value="activated bg-[#B2BEBA]">Activated</option>
-                              <option value="deactivated bg-[#B2BEBA]">Deactivated</option>
+                            <select id="status" value={status} onChange={handleStatusChange} className="input bg-transparent dark:text-[#B2BEBA] w-full dark:border-gray-800 rounded">
+                              <option value="activated bg-transparent">Activated</option>
+                              <option value="deactivated bg-transparent">Deactivated</option>
                             </select>
                           </div>
 
@@ -443,36 +443,25 @@ export default function Page5() {
 
                       <div>
                         <div className="flex flex-col gap-8 ">
-                          <h2 className="mt-8 text-xl text-center"><b>Updating: </b>{selectedRow.badge_name}</h2>
-                          <label className="font-bold text-md text-black">Badge Name:
-                            <input type="text" className="p-2 ml-4 font-normal text-[#B2BEBA] border border-gray-300" name="badge_name" value={formData.badge_name} onChange={handleInputChange} />
+                          <h2 className="mt-8 text-xl text-center text-[#B2BEBA]"><b>Updating</b></h2>
+                          <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Badge Name:
+                            <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="badge_name" value={formData.badge_name} onChange={handleInputChange} />
                           </label>
-
-                          {/* <label className="font-bold text-md">Image Path:
-            <input type="text" className="p-2 ml-4 font-normal" name="image_path" value={formData.image_path} onChange={handleInputChange} />
-        </label> */}
-
                           <div className="form-field">
-                            <label className="font-semibold form-label">Image Path</label>
-                            <input type="file" accept="image/*" onChange={handleImageUpdate} className="text-[#B2BEBA]" />
-                            <label className="form-label"></label>
-
-
+                            <label className="flex flex-col justify-between font-bold text-md text-[#B2BEBA]">Image Path
+                              <input type="file" accept="image/*" onChange={handleImageUpdate} className="text-[#B2BEBA] bg-transparent" />
+                            </label>
                           </div>
 
 
-                          <label className="font-bold text-md">Badge Description:
-                            <input type="text" className="p-2 ml-4 font-normal text-[#B2BEBA] border border-gray-300" name="description" value={formData.description} onChange={handleInputChange} />
+                          <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Badge Description:
+                            <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="description" value={formData.description} onChange={handleInputChange} />
                           </label>
 
-                          {/* <label className="font-bold text-md">Status:
-            <input type="text" className="p-2 ml-4 font-normal" name="status" value={formData.status} onChange={handleInputChange} />
-        </label> */}
-
-                          <label className="font-bold text-md">Status:
-                            <select className="p-2 ml-4 font-normal border border-gray-300" name="status" value={formData.status} onChange={handleInputChange}>
-                              <option value="approved">activated</option>
-                              <option value="pending">deactivated</option>
+                          <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Status:
+                            <select className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="status" value={formData.status} onChange={handleInputChange}>
+                              <option value="approved" className="bg-transparent">Approved</option>
+                              <option value="pending" className="bg-transparent">Pending</option>
                             </select>
                           </label>
                           <div className="flex gap-3">

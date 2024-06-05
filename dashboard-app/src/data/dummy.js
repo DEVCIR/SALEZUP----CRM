@@ -525,8 +525,6 @@ export const links = [
       },
     ],
   },
-
-
   {
     title: "Pages",
     links: [
@@ -624,14 +622,14 @@ export const links = [
   {
     title: "Settings",
     links: [
-      {
-        name: "kanban",
-        icon: <BsKanban />,
-      },
-      {
-        name: "calendar",
-        icon: <AiOutlineCalendar />,
-      },
+      // {
+      //   name: "kanban",
+      //   icon: <BsKanban />,
+      // },
+      // {
+      //   name: "calendar",
+      //   icon: <AiOutlineCalendar />,
+      // },
       {
         name: "Admin_Configuration",
         icon: <FiEdit />,

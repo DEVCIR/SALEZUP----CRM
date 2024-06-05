@@ -368,8 +368,8 @@ export default function Page8() {
                     type="checkbox" checked={showPopup} readOnly />
                   <div className="w-screen modal">
                     <label className="modal-overlay" htmlFor="modal-2" onClick={() => setShowPopup(false)}></label>
-                    <div className="flex flex-col max-w-3xl gap-5 modal-content bg-white">
-                      <center> <h2 className="text-xl text-black">Add Sales Agents</h2>  </center>
+                    <div className="flex flex-col max-w-3xl gap-5 modal-content bg-[#161616] text-gray-100">
+                      <center> <h2 className="text-xl">Add Sales Agents</h2>  </center>
                       <div className="flex flex-col gap-4">
                         {salesAgents.filter(agent => agent.status === 'approved').map((agent) => (
                           <div key={agent.id} className="flex items-center justify-between mt-8">
@@ -394,7 +394,7 @@ export default function Page8() {
                   {/* PopUp for update button on card */}
                   {showUpdateModal && (
                     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
-                      <div className="modal-content bg-white border border-black">
+                      <div className="modal-contentborder bg-[#161616] rounded-xl border-black text-gray-100">
                         <div className="flex flex-col w-full gap-5 p-7">
                           <label
                             htmlFor="modal-1"
@@ -410,11 +410,11 @@ export default function Page8() {
                           <section>
                             <div className="form-group">
                               <div className="form-field">
-                                <label className="font-semibold form-label text-black">Enter New Team Name</label>
+                                <label className="font-semibold form-label">Enter New Team Name</label>
                                 <input
                                   placeholder="Type here"
                                   type="text"
-                                  className="max-w-full input bg-white text-black"
+                                  className="max-w-full input bg-transparent text-gray-100"
                                   value={newTeamName}
                                   onChange={(e) => setNewTeamName(e.target.value)}
                                 />

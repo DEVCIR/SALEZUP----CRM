@@ -25,12 +25,8 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
-
-
   const userFname = localStorage.getItem('userFName');
-
   const userLname = localStorage.getItem('userLName');
-
 
   const {
     currentColor,
@@ -44,11 +40,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
-
     window.addEventListener("resize", handleResize);
-
     handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -59,7 +52,6 @@ const Navbar = () => {
       setActiveMenu(true);
     }
   }, [screenSize]);
-
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 
   return (
@@ -110,7 +102,6 @@ const Navbar = () => {
             <MdKeyboardArrowDown className="text-white text-18" />
           </div>
         </TooltipComponent>
-
         {isClicked.cart && <Cart />}
         {isClicked.chat && <Chat />}
         {isClicked.notification && <Notification />}

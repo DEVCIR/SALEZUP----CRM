@@ -164,7 +164,7 @@ export default function Page2() {
             </div>
         );
     }
-    
+
     return (
         <div className={currentMode === "Dark" ? "" : ""}>
             <div className="relative flex dark:bg-main-dark-bg">
@@ -311,19 +311,23 @@ export default function Page2() {
                                             <label for="my-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                                             <div>
                                                 <div className="flex flex-col gap-8 ">
-                                                    <h2 className="mt-8 text-xl text-center"><b>Updating : </b>{selectedRow.first_name}</h2>
-                                                    <label className="font-bold text-md">First Name:
-                                                        <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="first_name" value={formData.first_name} onChange={handleInputChange} /> </label>
-                                                    <label className="font-bold text-md">Last Name:
-                                                        <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="last_name" value={formData.last_name} onChange={handleInputChange} />  </label>
-                                                    <label className="font-bold text-md">Email:
-                                                        <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="email" value={formData.email} onChange={handleInputChange} />  </label>
+                                                    {/* ---- */}
+                                                    <h2 className="mt-8 text-xl text-center text-[#B2BEBA]"><b>Updating</b></h2>
+                                                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">First Name:
+                                                        <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="first_name" value={formData.first_name} onChange={handleInputChange} />
+                                                    </label>
+                                                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Last Name:
+                                                        <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="last_name" value={formData.last_name} onChange={handleInputChange} />
+                                                    </label>
+                                                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Email:
+                                                        <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="email" value={formData.email} onChange={handleInputChange} />
+                                                    </label>
                                                     <div className="flex flex-row items-center">
-                                                        <label htmlFor="password" className="font-bold text-md">Password :</label>
+                                                        <label htmlFor="password" className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Password :</label>
                                                         <div className="relative flex">
                                                             <input
                                                                 type={isPasswordVisible ? 'text' : 'password'}
-                                                                className="p-2 ml-4 font-normal border border-gray-300"
+                                                                className="w-[200px] input p-2 ml-5 dark:bg-[#B2BEBA] dark:text-gray-800"
                                                                 name="password"
                                                                 value={formData.password}// Update value to reflect formData
                                                                 onChange={handleInputChange} />
@@ -331,16 +335,17 @@ export default function Page2() {
                                                                 type="button"
                                                                 className="absolute top-3 right-2 "
                                                                 onClick={togglePasswordVisibility}>
-                                                                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                                                                {isPasswordVisible ? <FaEyeSlash className="text-[#B2BEBA]" /> : <FaEye className="text-[#B2BEBA]" />}
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    {/* ---- */}
                                                     {/* <label className="font-bold text-md">Status:
                             <input type="text" className="p-2 ml-4 font-normal" name="status" value={formData.status} onChange={handleInputChange} />  </label> */}
-                                                    <label className="font-bold text-md">Status:
-                                                        <select className="p-2 ml-4 font-normal border border-gray-300" name="status" value={formData.status} onChange={handleInputChange}>
-                                                            <option value="approved">Approved</option>
-                                                            <option value="pending">Pending</option>
+                                                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Status:
+                                                        <select className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="status" value={formData.status} onChange={handleInputChange}>
+                                                            <option value="approved" className="bg-transparent">Approved</option>
+                                                            <option value="pending" className="bg-transparent">Pending</option>
                                                         </select>
                                                     </label>
                                                     <div className="flex gap-3">

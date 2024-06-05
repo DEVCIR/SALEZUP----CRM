@@ -226,13 +226,13 @@ const Page4 = ({ email }) => {
                         <div className="flex flex-col gap-8 ">
                           <h2 className="mt-8 text-xl text-center dark:text-gray-800 text-[#B2BEBA]"><b>Updating Admin</b></h2>
                           <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">First Name:
-                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="first_name" value={formData.first_name} onChange={handleInputChange} />
+                            <input type="text" className="dark:text-black input w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="first_name" value={formData.first_name} onChange={handleInputChange} />
                           </label>
                           <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">Last Name:
-                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="last_name" value={formData.last_name} onChange={handleInputChange} />
+                            <input type="text" className="dark:text-black input w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="last_name" value={formData.last_name} onChange={handleInputChange} />
                           </label>
                           <label className="flex flex-row items-center font-semibold form-label dark:text-gray-800">Email:
-                            <input type="text" className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="email" value={formData.email} onChange={handleInputChange} />
+                            <input type="text" className="dark:text-black input w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black" name="email" value={formData.email} onChange={handleInputChange} />
                           </label>
                           {/* <label className="font-bold text-md">Password :
                         <input type="password" className="p-2 ml-4 font-normal" name="password" value={formData.password} onChange={handleInputChange} />  </label> */}
@@ -241,7 +241,7 @@ const Page4 = ({ email }) => {
                             <div className="relative flex">
                               <input
                                 type={isPasswordVisible ? 'text' : 'password'}
-                                className="dark:text-black w-44 text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black"
+                                className="dark:text-black w-44 input text-[#B2BEBA] p-2 ml-4 font-normal bg-transparent rounded border dark:border-black"
                                 name="password"
                                 value={formData.password}// Update value to reflect formData
                                 onChange={handleInputChange} />

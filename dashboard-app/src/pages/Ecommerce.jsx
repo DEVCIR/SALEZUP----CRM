@@ -95,7 +95,7 @@ export default function Main_Dashboard() {
     console.log("admin is not logged in");
     navigate('/admin_login');
     return (
-      <div className="flex items-center justify-center h-screen bg-white">
+      <div className="flex items-center justify-center h-screen bg-[#F3F3F3]">
         <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
       </div>
     );
@@ -103,7 +103,7 @@ export default function Main_Dashboard() {
 
   return (
     <div className={currentMode === "Dark" ? "" : ""}>
-      <div className="relative flex dark:bg-main-dark-bg">
+      <div className="relative flex dark:bg-main-dark-bg bg-[#F3F3F3] pt-100">
         {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">
             <button
@@ -142,21 +142,21 @@ export default function Main_Dashboard() {
                 <header className="flex items-center justify-between mb-4">
                 </header>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-                  <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg text-center">
+                  <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4 text-center">
                     <h3 className="text-gray-600 dark:text-black">Weekly Earnings</h3>
                     <p className="text-2xl font-bold">$2500</p>
                     <p className="text-green-500 dark:text-[#072D20]">+12.5% increase in last week</p>
                     <div className="relative pt-2">
                       <div className="w-full h-2 bg-gray-300 rounded ">
                         <div
-                          className="h-2 bg-yellow-400 rounded dark:bg-yellow-500"
+                          className="h-2 bg-yellow-500 rounded dark:bg-yellow-500"
                           style={{ width: '60%' }}
                         ></div>
                       </div>
                       <p className="mt-2 text-sm text-gray-600 dark:text-black">60%</p>
                     </div>
                   </div>
-                  <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg text-center">
+                  <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4 text-center">
                     <h3 className="text-gray-600 dark:text-black">Monthly Earnings</h3>
                     <p className="text-2xl font-bold">$9000</p>
                     <p className="text-green-500 dark:text-[#072D20]">+7% increase in last month</p>
@@ -170,7 +170,7 @@ export default function Main_Dashboard() {
                       <p className="mt-2 text-sm text-gray-600 dark:text-black">70%</p>
                     </div>
                   </div>
-                  <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg text-center">
+                  <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4 text-center">
                     <h3 className="text-gray-600 dark:text-black">Yearly Earnings</h3>
                     <p className="text-2xl font-bold">$100000</p>
                     <p className="text-green-500 dark:text-[#072D20]">+20% increase in last year</p>
@@ -186,17 +186,17 @@ export default function Main_Dashboard() {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg">
+                  <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4">
                     <h3 className="text-gray-600 dark:text-black">Total Earnings</h3>
 
                     {/* card */}
 
-                    <div className="p-6 bg-gray-100 dark:bg-[#B2BEBA]">
-                      <div className="flex flex-col  bg-[#072D20] text-white p-6 rounded-lg mb-4">
+                    <div className="p-6 bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA]">
+                      <div className="flex flex-col  bg-[#072D20] text-white p-6 rounded-[24px] mb-4">
                         <div className="text-4xl font-bold">$9000</div>
                         <div className="text-lg">Total Commission</div>
                         <div className="text-sm">Compared to $27,000 last month</div>
-                        <div className="px-2 py-1 mt-2 text-xs bg-green-700 rounded">▲ 2.5%</div>
+                        <div className="px-2 py-1 mt-2 text-xs bg-green-700 rounded-[24px]">▲ 2.5%</div>
                       </div>
                       <div className="grid grid-cols-3 gap-4">
                         <div className="flex flex-col items-center">
@@ -246,7 +246,7 @@ export default function Main_Dashboard() {
                     <p className="text-3xl font-bold">$9000</p>
                     <p className="text-gray-600 dark:text-black">Comparison with $45000 last year</p>
                   </div>
-                  <div className="bg-gray-100 p-4 rounded-lg dark:bg-[#B2BEBA]">
+                  <div className="bg-white p-4 box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA]">
                     <h3 className="text-gray-600 dark:text-black">Current Week</h3>
                     <p className="text-3xl font-bold">$8500</p>
                     <p className="text-gray-600 dark:text-black">Day by Day Report</p>
@@ -255,11 +255,11 @@ export default function Main_Dashboard() {
 
                     {/* card */}
 
-                    <div className="flex flex-col  bg-[#072D20] text-white p-6 rounded-lg mb-4 mt-10">
+                    <div className="flex flex-col  bg-[#072D20] text-white p-6 rounded-[24px] mb-4 mt-10">
                       <div className="text-4xl font-bold">$85000</div>
                       <div className="text-lg">Total Commission</div>
                       <div className="text-sm">Compared to $27,000 last month</div>
-                      <div className="px-2 py-1 mt-2 text-xs bg-green-700 rounded">▲ 2.5%</div>
+                      <div className="px-2 py-1 mt-2 text-xs bg-green-700 rounded-[24px]">▲ 2.5%</div>
                     </div>
 
 
@@ -310,7 +310,7 @@ export default function Main_Dashboard() {
 
                   </div>
                 </div>
-                <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg mb-6">
+                <div className="bg-white dark:bg-[#B2BEBA] p-4 box-shadow-2xl rounded-[24px] mb-6">
                   <h3 className="mb-4 text-gray-600 dark:text-black">Commission Ranking</h3>
 
                   {/* Chart */}
@@ -320,7 +320,7 @@ export default function Main_Dashboard() {
                   {/* Chart */}
                   {/* <Line data={lineChartData} options={lineChartOptions} /> */}
                 </div>
-                <div className="bg-gray-100 p-4 rounded-lg mb-6">
+                <div className="box-shadow-2xl rounded-[24px] p-4 mb-6 bg-white">
                   <h3 className="mb-4 text-black">SPFT Summary</h3>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
@@ -339,13 +339,13 @@ export default function Main_Dashboard() {
                 </div>
                 <div>
                   <h3 className="mb-4 text-xl font-semibold">Points Ranking</h3>
-                  <div className="bg-gray-100 dark:bg-[#B2BEBA] p-4 rounded-lg">
+                  <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4">
                     <div className="flex justify-between mb-4">
                       <span className="text-gray-600 dark:text-black">Rank</span>
                       <div className="flex space-x-2">
-                        <button className="bg-[#B2BEBA] text-[#072D20] p-1 rounded">Week</button>
-                        <button className="bg-[#B2BEBA] p-1 rounded text-[#072D20]">Month</button>
-                        <button className="bg-[#B2BEBA] p-1 rounded text-[#072D20]">Year</button>
+                        <button className="bg-[#f3f3f3] text-[#072D20] p-1 px-3 rounded-[24px]">Week</button>
+                        <button className="bg-[#f3f3f3] p-1 px-3 rounded-[24px] text-[#072D20]">Month</button>
+                        <button className="bg-[#f3f3f3] p-1 px-3 rounded-[24px] text-[#072D20]">Year</button>
                       </div>
                     </div>
                     <div className="space-y-4">
