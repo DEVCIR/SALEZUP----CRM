@@ -122,7 +122,7 @@ export default function Page1() {
         };
         return (
             <>
-                <table className="w-[90%] mx-auto mb-3 text-center border border-collapse border-[#072D20]">
+                <table className="w-full mb-3 text-center border border-collapse border-[#072D20]">
                     <thead>
                         <tr className="">
                             {/* <th className="px-4 py-2 text-center  text-white bg-[#535454] border-r border-white">ID</th> */}
@@ -145,7 +145,7 @@ export default function Page1() {
                                 {/* {!isSalesData && <td className="px-4 text-center text-black border border-black">{item.status}</td>} */}
                                 {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
                                 {!isSalesData && (
-                                    <td className="px-4 text-center border border-[#072D20]">
+                                    <td className="px-4 py-2 text-center border border-[#072D20]">
                                         <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
                                             Edit Details
                                         </label>
@@ -464,7 +464,7 @@ export default function Page1() {
                         <div>
                             {/* Content for Page1
             <p>This is Page1 content.</p> */}
-                            <div className='w-[90%] mt-10 mx-auto px-10 py-8 rounded-lg shadow-xl bg-[#B2BEBA] basis-full'>
+                            <div className='w-[90%] mt-10 mx-auto px-10 py-8 rounded-lg shadow-xl border border-[#072D20] bg-[#d2ffef] basis-full'>
                                 <h1 className="mb-10 text-3xl font-bold text-center text-black">Main Dashboard</h1>
                                 {/* <details className="w-full mb-3 bg-white border-4 cursor-pointer border-gray-400/75"> */}
                                 <details className="w-full mb-3  border-4 rounded-md cursor-pointer border-[#072D20] ">

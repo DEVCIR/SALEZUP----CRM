@@ -365,53 +365,53 @@ export default function Page5() {
                 <input className="modal-state" id="modal-1" type="checkbox" />
                 <div className="modal">
                   <label className="modal-overlay" htmlFor="modal-1"></label>
-                  <div className="flex flex-col w-full gap-5 overflow-hidden modal-content p-7 bg-[#B2BEBA]">
+                  <div className="flex flex-col w-full gap-5 overflow-hidden modal-content p-7">
                     <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost text-black hover:text-white right-2 top-2">✕</label>
                     <div className="flex flex-col gap-2">
-                      <h2 className="text-2xl font-semibold text-center dark:text-gray-800">Add New Badge</h2>
-                      <p className="max-w-xs mx-auto text-sm text-content dark:text-gray-800">Enter Badge Details</p>
+                      <h2 className="text-2xl font-semibold text-center text-[#B2BEBA] dark:text-[#B2BEBA]">Add New Badge</h2>
+                      <p className="max-w-xs mx-auto text-sm text-content text-[#B2BEBA] dark:text-[#B2BEBA]">Enter Badge Details</p>
                     </div>
                     <section>
 
                       <form onSubmit={handle_New_Badge}>
                         <div className="form-group">
                           <div className="form-field">
-                            <label className="font-semibold form-label text-black">Badge Name</label>
-                            <input placeholder="Type here" type="text" className="max-w-full input bg-transparent text-gray-800" value={badgeName} onChange={(e) => setBadgeName(e.target.value)} name="first_name" />
+                            <label className="font-semibold form-label text-[#B2BEBA]">Badge Name</label>
+                            <input placeholder="Type here" type="text" className="max-w-full input bg-transparent text-[#B2BEBA]" value={badgeName} onChange={(e) => setBadgeName(e.target.value)} name="first_name" />
                             <label className="form-label">
-                              <span className="form-label-alt text-black">Enter badge name</span>
+                              <span className="form-label-alt text-[#B2BEBA]">Enter badge name</span>
                             </label>
                           </div>
 
                           <div className="form-field">
-                            <label className="font-semibold form-label text-black">Image Path</label>
+                            <label className="font-semibold form-label text-[#B2BEBA]">Image Path</label>
 
-                            <input type="file" accept="image/*" onChange={handleImageUpload} className="bg-transparent" />
-                            <label className="form-label text-black">
+                            <input type="file" accept="image/*" onChange={handleImageUpload} className="bg-transparent border-[#B2BEBA] text-[#B2BEBA]" />
+                            <label className="form-label text-[#B2BEBA]">
                             </label>
                           </div>
 
                           <div className="form-field">
-                            <label className="font-semibold form-label text-black">Badge Description</label>
+                            <label className="font-semibold form-label text-[#B2BEBA]">Badge Description</label>
                             <textarea
                               value={badgeDescription}
                               onChange={handleDescriptionChange}
                               rows={3}
                               cols={45}
                               placeholder="Type description"
-                              className="border rounded-xl p-1 border-black bg-transparent dark:bg-[#B2BEBA] dark:text-gray-800 text-black"
+                              className="border rounded-xl p-2 border-[#B2BEBA] bg-transparent dark:bg-[#B2BEBA] text-[#B2BEBA]"
                             />
                             <label className="form-label">
-                              <span className="form-label-alt text-black">Please enter a description.</span>
+                              <span className="form-label-alt text-[#B2BEBA]">Please enter a description.</span>
                             </label>
                           </div>
 
 
-                          <div className="form-field" >
-                            <label htmlFor="status">Status:</label>
-                            <select id="status" value={status} onChange={handleStatusChange} className="bg-transparent dark:text-gray-800 border dark:border-gray-800">
-                              <option value="activated">Activated</option>
-                              <option value="deactivated">Deactivated</option>
+                          <div className="form-field text-[#B2BEBA]" >
+                            <label htmlFor="status text-[#B2BEBA]">Status:</label>
+                            <select id="status" value={status} onChange={handleStatusChange} className="bg-transparent border-[#B2BEBA] dark:text-[#B2BEBA] border dark:border-gray-800 rounded">
+                              <option value="activated bg-[#B2BEBA]">Activated</option>
+                              <option value="deactivated bg-[#B2BEBA]">Deactivated</option>
                             </select>
                           </div>
 
@@ -446,7 +446,7 @@ export default function Page5() {
                         <div className="flex flex-col gap-8 ">
                           <h2 className="mt-8 text-xl text-center"><b>Updating: </b>{selectedRow.badge_name}</h2>
                           <label className="font-bold text-md text-black">Badge Name:
-                            <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="badge_name" value={formData.badge_name} onChange={handleInputChange} />
+                            <input type="text" className="p-2 ml-4 font-normal text-[#B2BEBA] border border-gray-300" name="badge_name" value={formData.badge_name} onChange={handleInputChange} />
                           </label>
 
                           {/* <label className="font-bold text-md">Image Path:
@@ -455,7 +455,7 @@ export default function Page5() {
 
                           <div className="form-field">
                             <label className="font-semibold form-label">Image Path</label>
-                            <input type="file" accept="image/*" onChange={handleImageUpdate} />
+                            <input type="file" accept="image/*" onChange={handleImageUpdate} className="text-[#B2BEBA]" />
                             <label className="form-label"></label>
 
 
@@ -463,7 +463,7 @@ export default function Page5() {
 
 
                           <label className="font-bold text-md">Badge Description:
-                            <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="description" value={formData.description} onChange={handleInputChange} />
+                            <input type="text" className="p-2 ml-4 font-normal text-[#B2BEBA] border border-gray-300" name="description" value={formData.description} onChange={handleInputChange} />
                           </label>
 
                           {/* <label className="font-bold text-md">Status:

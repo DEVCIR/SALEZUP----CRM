@@ -26,7 +26,8 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="pb-10 h-screen overflow-auto bg-[#072D20] hover:dark:text-black md:overflow-hidden md:hover:overflow-auto">
+    // overflow-auto md:overflow-hidden md:hover:overflow-auto
+    <div className="pb-10 overflow-auto h-screen bg-[#072D20] hover:dark:text-black">
       {activeMenu && (
         <>
           <div className="flex items-center justify-between">
