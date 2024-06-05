@@ -162,13 +162,13 @@ export default function Page1() {
                         <div className=" modal">
                             <label className=" modal-overlay" htmlFor="modal-1"></label>
                             {/* <div className="flex flex-col gap-6 modal-content "> */}
-                            <div className="flex flex-col gap-8 overflow-hidden modal-content bg-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
-                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</label>
-                                <h2 className="text-xl text-center text-black"><b>User ID: </b> {selectedRow.id} </h2>
-                                <p className="text-black"><b>First Name:</b> {selectedRow.first_name}</p>
-                                <p className="text-black"><b>Last Name:</b> {selectedRow.last_name}</p>
-                                <p className="text-black"><b>Password:</b> {selectedRow.password}</p>
-                                <p className="text-black"><b>Status: </b>{selectedRow.status}</p>
+                            <div className="flex flex-col gap-8 overflow-hidden text-[#B2BEBA] modal-content" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
+                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
+                                <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
+                                <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
+                                <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
+                                <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
+                                <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
                                 <div className="flex gap-3">
                                     <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove_agent}>Approves</button>
                                     <button className="btn btn-error btn-block  bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete_agent}>Delete</button>
@@ -292,7 +292,7 @@ export default function Page1() {
                         <div className=" modal">
                             <label className="modal-overlay" htmlFor="modal-1"></label>
                             <div className="flex flex-col gap-8 overflow-hidden modal-content bg-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
-                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</label>
+                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
                                 <h2 className="text-xl text-center text-black"><b>Badge ID: </b> {selectedRow.id} </h2>
                                 <p className="text-black"><b>Badge Name:</b> {selectedRow.badge_name}</p>
                                 <p className="text-black"><b>Image Path:</b><img src={selectedRow.image_path} alt="Uploaded" className="w-32 h-32 ml-auto mr-auto" /></p>
@@ -406,13 +406,13 @@ export default function Page1() {
                         <input className="modal-state " id="modal-1" type="checkbox" />
                         <div className="modal ">
                             <label className="modal-overlay" htmlFor="modal-1"></label>
-                            <div className="flex flex-col gap-8 overflow-hidden modal-content bg-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
-                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-black hover:text-white">✕</label>
-                                <h2 className="text-xl text-center text-black"><b>User ID: </b> {selectedRow.id} </h2>
-                                <p className="text-black"><b>First Name:</b> {selectedRow.first_name}</p>
-                                <p className="text-black"><b>Last Name:</b> {selectedRow.last_name}</p>
-                                <p className="text-black"><b>Password:</b> {selectedRow.password}</p>
-                                <p className="text-black"><b>Status: </b>{selectedRow.status}</p>
+                            <div className="flex flex-col gap-8 overflow-hidden modal-content text-[#B2BEBA]" style={{ maxWidth: '800px', overflowX: 'hidden' }}>
+                                <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 text-[#B2BEBA]">✕</label>
+                                <h2 className="text-xl text-center text-[#B2BEBA]"><b>User ID: </b> {selectedRow.id} </h2>
+                                <p className="text-[#B2BEBA]"><b>First Name:</b> {selectedRow.first_name}</p>
+                                <p className="text-[#B2BEBA]"><b>Last Name:</b> {selectedRow.last_name}</p>
+                                <p className="text-[#B2BEBA]"><b>Password:</b> {selectedRow.password}</p>
+                                <p className="text-[#B2BEBA]"><b>Status: </b>{selectedRow.status}</p>
                                 <div className="flex gap-6">
                                     <button className="btn btn-block btn-primary  bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleApprove}>Approve</button>
                                     <button className="btn btn-error btn-block bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete}>Delete</button>
