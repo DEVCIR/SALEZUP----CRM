@@ -473,7 +473,7 @@ export default function Page1() {
                         <div>
                             {/* Content for Page1
             <p>This is Page1 content.</p> */}
-                            <div className='w-[90%] mt-10 mx-auto px-10 py-8 rounded-lg shadow-xl border border-[#072D20] bg-[#d2ffef] basis-full'>
+                            <div className='w-[90%] mt-10 mx-auto px-10 py-8 rounded-lg shadow-xl border border-[#072D20] bg-[#DAF1DE] basis-full'>
                                 <h1 className="mb-10 text-3xl font-bold text-center text-black">Main Dashboard</h1>
                                 {/* <details className="w-full mb-3 bg-white border-4 cursor-pointer border-gray-400/75"> */}
                                 <details className="w-full mb-3  border-4 rounded-md cursor-pointer border-[#072D20] ">

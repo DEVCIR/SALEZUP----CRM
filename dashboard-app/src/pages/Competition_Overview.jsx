@@ -133,7 +133,7 @@ export default function Page10() {
                   <div className="relative justify-center text-black focus-within:text-black">
                     <input
                       type="date"
-                      className="w-3/4 px-4 py-2 text-black border border-gray-600 bg-[#d2ffef] rounded-md focus:ring-black focus:border-black sm:text-sm focus:outline-none"
+                      className="w-3/4 px-4 py-2 text-black border border-gray-600 bg-[#DAF1DE] rounded-md focus:ring-black focus:border-black sm:text-sm focus:outline-none"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
                     />
@@ -146,7 +146,7 @@ export default function Page10() {
                   <div className="relative text-black focus-within:text-black">
                     <input
                       type="date"
-                      className="w-3/4 px-4 py-2 text-black border border-gray-600 bg-[#d2ffef]  rounded-md focus:ring-black focus:border-black sm:text-sm focus:outline-none"
+                      className="w-3/4 px-4 py-2 text-black border border-gray-600 bg-[#DAF1DE]  rounded-md focus:ring-black focus:border-black sm:text-sm focus:outline-none"
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
                     />

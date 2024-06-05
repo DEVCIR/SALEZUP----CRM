@@ -190,7 +190,7 @@ export default function Page6() {
             <div>
               <div class="min-h-screen   py-6 flex flex-col justify-center sm:py-12">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-                  <div class="relative px-4 py-10 bg-[#d2ffef] dark:bg-[#B2BEBA] mx-8 md:mx-0 shadow rounded-3xl sm:p-10 border border-black">
+                  <div class="relative px-4 py-10 bg-[#DAF1DE] dark:bg-[#B2BEBA] mx-8 md:mx-0 shadow rounded-3xl sm:p-10 border border-black">
                     <div class="max-w-md mx-auto">
                       <div class="flex items-center space-x-5">
                         <div class="block pl-2 font-semibold text-xl self-start text-black">

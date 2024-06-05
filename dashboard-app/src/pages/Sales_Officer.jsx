@@ -197,9 +197,9 @@ export default function Page2() {
                     <div>
                         {themeSettings && <ThemeSettings />}
                         <div>
-                            <label htmlFor="modal-1" className="flex mt-8 mr-6 items-center p-4 ml-auto  bg-gray-400 hover:bg-[#305b4c] hover:text-white hover:border-white/40 dark:text-white dark:hover:bg-gray-600 dark:bg-[#305b4c]  border-2 rounded-md cursor-pointer w-72 border-black/40  e hover:border-2 ">
+                            <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit">
+                                <FaPlusCircle className="w-6 h-6" />
                                 <span htmlFor="modal-1" className="ml-8 font-bold " >Add New Sales Officer</span>
-                                <FaPlusCircle className="w-6 h-6 ml-4" />
                             </label>
                             {/* Render your table with mySalesOfficer data */}
                             <div className="flex h-screen">

@@ -133,7 +133,7 @@ export default function Main_Dashboard() {
           <div>
             {themeSettings && <ThemeSettings />}
             <div className="flex min-h-screen p-4 justify-center dark:bg-[#1a1a1a6b]">
-              <div className="max-w-sm sm:max-w-2xl md:max-w-3xl flex flex-col lg:max-w-7xl p-4 rounded-lg">
+              <div className="max-w-sm sm:max-w-2xl md:max-w-5xl flex flex-col lg:max-w-7xl p-4 rounded-lg">
                 <header className="flex items-center justify-between mb-4">
                 </header>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">

@@ -299,7 +299,7 @@ export default function Page8() {
                   <div className="grid grid-cols-2 gap-4 mt-6 md:grid-cols-4">
                     {teams.map(team => (
                       <div key={team.id} className="w-full mx-5">
-                        <div className="flex flex-col p-2 bg-[#d2ffef] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
+                        <div className="flex flex-col p-2 bg-[#DAF1DE] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
                           <div className="flex flex-col items-center text-center">
                             <div className="inline-block rounded-full ">
                             </div>

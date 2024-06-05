@@ -305,9 +305,9 @@ export default function Page5() {
 
             <div className="mt-12">
 
-              <label htmlFor="modal-1" className="flex mt-8 mr-6 items-center p-4 ml-auto  bg-gray-400 hover:bg-[#305b4c] hover:text-white hover:border-white/40 dark:text-white dark:hover:bg-gray-600 dark:bg-[#305b4c]  border rounded-md cursor-pointer w-72 border-black/40 hover:border-2">
-                <span htmlFor="modal-1" className="ml-8 text-lg font-bold">Add New Badge</span>
-                <FaPlusCircle className="w-6 h-6 ml-8" />
+              <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit gap-5">
+                <FaPlusCircle className="w-6 h-6" />
+                <span htmlFor="modal-1" className="text-lg font-bold">Add New Badge</span>
               </label>
 
               {/* Render your table with mySalesOfficer data */}

@@ -25,12 +25,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d2ffef;
-  border-radius: 40px;
+  background-color: #DAF1DE;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #42ffbdbe;
+  background-color: #1b5f27;
 }
 
 /* color-picker style  */

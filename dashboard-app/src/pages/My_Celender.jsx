@@ -174,7 +174,7 @@ export default function Page9() {
                         <div>
                             <div className="flex items-center justify-center h-screen">
                                 <div className="p-4 mx-auto lg:w-7/12 md:w-9/12 sm:w-10/12">
-                                    <div className="overflow-hidden dark:bg-[#305b4c] rounded-lg shadow-lg bg-[#d2ffef]">
+                                    <div className="overflow-hidden dark:bg-[#305b4c] rounded-lg shadow-lg bg-[#DAF1DE]">
                                         <div className="flex items-center justify-between px-6 py-3 bg-[#072D20]">
                                             <button onClick={handlePrevMonth} className="text-white">Previous</button>
                                             <h2 className="text-white">{monthNames[currentMonth]} {currentYear}</h2>
@@ -186,12 +186,12 @@ export default function Page9() {
                                             ))}
                                             {generateCalendar(currentYear, currentMonth).map((cell, index) => {
                                                 if (!cell) {
-                                                    return <div key={index} className="py-2 text-center border"></div>;
+                                                    return <div key={index} className="py-2 text-center border-2 border-[#8EB69B]"></div>;
                                                 }
                                                 const { day, type, team, sameDate } = cell;
                                                 const highlight = sameDate ? 'bg-orange-300' : type === 'start_time' ? 'bg-green-300' : type === 'end_time' ? 'bg-red-300' : '';
                                                 return (
-                                                    <div key={index} className={`text-center py-2 border cursor-pointer ${highlight}`}>
+                                                    <div key={index} className={`text-center py-2 border-2 border-[#072D20] cursor-pointer ${highlight}`}>
                                                         {type && (
                                                             <div>
                                                                 <div>{day}</div>

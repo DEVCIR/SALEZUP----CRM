@@ -1,12 +1,9 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
-
 import { Button } from ".";
-import { Button1 } from "."
 import { userProfileData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 import avatar from "../data/avatar.jpg";
-
 import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
@@ -25,7 +22,7 @@ const UserProfile = () => {
 
 
   return (
-    <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D]  p-8 rounded-lg w-96">
+    <div className="nav-item absolute top-16 border-2 border-[#42464D] bg-white dark:bg-[#42464D]  p-8 rounded-lg w-96">
       <div className="flex items-center justify-between">
         <p className="text-lg font-semibold dark:text-gray-200">User Profile</p>
         <Button
