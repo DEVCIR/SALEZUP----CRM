@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs';
 import { FaEye, FaEyeSlash, FaMoon, FaSun } from 'react-icons/fa';
 import CryptoJS from 'crypto-js';
-import axios from "axios";
 
 
 export default function Admin_Login_Form() {

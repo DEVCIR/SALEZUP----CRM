@@ -7,8 +7,6 @@ import { useAdminContext } from "../contexts/AdminContextProvider";
 
 export default function Page1() {
     const navigate = useNavigate();
-
-
     const {
         setCurrentColor,
         setCurrentMode,

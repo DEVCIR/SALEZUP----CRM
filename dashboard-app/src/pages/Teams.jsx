@@ -436,7 +436,7 @@ export default function Page8() {
           </div>
           <div>
             {themeSettings && <ThemeSettings />}
-            <div className="mt-20">
+            <div className="mt-20 h-screen">
               <div className="flex flex-col h-screen">
                 {/* __________________________________________ */}
                 <div className="flex-grow w-full px-5 mx-auto rounded-md dark:text-black">
@@ -474,10 +474,10 @@ export default function Page8() {
                 </div>
                 <br />
                 {/* __________________________________________ */}
-                <div className="flex-grow">
+                <div className="">
                   <div className="flex flex-row flex-wrap justify-center gap-2">
                     {teams.map(team => (
-                      <div key={team.id} className="w-[250px] mx-5 ">
+                      <div key={team.id} className="w-[250px] h-fit mx-5">
                         <div className="flex flex-col p-2 bg-[#DAF1DE] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
                           <div className="flex flex-col items-center text-center">
                             <div className="inline-block rounded-full ">
@@ -523,21 +523,16 @@ export default function Page8() {
                                 <span className="mr-2 dark:text-black">
                                   {officer.first_name} {officer.last_name}
                                 </span>
-                                <button className="px-2 py-1 text-white  bg-[#843a3b] hover:bg-red-800 rounded dark:bg-red-800" onClick={() => deleteOfficer(officer.id)}>Delete</button>
+                                <button className="px-2 py-1 text-white bg-[#843a3b] hover:bg-red-800 rounded dark:bg-red-800" onClick={() => deleteOfficer(officer.id)}>Delete</button>
                               </div>
                             ))}
 
                           </div>
-
-
-
-
-
                         </div>
                         {/* show names which added to the team */}
-                        <div className="flex items-center mt-4">
+                        <div className="flex justify-around items-center">
                           <button
-                            className="flex-1 px-2 py-2 text-sm font-medium text-white rounded-md bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] hover:text-white"
+                            className="w-full p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#26473c]"
                             onClick={() => {
                               setSelectedTeam(team);
                               setNewTeamName(team.team_name);
@@ -547,7 +542,7 @@ export default function Page8() {
                             Update
                           </button>
                           <button
-                            className="flex-1 px-2 py-2 ml-4 text-sm font-medium text-white rounded-md bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 hover:border-2 hover:font-bold "
+                            className="w-full p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#843a3b]"
                             onClick={() => handleDelete(team.id)}
                           >
                             Delete
@@ -564,15 +559,13 @@ export default function Page8() {
                   type="checkbox" checked={showPopup} readOnly />
                 <div className="w-screen modal">
                   <label className="modal-overlay" htmlFor="modal-2" onClick={() => setShowPopup(false)}></label>
-                  <div className="flex flex-col max-w-3xl gap-5 modal-content bg-[#161616] text-gray-100">
-
-                    <center> <h2 className="text-xl text-black">Add Memebers</h2>  </center>
-
-                    <center> <h2 className="text-xl">Add Sales Agents</h2>  </center>
-                    <div className="flex flex-col gap-4">
+                  <div className="flex flex-col max-w-3xl modal-content bg-[#161616] text-gray-100">
+                    <center> <h2 className="text-2xl font-bold">Add Members</h2>  </center>
+                    <center> <h2 className="text-lg">Add Sales Agents</h2>  </center>
+                    <div className="flex flex-col gap-1">
                       {salesAgents.filter(agent => agent.status === 'approved').map((agent) => (
-                        <div key={agent.id} className="flex items-center justify-between mt-8">
-                          <span>{agent.first_name} {agent.last_name}</span>
+                        <div key={agent.id} className="flex items-center justify-between">
+                          <span>+ {agent.first_name} {agent.last_name}</span>
                           <button
                             onClick={() => handleAdd(agent.id, agent)}
                             className="btn bg-[#a2dfcb] dark:bg-[#74c7ab] text-black border-2 border-black ml-10"
@@ -583,17 +576,13 @@ export default function Page8() {
                       ))}
                     </div>
 
-                    <center> <h2 className="text-xl">Add Sales Officers</h2>  </center>
-
-                    <div className="flex flex-col gap-4">
+                    <center> <h2 className="text-lg">Add Sales Officers</h2>  </center>
+                    <div className="flex flex-col gap-1">
                       {salesOfficers.filter(officer => officer.status === 'approved').map((officer) => (
-
-                        <div key={officer.id} className="flex items-center justify-between mt-8">
-                          <span>{officer.first_name} {officer.last_name}</span>
+                        <div key={officer.id} className="flex items-center justify-between">
+                          <span>+ {officer.first_name} {officer.last_name}</span>
                           <button
-
-
-                            className="btn bg-[#a2dfcb] dark:bg-[#74c7ab] text-black border-2 border-black ml-10"
+                            className="btn bg-[#a2dfcb] dark:bg-[#74c7ab] text-black"
                             onClick={() => handleAddButtonClick(officer.id)}
                           >
                             Add
@@ -601,16 +590,9 @@ export default function Page8() {
                         </div>
                       ))}
                     </div>
-
-
-
-
-
-                    <div className="flex gap-3">
-                      <button className="btn btn-error btn-block bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20]" onClick={() => setShowPopup(false)}>
-                        Close
-                      </button>
-                    </div>
+                    <button className="btn btn-block bg-[#26473c] hover:bg-[#072D20] my-2" onClick={() => setShowPopup(false)}>
+                      Close
+                    </button>
                   </div>
                 </div>;
                 {/* PopUp for plus button */}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaPlusCircle, FaMoon, FaSun } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -223,12 +223,12 @@ export default function Page2() {
                                                 </colgroup>
                                                 <thead>
                                                     <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                                                        <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Names</th>
-                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Last Name</th>
-                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Email</th>
-                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Password</th>
-                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Status</th>
-                                                        <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Actions</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">First Names</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Last Name</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Email</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Password</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Status</th>
+                                                        <th className="px-4 py-2 border-r-2 border-[#072D20]">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 {mySalesOfficer.map((item, index) => (

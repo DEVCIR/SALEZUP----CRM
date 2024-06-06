@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, PointElement, LineElement, LineController } from 'chart.js';
 import 'tailwindcss/tailwind.css';
 import { useStateContext } from "../contexts/ContextProvider";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 import { useAdminContext } from "../contexts/AdminContextProvider";
 import { useNavigate } from "react-router-dom";
@@ -132,10 +130,10 @@ export default function Main_Dashboard() {
               : "bg-main-bg dark:bg-[#1a1a1a6b] w-full min-h-screen flex-2 "
           }
         >
-          <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
+          <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar">
             <Navbar />
           </div>
-          <div>
+          <div className="mt-20 md:mt-0">
             {themeSettings && <ThemeSettings />}
             <div className="flex min-h-screen p-4 justify-center dark:bg-[#1a1a1a6b]">
               <div className="max-w-sm sm:max-w-2xl md:max-w-5xl flex flex-col lg:max-w-7xl p-4 rounded-lg">
