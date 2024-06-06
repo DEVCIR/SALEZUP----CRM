@@ -13,7 +13,9 @@ class CompetitionTeamController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        // print_r($request);
+        
         return CompetitionTeam::create($request->all());
     }
 

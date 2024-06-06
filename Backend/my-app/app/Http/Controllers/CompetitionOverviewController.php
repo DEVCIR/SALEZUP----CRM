@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class CompetitionOverviewController extends Controller
 {
     public function index()
-    {
+    {   
+        $competitions = CompetitionOverview::join('competition_team', 'competition_overview.id', '=', 'competition_team.competition_id')
+            ->select('competition_overview.*', 'competition_team.team_id')
+            ->get();
+
+        return response()->json($competitions);
         return CompetitionOverview::all();
     }
 

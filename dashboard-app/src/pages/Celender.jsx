@@ -171,7 +171,7 @@ import { Link } from 'react-router-dom';
 
 
 import { useStateContext } from "../contexts/ContextProvider";
-
+import { useAdminContext } from "../contexts/AdminContextProvider"
 import { FiSettings } from "react-icons/fi";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -181,7 +181,7 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
 export default function Page7() {
 
 
-
+  const navigate = useNavigate();
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
@@ -266,7 +266,7 @@ export default function Page7() {
     const competition_id = firstItemId;
     const requestData = {
       competition_id: competition_id,
-      team_ids: selectedTeams
+      team_id: JSON.stringify(selectedTeams)
     };
 
     console.log('Request Data:', requestData);
@@ -327,13 +327,58 @@ export default function Page7() {
 
 
 
-
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/competition_overview")
-      .then((response) => response.json())
-      .then((data) => setCompetitions(data))
-      .catch((error) => console.error("Error fetching competitions:", error));
+    const fetchCompetitions = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/competition_overview");
+        const data = await response.json();
+        const competitionsWithTeams = [];
+
+        for (const item of data) {
+          console.log(item);
+
+          // Assuming team_id is a JSON string representing an array of IDs
+          const teamIds = JSON.parse(item.team_id);
+          const teams = [];
+
+          for (const teamId of teamIds) {
+            console.log(teamId);
+
+            try {
+              const response2 = await fetch(`http://127.0.0.1:8000/api/teams/${teamId}`);
+              const data2 = await response2.json();
+              console.log(data2);
+              teams.push(data2);
+            } catch (teamError) {
+              console.error(`Error fetching team ${teamId}:`, teamError);
+            }
+          }
+
+          competitionsWithTeams.push({
+            ...item,
+            teams
+          });
+        }
+
+        setCompetitions(competitionsWithTeams);
+        console.log(competitionsWithTeams);
+      } catch (error) {
+        console.error("Error fetching competitions:", error);
+      }
+    };
+
+    fetchCompetitions();
   }, []);
+
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8000/api/competition_overview")
+  //     .then((response) => response.json())
+  //     .then((data) => function(){
+  //       setCompetitions(data);
+  //       console.log(data);
+  //     })
+  //     .catch((error) => console.error("Error fetching competitions:", error));
+  // }, []);
 
   // _______________________________________________________________________________________________________________________________
 
@@ -541,12 +586,20 @@ export default function Page7() {
   const { state } = location;
   const [competitionData, setCompetitionData] = useState([]);
 
-
+  const { isAdminLoggedIn } = useAdminContext();
+  if (!isAdminLoggedIn) {
+    console.log("admin is not logged in");
+    navigate('/admin_login');
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+      </div>
+    );
+  }
   return (
 
 
-    <div className={currentMode === "Dark" ? "dark" : ""}>
-
+    <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
         <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent content="Settings" position="Top">
@@ -587,8 +640,8 @@ export default function Page7() {
             <div>
 
 
-              <div className="flex flex-col items-center mt-8 ml-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <div className="flex flex-col sm:w-1/2">
+              <div className="flex flex-col items-center justify-center mx-auto mt-8 ml-12 space-y-4 ju sm:flex-row sm:space-y-0 sm:space-x-4">
+                <div className="flex flex-col w-1/2">
                   <label className="leading-loose dark:text-white">
                     <b>Start Date</b>
                   </label>
@@ -602,7 +655,7 @@ export default function Page7() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:w-1/2">
+                <div className="flex flex-col w-1/2">
                   <label className="leading-loose dark:text-white">
                     <b>End Date</b>
                   </label>
@@ -618,13 +671,12 @@ export default function Page7() {
               </div>
 
 
-              <div className="grid justify-center grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4" style={{ marginTop: "40px", marginRight: "auto" }}>
+              <div className="flex flex-wrap justify-center gap-4 m-4 " style={{ marginTop: "40px", marginRight: "auto" }}>
 
 
                 {filteredCompetitions.map((competition) => (
-                  <div className="bg-gradient-to-r from-[#072D20] from-10% via-[#B2BEBA] via-30% to-emerald-600 to-90% w-72 h-72 m-4 static rounded-lg" key={competition.id}>
-
-                    <div className="absolute m-2 transition-all duration-150 ease-out bg-white dark:bg-[#B2BEBA] rounded-lg shadow-lg w-72 h-72 hover:m-0 hover:shadow-2xl hover:ease-in">
+                  <div className="flex flex-row flex-wrap gap-5 m-2">
+                    <div className=" m-2 h-fit p-5 transition-all duration-150 ease-out bg-white dark:bg-[#B2BEBA] rounded-lg shadow-lg w-80 hover:shadow-2xl hover:ease-in">
                       <h1 className="m-4 text-2xl font-bold text-center text-black/90 dark:text-black">Competition</h1>
                       <hr className="m-4 border-t-2 rounded-2xl" />
                       <p className="text-center text-black/60 dark:text-black"><strong>Prize: {competition.prize}</strong></p>
@@ -633,24 +685,30 @@ export default function Page7() {
                       <hr className="m-4 border-t-2 rounded-2xl" />
                       <p className="text-center text-black/60 dark:text-black"><strong>Winner: {competition.winner}</strong></p>
                       <hr className="m-4 border-t-2 rounded-2xl" />
+                      <p className="text-center text-black/60 dark:text-black"><strong>Team:
+                        {competition.teams.map((team, teamIndex) => (
+                          <span key={teamIndex}>{team.team_name}</span>
+                        ))}
+                      </strong></p>
+                      <hr className="m-4 border-t-2 rounded-2xl" />
 
                       <div className="flex justify-around mt-4">
 
                         <button
-                          className="px-4 py-2 text-white bg-green-800 rounded-md hover:bg-green-800 focus:outline-none"
+                          className="px-3 py-1 text-white bg-green-800 rounded-md hover:bg-green-800 focus:outline-none"
                           onClick={handleClick}
                         >
                           Teams
                         </button>
 
                         <button
-                          className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                          className="px-3 py-1 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
                           onClick={() => handleUpdate(competition)}
                         >
                           Update
                         </button>
                         <button
-                          className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none"
+                          className="px-3 py-1 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none"
                           onClick={() => handleDelete(competition.id)}
                         >
                           Delete
@@ -659,8 +717,8 @@ export default function Page7() {
 
 
                     </div>
-                  </div>
 
+                  </div>
 
                 ))}
 
@@ -668,8 +726,8 @@ export default function Page7() {
               </div>
 
               {showUpdateModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                  <div className="p-5 bg-white rounded-lg modal-content">
+                <div className="fixed inset-0 flex items-center justify-center bg-[#1a1a1a] bg-opacity-50">
+                  <div className="p-5 rounded-lg modal-content">
                     <div className="flex flex-col w-full gap-5 p-7">
                       <label
                         htmlFor="modal-1"
@@ -679,7 +737,7 @@ export default function Page7() {
                         ✕
                       </label>
                       <div className="flex flex-col gap-2">
-                        <h2 className="text-2xl font-semibold text-center">
+                        <h2 className="text-2xl font-semibold text-center text-[#f6f6f6]">
                           Update Winner Name
                         </h2>
                       </div>
@@ -721,7 +779,7 @@ export default function Page7() {
 
               {showUpdateModal1 && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                  <div className="p-5 bg-white rounded-lg modal-content">
+                  <div className="p-5 bg-[#1a1a1a] text-[#f6f6f6] rounded-lg modal-content">
                     <div className="flex flex-col w-full gap-5 p-7">
                       <label
                         htmlFor="modal-1"
@@ -731,9 +789,9 @@ export default function Page7() {
                         ✕
                       </label>
 
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2 ">
 
-                        <div>
+                        <div className="flex flex-col items-center justify-center">
                           <div className="flex flex-wrap">
                             {teams.map((team) => (
                               <div key={team.id} className="flex items-center mb-2 mr-4">
@@ -749,7 +807,7 @@ export default function Page7() {
                             ))}
                           </div>
                           <button
-                            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none"
                             onClick={handleAdd}
                             disabled={selectedTeams.length === 0} // Disable button if no teams are selected
                           >
