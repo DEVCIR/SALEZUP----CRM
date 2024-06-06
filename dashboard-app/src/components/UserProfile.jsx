@@ -21,7 +21,7 @@ const UserProfile = () => {
     navigate('/admin_login')
   };
   return (
-    <div className="nav-item absolute top-16 border-2 border-[#42464D] bg-white dark:bg-[#42464D] p-4 md:p-8 rounded-lg md:w-96">
+    <div className="nav-item absolute top-0 sm:top-16 border-2 border-[#42464D] bg-white dark:bg-[#42464D] p-4 md:p-8 rounded-lg md:w-96">
       <div className="flex items-center justify-between ">
         <p className="text-md md:text-lg font-semibold dark:text-gray-200">User Profile</p>
         <Button

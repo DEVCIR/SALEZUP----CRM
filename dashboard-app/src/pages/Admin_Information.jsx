@@ -182,7 +182,7 @@ const Page4 = ({ email }) => {
           <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
             <Navbar />
           </div>
-          <div className="flex items-center justify-center mt-20">
+          <div className="flex items-center justify-center mt-20 pr-5 md:px-0">
             {themeSettings && <ThemeSettings />}
             <div className="container mx-auto">
               <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
@@ -213,7 +213,7 @@ const Page4 = ({ email }) => {
                           <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{adminData.password}</td>
                           <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
                             <label htmlFor="my-modal" onClick={handleEditClick} className="bg-[#072D20] btn border border-white text-sm sm:text-md">
-                              Edit Admin
+                              Edit
                             </label>
                           </td>
                         </tr>

@@ -409,7 +409,7 @@ export default function Page8() {
       </div>
     );
   }
-  
+
   return (
     <div className={currentMode === "Dark" ? "" : ""}>
       <div className="relative flex dark:bg-main-dark-bg">
@@ -446,10 +446,10 @@ export default function Page8() {
           </div>
           <div>
             {themeSettings && <ThemeSettings />}
-            <div className="mt-20 h-screen">
-              <div className="flex flex-col h-screen">
+            <div className="mt-20">
+              <div className="flex flex-col">
                 {/* __________________________________________ */}
-                <div className="flex-grow w-full px-5 mx-auto rounded-md dark:text-black">
+                <div className="flex-grow w-full px-1 mx-auto rounded-md dark:text-black">
 
                   <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900 dark:text-white">
                     Welcome Teams
@@ -485,9 +485,9 @@ export default function Page8() {
                 <br />
                 {/* __________________________________________ */}
                 <div className="">
-                  <div className="flex flex-row flex-wrap justify-center gap-2">
+                  <div className="flex flex-row flex-wrap justify-center gap-3">
                     {teams.map(team => (
-                      <div key={team.id} className="w-[250px] shadow bg-[#DAF1DE] rounded-lg h-fit mx-5">
+                      <div key={team.id} className="w-[250px] shadow bg-[#DAF1DE] rounded-lg h-fit">
                         <div className="flex flex-col p-2">
                           <div className="flex flex-col items-center text-center">
                             <div className="inline-block rounded-full">

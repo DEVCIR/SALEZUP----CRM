@@ -429,9 +429,9 @@ export default function Page7() {
           </div>
           <div>
             {themeSettings && <ThemeSettings />}
-            <div>
+            <div className="mt-24">
               <div className="flex flex-col items-center justify-center mx-auto mt-8 ml-12 space-y-4 ju sm:flex-row sm:space-y-0 sm:space-x-4">
-                <div className="flex flex-col w-1/2">
+                <div className="flex flex-col w-full">
                   <label className="leading-loose dark:text-white">
                     <b>Start Date</b>
                   </label>
@@ -444,7 +444,7 @@ export default function Page7() {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col w-1/2">
+                <div className="flex flex-col w-full">
                   <label className="leading-loose dark:text-white">
                     <b>End Date</b>
                   </label>
@@ -458,10 +458,10 @@ export default function Page7() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-wrap justify-center gap-4 m-4 " style={{ marginTop: "40px", marginRight: "auto" }}>
+              <div className="flex flex-wrap justify-center gap-4 " style={{ marginTop: "40px", marginRight: "auto" }}>
                 {filteredCompetitions.map((competition) => (
-                  <div className="flex flex-row flex-wrap gap-5 m-2">
-                    <div className=" m-2 h-fit p-5 transition-all duration-150 ease-out bg-white dark:bg-[#B2BEBA] rounded-lg shadow-lg w-80 hover:shadow-2xl hover:ease-in">
+                  <div className="flex flex-row flex-wrap gap-3">
+                    <div className="h-fit p-5 transition-all duration-150 ease-out bg-white dark:bg-[#B2BEBA] rounded-lg shadow-lg hover:shadow-2xl hover:ease-in">
                       <h1 className="m-4 text-2xl font-bold text-center text-black/90 dark:text-black">Competition</h1>
                       <hr className="m-4 border-t-2 rounded-2xl" />
                       <p className="text-center text-black/60 dark:text-black"><strong>Prize: {competition.prize}</strong></p>

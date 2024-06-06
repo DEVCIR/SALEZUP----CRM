@@ -308,7 +308,7 @@ export default function Page5() {
             {themeSettings && <ThemeSettings />}
 
 
-            <div className="mt-24">
+            <div className="mt-24 px-3 md:px-2">
 
               <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit gap-5">
                 <FaPlusCircle className="w-6 h-6" />

@@ -288,7 +288,7 @@ export default function Page6() {
                                 <div class="relative focus-within:text-gray-600 text-gray-400 ">
                                   <input
                                     type="datetime-local"
-                                    class="px-4 py-3 border focus:ring-black bg-transparent border-black w-full sm:text-sm rounded-md focus:outline-none text-black"
+                                    class="block px-4 py-3 bg-transparent border focus:ring-black border-black sm:text-sm rounded-md focus:outline-none text-black"
                                     placeholder="25/02/2020"
                                     value={startTime}
                                     onChange={handleStartTimeChange}
@@ -300,7 +300,7 @@ export default function Page6() {
                                 <div class="relative focus-within:text-gray-600 text-gray-400">
                                   <input
                                     type="datetime-local"
-                                    class="px-4 py-3 border focus:ring-black bg-transparent border-black w-full sm:text-sm rounded-md focus:outline-none text-black"
+                                    class="block px-4 py-3 bg-transparent border focus:ring-black border-black sm:text-sm rounded-md focus:outline-none text-black"
                                     placeholder="26/02/2020"
                                     value={endTime}
                                     onChange={handleEndTimeChange}

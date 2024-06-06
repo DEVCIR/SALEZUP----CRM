@@ -132,7 +132,7 @@ export default function Page10() {
           <div className="flex items-center justify-center mt-20">
             {themeSettings && <ThemeSettings />}
             <div className="w-full">
-              <div className="flex flex-col items-center mt-8 ml-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+              <div className="flex flex-col items-center mt-8 ml-2 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <div className="flex flex-col w-full">
                   <label className="leading-loose dark:text-white">
                     <b>Start Date</b>
