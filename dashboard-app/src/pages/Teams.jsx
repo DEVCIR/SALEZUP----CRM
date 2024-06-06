@@ -477,10 +477,10 @@ export default function Page8() {
                 <div className="">
                   <div className="flex flex-row flex-wrap justify-center gap-2">
                     {teams.map(team => (
-                      <div key={team.id} className="w-[250px] h-fit mx-5">
-                        <div className="flex flex-col p-2 bg-[#DAF1DE] dark:bg-[#94a59f] rounded-lg shadow border border-gray-400 dark:border-black">
+                      <div key={team.id} className="w-[250px] shadow bg-[#DAF1DE] rounded-lg h-fit mx-5">
+                        <div className="flex flex-col p-2">
                           <div className="flex flex-col items-center text-center">
-                            <div className="inline-block rounded-full ">
+                            <div className="inline-block rounded-full">
                             </div>
                             <h2 className="mt-2 font-semibold text-gray-800">{team.team_name}</h2>
                             {/* plus button functionality */}
@@ -500,9 +500,8 @@ export default function Page8() {
                             {/* plus button functionality */}
                           </div>
                           {/* show names which added to the team */}
-                          <div className="max-w-xl p-4 mx-auto mt-4 border border-black rounded-2xl">
+                          <div className="max-w-xl border border-green-900 p-4 mx-auto mt-4 rounded-lg">
                             <h1 className="mb-4 text-lg font-bold dark:text-black">Team Members</h1>
-
                             <h2>Sales Agents</h2>
                             {teamAgents[team.id] && teamAgents[team.id].map((agent, index) => (
                               <div key={index} className="flex items-center justify-between mb-2">
@@ -530,9 +529,9 @@ export default function Page8() {
                           </div>
                         </div>
                         {/* show names which added to the team */}
-                        <div className="flex justify-around items-center">
+                        <div className="flex flex-col justify-around items-center gap-1">
                           <button
-                            className="w-full p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#26473c]"
+                            className="w-2/3 p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#26473c]"
                             onClick={() => {
                               setSelectedTeam(team);
                               setNewTeamName(team.team_name);
@@ -542,7 +541,7 @@ export default function Page8() {
                             Update
                           </button>
                           <button
-                            className="w-full p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#843a3b]"
+                            className="w-2/3 p-1 mx-2 text-sm font-medium text-white rounded-md bg-[#843a3b]"
                             onClick={() => handleDelete(team.id)}
                           >
                             Delete
