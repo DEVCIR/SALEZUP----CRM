@@ -148,8 +148,10 @@ export default function Admin_Login() {
                             </form>
 
                             <div className="mt-10 text-center text-black dark:text-gray-200">Not Registered? &nbsp;&nbsp;&nbsp;
-                                <a href="/admin_reg" className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:underline hover:bg-red-800 focus:bg-red-500">
-                                    Sign up Here
+                                <a href="/admin_reg">
+                                    <button className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:underline hover:bg-red-800 focus:bg-red-500">
+                                        Sign up Here
+                                    </button>
                                 </a>
                             </div>
                         </div>
