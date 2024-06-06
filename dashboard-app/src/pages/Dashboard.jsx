@@ -32,22 +32,22 @@ export default function Page1() {
         // Fetching competition calender data
         // Fetching competition data
         // Fetching badge data
-        fetch('https://crmapi.devcir.co/api/badges')
+        fetch('http://localhost:8000/api/badges')
             .then(response => response.json())
             .then(data => setBadgeData(data))
             .catch(error => console.error('Error fetching badge data:', error));
         // Fetching admin data
-        fetch('https://crmapi.devcir.co/api/admin-registrations')
+        fetch('http://localhost:8000/api/admin-registrations')
             .then(response => response.json())
             .then(data => setAdminData(data))
             .catch(error => console.error('Error fetching admin data:', error));
         // Fetching sales agent data
-        //   fetch('https://crmapi.devcir.co/api/sales-agents')
+        //   fetch('http://localhost:8000/api/sales-agents')
         //       .then(response => response.json())
         //       console.log(response)
         //       .then(data => setSalesAgentData(data))
         //       .catch(error => console.error('Error fetching sales agent data:', error));
-        fetch('https://crmapi.devcir.co/api/sales-agents')
+        fetch('http://localhost:8000/api/sales-agents')
             .then(response => {
                 console.log(response); // Logs the raw response object
                 return response.json();
@@ -58,7 +58,7 @@ export default function Page1() {
             })
             .catch(error => console.error('Error fetching sales agent data:', error));
         // Fetching sales officer data
-        fetch('https://crmapi.devcir.co/api/sales-officers')
+        fetch('http://localhost:8000/api/sales-officers')
             .then(response => response.json())
             .then(data => setSalesOfficerData(data))
             .catch(error => console.error('Error fetching sales officer data:', error));
@@ -76,7 +76,7 @@ export default function Page1() {
             if (!selectedRow) return;
 
             const id = selectedRow.id;
-            fetch(` https://crmapi.devcir.co/api/sales-agents/${id}`, {
+            fetch(` http://localhost:8000/api/sales-agents/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => {
@@ -97,7 +97,7 @@ export default function Page1() {
 
             const id = selectedRow.id;
             const updatedData = { ...selectedRow, status: 'approved' }; // Update status to 'approved'
-            fetch(` https://crmapi.devcir.co/api/sales-agents/${id}`, {
+            fetch(` http://localhost:8000/api/sales-agents/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -213,7 +213,7 @@ export default function Page1() {
                 return;
             }
 
-            fetch(` https://crmapi.devcir.co/api/badges/${id}`, {
+            fetch(` http://localhost:8000/api/badges/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -237,7 +237,7 @@ export default function Page1() {
             if (!selectedRow) return;
 
             const id = selectedRow.id;
-            fetch(` https://crmapi.devcir.co/api/badges/${id}`, {
+            fetch(` http://localhost:8000/api/badges/${id}`, {
 
                 method: 'DELETE'
             })
@@ -350,7 +350,7 @@ export default function Page1() {
             if (!selectedRow) return;
 
             const id = selectedRow.id;
-            fetch(`https://crmapi.devcir.co/api/sales-officers/${id}`, {
+            fetch(`http://localhost:8000/api/sales-officers/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => {
@@ -371,7 +371,7 @@ export default function Page1() {
 
             const id = selectedRow.id;
             const updatedData = { ...selectedRow, status: 'approved' }; // Update status to 'approved'
-            fetch(`https://crmapi.devcir.co/api/sales-officers/${id}`, {
+            fetch(`http://localhost:8000/api/sales-officers/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

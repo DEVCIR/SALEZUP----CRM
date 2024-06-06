@@ -47,7 +47,7 @@ const Admin_Register = () => {
             };
 
 
-            const response = await axios.post("https://crmapi.devcir.co/api/admin-registrations", formData);
+            const response = await axios.post("http://localhost:8000/api/admin-registrations", formData);
 
             console.log("Registration successful:", response.data);
 

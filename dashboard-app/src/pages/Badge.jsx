@@ -70,7 +70,7 @@ export default function Page5() {
     };
 
     try {
-      await axios.post('https://crmapi.devcir.co/api/badges', newData);
+      await axios.post('http://localhost:8000/api/badges', newData);
       window.location.reload();
     } catch (error) {
       console.error('Error posting data:', error);
@@ -165,7 +165,7 @@ export default function Page5() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://crmapi.devcir.co/api/badges');
+        const response = await axios.get('http://localhost:8000/api/badges');
         setBadges(response.data);
         console.log(response.data)
       } catch (error) {
@@ -213,7 +213,7 @@ export default function Page5() {
     };
 
     // Make a PUT request to update the data
-    axios.put(`https://crmapi.devcir.co/api/badges/${selectedRow.id}`, updatedData)
+    axios.put(`http://localhost:8000/api/badges/${selectedRow.id}`, updatedData)
       .then(response => {
         console.log('Record updated successfully:', response.data);
         // Update the corresponding row in the UI
@@ -235,7 +235,7 @@ export default function Page5() {
   const handleDelete = () => {
     if (!selectedRow) return;
 
-    axios.delete(`https://crmapi.devcir.co/api/badges/${selectedRow.id}`)
+    axios.delete(`http://localhost:8000/api/badges/${selectedRow.id}`)
       .then(response => {
         console.log('Record deleted successfully');
         setMySalesOfficer(mySalesOfficer.filter(agent => agent.id !== selectedRow.id));

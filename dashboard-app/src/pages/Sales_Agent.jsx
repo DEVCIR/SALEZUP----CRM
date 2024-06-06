@@ -48,7 +48,7 @@ export default function Page3() {
            
     //         const dataToSend = { ...formData, password: encryptedPassword }; 
 
-    //         const response = await axios.post('https://crmapi.devcir.co/api/sales-agents', dataToSend);
+    //         const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
     //         console.log(response.data);
     //         window.location.reload();
     //     } catch (error) {
@@ -69,11 +69,11 @@ export default function Page3() {
   
           const dataToSend = { ...formData, password: encryptedPassword }; 
   
-          const response = await axios.post('https://crmapi.devcir.co/api/sales-agents', dataToSend);
+          const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
           console.log(response.data);
           
           // Fetch the updated list of sales officers
-          const updatedResponse = await axios.get('https://crmapi.devcir.co/api/sales-agents');
+          const updatedResponse = await axios.get('http://localhost:8000/api/sales-agents');
           console.log(updatedResponse)
           const decryptedData = updatedResponse.data.filter(agent => agent.status === 'approved').map(agent => {
               const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
@@ -131,7 +131,7 @@ export default function Page3() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://crmapi.devcir.co/api/sales-agents');
+                const response = await axios.get('http://localhost:8000/api/sales-agents');
                 const decryptedData = response.data.filter(agent => agent.status === 'approved').map(agent => {
                     const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
                     const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
@@ -167,7 +167,7 @@ export default function Page3() {
         // Update the formData object with the encrypted password
         const encryptedFormData = { ...formData, password: encryptedPassword };
     
-        axios.put(`https://crmapi.devcir.co/api/sales-agents/${selectedRow.id}`, encryptedFormData)
+        axios.put(`http://localhost:8000/api/sales-agents/${selectedRow.id}`, encryptedFormData)
             .then(response => {
                 console.log('Record updated successfully:', response.data);
                 // Update the data in mySalesAgent state
@@ -185,7 +185,7 @@ export default function Page3() {
     const handleDelete = () => {
         if (!selectedRow) return;
 
-        axios.delete(`https://crmapi.devcir.co/api/sales-agents/${selectedRow.id}`)
+        axios.delete(`http://localhost:8000/api/sales-agents/${selectedRow.id}`)
             .then(response => {
                 console.log('Record deleted successfully');
                 setMySalesAgent(mySalesAgent.filter(agent => agent.id !== selectedRow.id));
@@ -581,11 +581,11 @@ export default function Page3() {
       
 //               const dataToSend = { ...formData, password: encryptedPassword }; 
       
-//               const response = await axios.post('https://crmapi.devcir.co/api/sales-agents', dataToSend);
+//               const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
 //               console.log(response.data);
               
 //               // Fetch the updated list of sales officers
-//               const updatedResponse = await axios.get('https://crmapi.devcir.co/api/sales-agents');
+//               const updatedResponse = await axios.get('http://localhost:8000/api/sales-agents');
 //               const decryptedData = updatedResponse.data.filter(agent => agent.status === 'approved').map(agent => {
 //                   const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
 //                   const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
@@ -639,7 +639,7 @@ export default function Page3() {
 //         useEffect(() => {
 //             const fetchData = async () => {
 //                 try {
-//                     const response = await axios.get('https://crmapi.devcir.co/api/sales-agents');
+//                     const response = await axios.get('http://localhost:8000/api/sales-agents');
 //                     const decryptedData = response.data.filter(agent => agent.status === 'approved').map(agent => {
 //                         const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
 //                         const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
@@ -679,7 +679,7 @@ export default function Page3() {
 //           // Update the formData object with the encrypted password
 //           const encryptedFormData = { ...formData, password: encryptedPassword };
     
-//           axios.put(`https://crmapi.devcir.co/api/sales-agents/${selectedRow.id}`, encryptedFormData)
+//           axios.put(`http://localhost:8000/api/sales-agents/${selectedRow.id}`, encryptedFormData)
 //               .then(response => {
 //                   console.log('Record updated successfully:', response.data);
 //                   // Update the data in mySalesOfficer state
@@ -705,7 +705,7 @@ export default function Page3() {
 //         const handleDelete = () => {
 //             if (!selectedRow) return;
     
-//             axios.delete(`https://crmapi.devcir.co/api/sales-agents${selectedRow.id}`)
+//             axios.delete(`http://localhost:8000/api/sales-agents${selectedRow.id}`)
 //                 .then(response => {
 //                     console.log('Record deleted successfully');
 //                     setMySalesOfficer(mySalesOfficer.filter(agent => agent.id !== selectedRow.id));

@@ -16,6 +16,7 @@ class SalesOfficerRegistration extends Model
         'last_name',
         'email',
         'password',
+        'team_id',
         'status',
     ];
 }

@@ -17,7 +17,7 @@ export default function Admin_Login_Form() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://crmapi.devcir.co/api/admin-registrations');
+            const response = await fetch('http://localhost:8000/api/admin-registrations');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

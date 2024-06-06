@@ -55,7 +55,7 @@ const Page4 = ({ email }) => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://crmapi.devcir.co/api/admin-registrations/email/${userEmail}`);
+        const response = await fetch(`http://localhost:8000/api/admin-registrations/email/${userEmail}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -98,7 +98,7 @@ const Page4 = ({ email }) => {
       const encryptedPassword = CryptoJS.AES.encrypt(formData.password, 'DBBDRSSR54321').toString();
       const updatedFormData = { ...formData, password: encryptedPassword };
 
-      const response = await fetch(`https://crmapi.devcir.co/api/admin-registrations/${adminData.id}`, {
+      const response = await fetch(`http://localhost:8000/api/admin-registrations/${adminData.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ const Page4 = ({ email }) => {
 
   const handleDeleteClick = async () => {
     try {
-      const response = await fetch(`https://crmapi.devcir.co/api/admin-registrations/${adminData.id}`, {
+      const response = await fetch(`http://localhost:8000/api/admin-registrations/${adminData.id}`, {
         method: 'DELETE'
       });
       if (!response.ok) {

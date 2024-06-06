@@ -28,7 +28,7 @@ export default function Page6() {
   const [typeData, setTypeData] = useState("");
   const [prizeData, setPrizeData] = useState('');
   const [prizevalueData, setPrizeValueData] = useState('');
-  const [teamData, setTeamData] = useState('');
+  // const [teamData, setTeamData] = useState('');
   const [pointData, setPointData] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
@@ -51,10 +51,6 @@ export default function Page6() {
 
   }
 
-  const handleTeam = (e) => {
-    setTeamData(e.target.value);
-
-  }
 
   const handlePoint = (e) => {
     setPointData(e.target.value);
@@ -104,18 +100,18 @@ export default function Page6() {
     console.log(typeData);
     console.log(prizeData);
     console.log(prizevalueData)
-    console.log(teamData);
+    // console.log(teamData);
     console.log(pointData);
     console.log(duration);
     console.log(startTime)
     console.log(endTime)
     console.log(winnerdata)
-    console.log(typeData, prizeData, teamData, pointData, startTime, endTime, duration, prizeData, winnerdata)
+    console.log(typeData, prizeData, pointData, startTime, endTime, duration, prizeData, winnerdata)
     try {
-      const response = await axios.post('https://crmapi.devcir.co/api/spiff_competitions', {
+      const response = await axios.post('http://localhost:8000/api/competition_overview', {
         type: typeData,
         prize: prizeData,
-        team: teamData,
+        // team: teamData,
         point: pointData,
         start_time: startTime,
         end_time: endTime,
@@ -123,7 +119,7 @@ export default function Page6() {
         prize_value: prizevalueData,
         winner: winnerdata
       });
-      console.log(typeData, prizeData, teamData, pointData, startTime, endTime, duration, prizeData, winnerdata)
+      console.log(typeData, prizeData, pointData, startTime, endTime, duration, prizeData, winnerdata)
       setSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
@@ -134,19 +130,19 @@ export default function Page6() {
     window.location.reload();
   };
 
-  useEffect(() => {
-    // Fetch the teams from the API
-    const fetchTeams = async () => {
-      try {
-        const response = await axios.get('https://crmapi.devcir.co/api/teams');
-        setTeams(response.data);
-      } catch (error) {
-        console.error('Error fetching the teams:', error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch the teams from the API
+  //   const fetchTeams = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8000/api/teams');
+  //       setTeams(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching the teams:', error);
+  //     }
+  //   };
 
-    fetchTeams();
-  }, []);
+  //   fetchTeams();
+  // }, []);
 
   const { isAdminLoggedIn } = useAdminContext();
   if (!isAdminLoggedIn) {
@@ -218,11 +214,9 @@ export default function Page6() {
                                 required
                               >
                                 <option className="bg-transparent border-4 border-black" value="">Select a type</option>
-                                <option value="Type 1">Type 1</option>
-                                <option value="Type 2">Type 2</option>
-                                <option value="Type 3">Type 3</option>
-                                <option value="Type 4">Type 4</option>
-                                <option value="Type 5">Type 5</option>
+                                <option value="Yearly">Yearly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Weekly">Weekly</option>
                               </select>
                             </div>
                             {/* Type */}
@@ -237,11 +231,10 @@ export default function Page6() {
                                 required
                               >
                                 <option value="">Select a prize</option>
-                                <option value="Prize 1">Prize 1</option>
-                                <option value="Prize 2">Prize 2</option>
-                                <option value="Prize 3">Prize 3</option>
-                                <option value="Prize 4">Prize 4</option>
-                                <option value="Prize 5">Prize 5</option>
+                                <option value="Platinum">Platinum</option>
+                                <option value="Gold">Gold</option>
+                                <option value="Silver">Silver</option>
+                                <option value="Bronze">Bronze</option>
                               </select>
                             </div>
                             {/* Prize */}
@@ -256,36 +249,17 @@ export default function Page6() {
                                 required
                               >
                                 <option value="">Select a prize value</option>
-                                <option value="Prize 1">1</option>
-                                <option value="Prize 2">2</option>
-                                <option value="Prize 3">3</option>
-                                <option value="Prize 4">4</option>
-                                <option value="Prize 5">5</option>
+                                <option value="10000">10000</option>
+                                <option value="20000">20000</option>
+                                <option value="30000">30000</option>
+                                <option value="40000">40000</option>
+                                <option value="50000">50000</option>
                               </select>
                             </div>
                             {/* Prize Value */}
                             {/* _______________________________________________________________________________________________________________________________________________________ */}
                             {/* Team */}
-                            <div class="flex flex-col">
-                              <label class="leading-loose"> <b>  Teams </b>  </label>
-                              <select
-                                class="block px-4 py-3 border bg-transparent focus:ring-black border-black w-full sm:text-sm rounded-md focus:outline-none text-black"
-                                value={teamData}
-                                onChange={handleTeam}
-                                required
-                              >
-                                {/* <option  value="">Select a team</option>
-              <option value="Team 1">Team 1</option>
-              <option value="Team 2">Team 2</option>
-              <option value="Team 3">Team 3</option>
-              <option value="Team 4">Team 4</option>
-              <option value="Team 5">Team 5</option> */}
-                                <option className="border-4 border-green-400" value="">Select a team</option>
-                                {teams.map((team) => (
-                                  <option key={team.id} value={team.team_name}>{team.team_name}</option>
-                                ))}
-                              </select>
-                            </div>
+
                             {/* Team */}
                             {/* ___________________________________________________________________________________________________________________________________________________________ */}
                             {/* ponts */}

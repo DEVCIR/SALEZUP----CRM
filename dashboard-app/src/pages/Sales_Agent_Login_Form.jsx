@@ -15,7 +15,7 @@ const Sales_Agent_Login_Form = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://crmapi.devcir.co/api/sales-agents');
+            const response = await fetch('http://localhost:8000/api/sales-agents');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

@@ -42,7 +42,7 @@ Route::delete('/admin-registrations/{id}', [AdminRegistrationController::class, 
 
 
 
-// https://crmapi.devcir.co/api/admin-registration
+// http://http://localhost:8000/api/admin-registration
 
 
 
@@ -53,10 +53,11 @@ Route::get('/sales-agents/{id}', [SalesAgentRegistrationController::class, 'show
 Route::post('/sales-agents', [SalesAgentRegistrationController::class, 'store']);
 Route::put('/sales-agents/{id}', [SalesAgentRegistrationController::class, 'update']);
 Route::delete('/sales-agents/{id}', [SalesAgentRegistrationController::class, 'destroy']);
-Route::put('/sales-agents/wajid/{id}', [SalesAgentRegistrationController::class, 'updateTeamId']);
-Route::get('sales_agent/team/{id}', [SalesAgentRegistrationController::class, 'getSalesAgentsByTeamId']);
 
-Route::put('/sales-agents/marium_azhar/{id}', [SalesAgentRegistrationController::class, 'updateTeamIdToNull']);
+Route::put('/sales-agents/update_teamid/{id}', [SalesAgentRegistrationController::class, 'updateTeamId']);
+Route::get('sales_agent/agent_by_teamid/{id}', [SalesAgentRegistrationController::class, 'getSalesAgentsByTeamId']);
+
+Route::put('/sales-agents/update_teamid_null/{id}', [SalesAgentRegistrationController::class, 'updateTeamIdToNull']);
 
 // updateTeamIdToNull
 
@@ -78,6 +79,10 @@ Route::post('/sales-officers', [SalesOfficerRegistrationController::class, 'stor
 Route::put('/sales-officers/{id}', [SalesOfficerRegistrationController::class, 'update']);
 Route::delete('/sales-officers/{id}', [SalesOfficerRegistrationController::class, 'destroy']);
 
+Route::put('/sales-off/update_teamid/{id}', [SalesOfficerRegistrationController::class, 'updateTeamId']);
+Route::get('sales_off/officer_by_teamid/{id}', [SalesOfficerRegistrationController::class, 'getSalesOfficerByTeamId']);
+Route::put('/sales-off/update_teamid_null/{id}', [SalesOfficerRegistrationController::class, 'updateTeamIdToNull']);
+
 
 use App\Http\Controllers\BadgeController;
 
@@ -95,8 +100,10 @@ use App\Http\Controllers\TeamController;
 Route::get('/teams', [TeamController::class, 'index']);
 Route::post('/teams', [TeamController::class, 'store']);
 Route::get('/teams/{id}', [TeamController::class, 'show']);
+Route::get('/teams/name/{name}', [TeamController::class, 'getTeamIdByName']);
 Route::put('/teams/{id}', [TeamController::class, 'update']);
 Route::delete('/teams/{id}', [TeamController::class, 'destroy']);
+
 
 
 
@@ -110,11 +117,35 @@ Route::put('/spiff_competitions_update/{id}', [SpiffCompetitionController::class
 Route::delete('/spiff_competitions/{id}', [SpiffCompetitionController::class, 'destroy']);
 
 
+use App\Http\Controllers\CompetitionOverviewController;
+
+Route::get('/competition_overview', 'App\Http\Controllers\CompetitionOverviewController@index');
+Route::post('/competition_overview', 'App\Http\Controllers\CompetitionOverviewController@store');
+Route::get('/competition_overview/{id}', 'App\Http\Controllers\CompetitionOverviewController@show');
+Route::put('/competition_overview/{id}', 'App\Http\Controllers\CompetitionOverviewController@update');
+Route::delete('/competition_overview/{id}', 'App\Http\Controllers\CompetitionOverviewController@destroy');
+
+
+
+use App\Http\Controllers\CompetitionTeamController;
+
+Route::get('/competition_teams', [CompetitionTeamController::class, 'index']);
+Route::post('/competition_teams', [CompetitionTeamController::class, 'store']);
+Route::get('/competition_teams/{id}', [CompetitionTeamController::class, 'show']);
+Route::put('/competition_teams/{id}', [CompetitionTeamController::class, 'update']);
+Route::delete('/competition_teams/{id}', [CompetitionTeamController::class, 'destroy']);
+
+Route::get('/competition_teams/competition/{competitionId}', [CompetitionTeamController::class, 'getCompetitionByCompetitionId']);
+Route::get('/competition_teams/team/{teamId}', [CompetitionTeamController::class, 'getCompetitionByTeamId']);
+
+
+
+
 // getSalesAgentsByTeamId($teamId)
 
 
 
-// https://crmapi.devcir.co/api/sales-officers
+// http://http://localhost:8000/api/sales-officers
 
 
 /*

@@ -42,7 +42,7 @@ const Sales_Officer_Register_Form = () => {
             };
 
             // Send POST request to your Laravel API
-            const response = await axios.post("https://crmapi.devcir.co/api/sales-officers", formData);
+            const response = await axios.post("http://localhost:8000/api/sales-officers", formData);
 
             console.log("Registration successful:", response.data);
             navigate('/sales_officer_login');

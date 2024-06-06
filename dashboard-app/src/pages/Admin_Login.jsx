@@ -18,7 +18,7 @@ export default function Admin_Login() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://crmapi.devcir.co/api/admin-registrations');
+            const response = await fetch('http://localhost:8000/api/admin-registrations');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -143,12 +143,12 @@ export default function Admin_Login() {
                                         </div>
                                     </div>
 
-                                    <button type="submit" onClick={handleLogin} className="bg-red-500 hover:bg-red-800 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+                                    <button type="submit" onClick={handleLogin} className="w-full px-4 py-2 font-semibold text-white bg-red-500 rounded-md hover:bg-red-800">Login</button>
                                 </div>
                             </form>
 
-                            <div className="mt-10 text-black text-center dark:text-gray-200">Not Registered? &nbsp;&nbsp;&nbsp;
-                                <a href="/admin_reg" className="hover:underline font-semibold text-white text-sm px-4 py-2 bg-red-500 rounded-lg hover:bg-red-800 focus:bg-red-500">
+                            <div className="mt-10 text-center text-black dark:text-gray-200">Not Registered? &nbsp;&nbsp;&nbsp;
+                                <a href="/admin_reg" className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:underline hover:bg-red-800 focus:bg-red-500">
                                     Sign up Here
                                 </a>
                             </div>

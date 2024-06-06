@@ -36,4 +36,12 @@ class TeamController extends Controller
         $team->delete();
         return 204;
     }
+
+
+
+    public function getTeamIdByName($name)
+    {
+        $team = Team::where('team_name', $name)->firstOrFail();
+        return response()->json(['id' => $team->id]);
+    }
 }

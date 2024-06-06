@@ -35,4 +35,44 @@ class SalesOfficerRegistrationController extends Controller
         $salesOfficer->delete();
         return 204;
     }
+
+
+
+
+
+
+
+
+
+
+    public function updateTeamId(Request $request, $id)
+{
+    $salesOfficer = SalesOfficerRegistration::findOrFail($id);
+    
+    // Validate the request data to ensure 'team_id' is present and exists in the 'teams' table
+    $request->validate([
+        'team_id' => 'required|exists:teams,id'
+    ]);
+
+    // Update the team_id
+    $salesOfficer->update(['team_id' => $request->input('team_id')]);
+    
+    return $salesOfficer;
+}
+
+public function getSalesOfficerByTeamId($teamId)
+    {
+        return SalesOfficerRegistration::where('team_id', $teamId)->get();
+    }
+
+
+    public function updateTeamIdToNull($id)
+{
+    $salesOfficer = SalesOfficerRegistration::findOrFail($id);
+    
+    // Update the team_id to NULL
+    $salesOfficer->update(['team_id' => null]);
+    
+    return $salesOfficer;
+}
 }

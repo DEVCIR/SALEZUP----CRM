@@ -52,7 +52,7 @@ const Sales_Agent_Register_Form = () => {
             };
 
 
-            const response = await axios.post("https://crmapi.devcir.co/api/sales-agents", formData);
+            const response = await axios.post("http://localhost:8000/api/sales-agents", formData);
 
             console.log("Registration successful:", response.data);
 

@@ -31,7 +31,7 @@ export default function Page9() {
     const [highlightedDates, setHighlightedDates] = useState([]);
 
     useEffect(() => {
-        fetch('https://crmapi.devcir.co/api/spiff_competitions')
+        fetch('http://localhost:8000/api/spiff_competitions')
             .then(response => response.json())
             .then(data => {
                 setCompetitionData(data);

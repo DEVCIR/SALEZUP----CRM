@@ -35,7 +35,7 @@ export default function Page10() {
   const [newTeamName, setNewTeamName] = useState("");
 
   useEffect(() => {
-    fetch("https://crmapi.devcir.co/api/spiff_competitions")
+    fetch("http://localhost:8000/api/spiff_competitions")
       .then((response) => response.json())
       .then((data) => setCompetitions(data))
       .catch((error) => console.error("Error fetching competitions:", error));
@@ -53,7 +53,7 @@ export default function Page10() {
         prize_value: "",
         winner: ""
       };
-      await axios.delete(`https://crmapi.devcir.co/api/spiff_competitions/${id}`, {
+      await axios.delete(`http://localhost:8000/api/spiff_competitions/${id}`, {
         data: fieldsToDelete
       });
       setCompetitions(competitions.filter(competition => competition.id !== id));
