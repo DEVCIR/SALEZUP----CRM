@@ -156,7 +156,7 @@ export default function Page1() {
                                         {!isSalesData && <td className={`px-4 py-2  text-center text-black border border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-600 text-white font-bold'}`}>{item.status}</td>}
                                         {!isSalesData && (
                                             <td className="px-4 py-2 text-center border border-[#072D20]">
-                                                <label className="bg-[#072D20] btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
+                                                <label className="bg-[#072D20] p-1 btn border border-white" htmlFor="modal-1" onClick={() => handleEditClick(item.id, item.first_name, item)}>
                                                     Edit Details
                                                 </label>
                                             </td>

@@ -133,13 +133,13 @@ export default function Main_Dashboard() {
           <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar">
             <Navbar />
           </div>
-          <div className="mt-20 md:mt-0">
+          <div className="mt-20 md:mt-0 overflow-y-hidden">
             {themeSettings && <ThemeSettings />}
-            <div className="flex min-h-screen p-4 justify-center dark:bg-[#1a1a1a6b]">
+            <div className="flex min-h-screen p-4 justify-center dark:bg-[#1a1a1a6b] overflow-y-hidden">
               <div className="max-w-sm sm:max-w-2xl md:max-w-5xl flex flex-col lg:max-w-7xl p-4 rounded-lg">
                 <header className="flex items-center justify-between mb-4">
                 </header>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6 px-5 md:px-0">
                   <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4 text-center">
                     <h3 className="text-gray-600 dark:text-black">Weekly Earnings</h3>
                     <p className="text-2xl font-bold">$2500</p>
@@ -183,7 +183,7 @@ export default function Main_Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6 px-5 md:px-0">
                   <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4">
                     <h3 className="text-gray-600 dark:text-black">Total Earnings</h3>
 
@@ -196,7 +196,7 @@ export default function Main_Dashboard() {
                         <div className="text-sm">Compared to $27,000 last month</div>
                         <div className="px-2 py-1 mt-2 text-xs bg-green-700 rounded-[24px]">▲ 2.5%</div>
                       </div>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex flex-wrap flex-row gap-4 justify-center">
                         <div className="flex flex-col items-center">
                           <div className="relative">
                             <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
@@ -261,7 +261,7 @@ export default function Main_Dashboard() {
                     </div>
 
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="flex flex-wrap flex-row gap-4 justify-center">
                       <div className="flex flex-col items-center">
                         <div className="relative">
                           <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
@@ -308,7 +308,7 @@ export default function Main_Dashboard() {
 
                   </div>
                 </div>
-                <div className="bg-white dark:bg-[#B2BEBA] p-4 box-shadow-2xl rounded-[24px] mb-6">
+                <div className="bg-white dark:bg-[#B2BEBA] p-4 box-shadow-2xl rounded-[24px] mb-6 mx-5 md:mx-0">
                   <h3 className="mb-4 text-gray-600 dark:text-black">Commission Ranking</h3>
 
                   {/* Chart */}
@@ -318,7 +318,7 @@ export default function Main_Dashboard() {
                   {/* Chart */}
                   {/* <Line data={lineChartData} options={lineChartOptions} /> */}
                 </div>
-                <div className="box-shadow-2xl rounded-[24px] p-4 mb-6 bg-white">
+                <div className="box-shadow-2xl rounded-[24px] p-4 mb-6 bg-white mx-5 md:mx-0">
                   <h3 className="mb-4 text-black">SPFT Summary</h3>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
@@ -335,7 +335,7 @@ export default function Main_Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="mx-5 md:mx-0">
                   <h3 className="mb-4 text-xl font-semibold">Points Ranking</h3>
                   <div className="bg-white box-shadow-2xl rounded-[24px] dark:bg-[#B2BEBA] p-4">
                     <div className="flex justify-between mb-4">
