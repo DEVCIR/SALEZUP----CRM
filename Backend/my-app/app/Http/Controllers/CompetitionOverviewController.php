@@ -9,22 +9,20 @@ class CompetitionOverviewController extends Controller
 {
     public function index()
     {   
-        $competitions = CompetitionOverview::join('competition_team', 'competition_overview.id', '=', 'competition_team.competition_id')
-            ->select('competition_overview.*', 'competition_team.team_id')
-            ->get();
-
+        $competitions = CompetitionOverview::all();
         return response()->json($competitions);
-        return CompetitionOverview::all();
     }
 
     public function store(Request $request)
     {
-        return CompetitionOverview::create($request->all());
+        $competition = CompetitionOverview::create($request->all());
+        return response()->json($competition, 201);
     }
 
     public function show($id)
     {
-        return CompetitionOverview::findOrFail($id);
+        $competition = CompetitionOverview::findOrFail($id);
+        return response()->json($competition);
     }
 
     public function update(Request $request, $id)
@@ -32,7 +30,7 @@ class CompetitionOverviewController extends Controller
         $competition = CompetitionOverview::findOrFail($id);
         $competition->update($request->all());
 
-        return $competition;
+        return response()->json($competition);
     }
 
     public function destroy($id)
