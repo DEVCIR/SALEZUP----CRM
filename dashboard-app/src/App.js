@@ -42,6 +42,7 @@ import Sales_Officer_Register from "./pages/Sales_Officer_Register";
 import Sales_Agent_Login from "./pages/Sales_Agent_Login";
 import Sales_Agent_Register from "./pages/Sales_Agent_Register";
 import Only_Dashboard from "./Only_Dashboard";
+import Admin_Dashboard from "./pages/Admin_Dashboard";
 
 const App = () => {
   const {
@@ -73,8 +74,8 @@ const App = () => {
           <Route path="/sales_agent_reg" element={<Sales_Agent_Register />} />
           <Route path="/sales_off_log" element={<Sales_Officer_Login />} />
           <Route path="/sales_off_reg" element={<Sales_Officer_Register />} />
-          <Route path="/road_to_db" element={<Only_Dashboard />} />
           <Route path="/" element={<My_Home />} />
+          {/* <Route path="/road_to_db" element={<Only_Dashboard />} />
           <Route path="/sales_agent_dashboard" element={<Sales_Agent_Dashboard />} />
           <Route path="/My_Dashboard" element={<Main_Dashboard />} />
           <Route path="/home" element={<Page1 />} />
@@ -96,7 +97,8 @@ const App = () => {
           <Route path="/financial" element={<Financial />} />
           <Route path="/color-mapping" element={<ColorMapping />} />
           <Route path="/pyramid" element={<Pyramid />} />
-          <Route path="/stacked" element={<Stacked />} />
+          <Route path="/stacked" element={<Stacked />} /> */}
+          <Route path="/Admin_Dashboard" element={<Admin_Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

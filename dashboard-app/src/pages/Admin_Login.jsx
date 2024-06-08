@@ -51,7 +51,7 @@ export default function Admin_Login() {
                     console.log("----  Right User ----");
                     console.log("my user: ", foundUser);
                     // Redirect or perform other actions upon successful login
-                    navigate('/My_Dashboard', { state: { foundUser } });
+                    navigate('/Admin_Dashboard', { state: { foundUser } });
                     // Use local storage to transfer variable value from one to another
                     localStorage.setItem('userEmail', foundUser.email);
                     localStorage.setItem('userFName', foundUser.first_name);
