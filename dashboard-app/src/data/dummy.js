@@ -533,7 +533,7 @@ export const links = [
         icon: <AiOutlineHome />,
       },
       {
-        name: "Sales_Officer",
+        name: "Analytics",
         icon: <RiUserStarLine />,
       },
       {
@@ -541,15 +541,15 @@ export const links = [
         icon: <RiUserLine />,
       },
       {
-        name: "Badge",
+        name: "Commission Management",
         icon: <FaMedal />,
       },
       {
-        name: "Create_Spiff_Competition",
+        name: "Individual",
         icon: <FaTrophy />,
       },
       {
-        name: "Competition_Calender",
+        name: "Leaderboard",
         icon: <AiOutlineCalendar />,
       },
       {
@@ -557,11 +557,11 @@ export const links = [
         icon: <FaUsers />,
       },
       {
-        name: "My_Calender",
+        name: "SalesAgent",
         icon: <AiOutlineCalendar />,
       },
       {
-        name: "Competition_Overview",
+        name: "TeamLeaders",
         icon: <FaChartLine />,
       },
     ],

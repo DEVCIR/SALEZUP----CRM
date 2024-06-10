@@ -1,1001 +1,714 @@
-import React, { useState,useEffect } from "react";
-import { FaPlusCircle} from 'react-icons/fa';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import CryptoJS from 'crypto-js';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useStateContext } from "../contexts/ContextProvider";
-import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
-import { useAdminContext } from "../contexts/AdminContextProvider";
+import Container from "../components/Sales_Agents/Container";
+import Separator from "../components/Sales_Agents/Separator";
+import GroupComponent from "../components/Sales_Agents/GroupComponent";
 
-export default function Page3() {
-  const navigate = useNavigate();
-  
+const SaleAgents = () => {
+  return (
+<>
+<div className="w-full">
 
-    const {
-        setCurrentColor,
-        setCurrentMode,
-        currentMode,
-        activeMenu,
-        currentColor,
-        themeSettings,
-        setThemeSettings,
-      } = useStateContext();
-
-
-    useEffect(() => {
-        const currentThemeColor = localStorage.getItem("colorMode");
-        const currentThemeMode = localStorage.getItem("themeMode");
-        if (currentThemeColor && currentThemeMode) {
-          setCurrentColor(currentThemeColor);
-          setCurrentMode(currentThemeMode);
-        }
-      }, []);
-
-
-    const [mySalesAgent, setMySalesAgent] = useState([]);
-    const [showPopup, setShowPopup] = useState(false);
-  
-    // const handle_New_Agent = async (e) => {
-    //     e.preventDefault();
-    //     console.log("The is new user");
-    
-    //     try {
-           
-    //         const password = formData.password;
-   
-    //         const encryptedPassword = CryptoJS.AES.encrypt(password, 'DBBDRSSR54321').toString();
-           
-    //         const dataToSend = { ...formData, password: encryptedPassword }; 
-
-    //         const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
-    //         console.log(response.data);
-    //         window.location.reload();
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // }
-
-    const handle_New_Agent = async (e) => {
-      e.preventDefault();
-      console.log("The is new user");
-  
-      try {
-          const password = formData.password;
-  
-          const encryptedPassword = CryptoJS.AES.encrypt(password, 'DBBDRSSR54321').toString();
-
-          console.log("Encrypted Password: ",encryptedPassword)
-  
-          const dataToSend = { ...formData, password: encryptedPassword }; 
-  
-          const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
-          console.log(response.data);
-          
-          // Fetch the updated list of sales officers
-          const updatedResponse = await axios.get('http://localhost:8000/api/sales-agents');
-          console.log(updatedResponse)
-          const decryptedData = updatedResponse.data.filter(agent => agent.status === 'approved').map(agent => {
-              const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
-              const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-              console.log("Decrypted Password: ",decryptedPassword)
-              return { ...agent, password: decryptedPassword };
-          });
-          setMySalesAgent(decryptedData);
-          
-          // Clear form data after successful addition
-          setFormData({
-              first_name: '',
-              last_name: '',
-              email: '',
-              password: '',
-              status: 'approved'
-          });
-          setShowPopup(false);
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-  
-    
-
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(prevState => !prevState);
-      };
-
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-    const [isPasswordVisible1, setIsPasswordVisible1] = useState(false);
-    
-  
-      const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
-
-      //--------------------------------------------------------------------//
-    
-    const [selectedRow, setSelectedRow] = useState(null);
-  
-    const [formData, setFormData] = useState({
-     
-     first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        status: 'approved'
-    });
-
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8000/api/sales-agents');
-                const decryptedData = response.data.filter(agent => agent.status === 'approved').map(agent => {
-                    const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
-                    const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-                    return { ...agent, password: decryptedPassword };
-                });
-                setMySalesAgent(decryptedData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
-    }, []);
-
-
-    
-    const handleEditClick = (rowData) => {
-        setSelectedRow(rowData);
-        setFormData({ ...rowData });
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-
-
-    const handleSave = () => {
-        if (!selectedRow) return;
-    
-        // Encrypt the password
-        const encryptedPassword = CryptoJS.AES.encrypt(formData.password, 'DBBDRSSR54321').toString();
-        // Update the formData object with the encrypted password
-        const encryptedFormData = { ...formData, password: encryptedPassword };
-    
-        axios.put(`http://localhost:8000/api/sales-agents/${selectedRow.id}`, encryptedFormData)
-            .then(response => {
-                console.log('Record updated successfully:', response.data);
-                // Update the data in mySalesAgent state
-                setMySalesAgent(mySalesAgent.map(agent =>
-                    agent.id === selectedRow.id ? { ...agent, ...formData } : agent
-                ));
-                setSelectedRow(null); 
-                window.location.reload();
-            })
-            .catch(error => {
-                console.error('Failed to update record:', error);
-            });
-    };
-
-    const handleDelete = () => {
-        if (!selectedRow) return;
-
-        axios.delete(`http://localhost:8000/api/sales-agents/${selectedRow.id}`)
-            .then(response => {
-                console.log('Record deleted successfully');
-                setMySalesAgent(mySalesAgent.filter(agent => agent.id !== selectedRow.id));
-                setSelectedRow(null); // Clear selectedRow state
-            })
-            .catch(error => {
-                console.error('Failed to delete record:', error);
-            });
-    };
-
-    const togglePasswordVisibility1 = () => {
-        setIsPasswordVisible1(prevState => !prevState);
-      };
-
-      const { isAdminLoggedIn } = useAdminContext();
-      if (!isAdminLoggedIn) {
-        console.log("admin is not logged in");
-        navigate('/admin_login');
-        return (
-          <div className="flex items-center justify-center h-screen bg-white">
-            <h1 className="text-4xl text-green-900 text-bold">Redirecting to Login Page...</h1>
+<section className="self-stretch flex flex-col items-start justify-start gap-[14px] max-w-full text-left text-13xl text-black font-nunito">
+          <div className="flex flex-col items-start justify-start gap-[1px] max-w-full">
+            <a className="[text-decoration:none] w-[134px] relative font-bold text-[inherit] inline-block z-[2] mq1050:text-7xl mq450:text-lgi">
+              Agents
+            </a>
+            <div className="relative text-base font-medium z-[2]">{`Manager > Sale Agents > List of current agents/List of pending agents`}</div>
           </div>
-        );
-      }
-    return (
-        <div className={currentMode === "Dark" ? "" : ""}>
-        <div className="relative flex dark:bg-main-dark-bg">
-          {/* <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-            <TooltipComponent content="Settings" position="Top">
-              <button
-                type="button"
-                onClick={() => setThemeSettings(true)}
-                style={{ background: currentColor, borderRadius: "50%" }}
-                className="p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray"
-              >
-                <FiSettings />
+          <Separator />
+        </section>
+
+
+
+
+        <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+          <div className="w-96 flex flex-col items-start justify-start gap-[6px] max-w-full">
+            <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] mq1050:text-7xl mq450:text-lgi">
+              Add New Agent
+            </h1>
+            <div className="relative text-base font-medium z-[2]">{`Manager > Sale Agents > Add New Agent`}</div>
+          </div>
+          <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
+            <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-end justify-start pt-7 px-[55px] pb-[63px] gap-[85px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver mq1050:gap-[42px] mq1050:pt-5 mq1050:px-[27px] mq1050:pb-[41px] mq1050:box-border mq450:pb-[27px] mq450:box-border mq750:gap-[21px]">
+              <div className="w-[1011px] h-[860.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver" />
+              <div className="self-stretch flex flex-col items-start justify-start gap-[13.2px] max-w-full">
+                <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[9px] max-w-full">
+                    <div className="w-[212px] relative font-medium inline-block z-[3]">
+                      First Name
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg.svg"
+                      />
+                      <div className="relative inline-block min-w-[103px] z-[1]">
+                        Enter your First Name
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[10px] max-w-full">
+                    <div className="w-[212px] relative font-medium inline-block z-[3]">
+                      Last Name
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-[11px] pb-[16.5px] relative z-[3] text-3xs text-black">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg.svg"
+                      />
+                      <div className="relative inline-block min-w-[103px] z-[1]">
+                        Enter your Last Name
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[19.2px] max-w-full">
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Email
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[77px] z-[1]">
+                          Enter your Email
+                        </div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start gap-[23px] mq450:flex-wrap">
+                      <div className="flex-1 flex flex-col items-start justify-start gap-[9px] min-w-[123px]">
+                        <div className="relative font-medium inline-block min-w-[88px] z-[3]">
+                          Start Date
+                        </div>
+                        <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.7px] relative z-[3] text-3xs text-black">
+                          <img
+                            className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                            alt=""
+                            src="/bg-3.svg"
+                          />
+                          <div className="relative inline-block min-w-[74px] z-[1]">
+                            Enter your Date
+                          </div>
+                          <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex-1 flex flex-col items-start justify-start gap-[9px] min-w-[123px]">
+                        <div className="w-[90px] flex flex-row items-start justify-start py-0 px-px box-border">
+                          <div className="flex-1 relative font-medium z-[3]">
+                            Campaign
+                          </div>
+                        </div>
+                        <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.7px] relative z-[3] text-3xs text-black">
+                          <img
+                            className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                            alt=""
+                            src="/bg-3.svg"
+                          />
+                          <div className="relative inline-block min-w-[100px] z-[1]">
+                            Enter your Campaign
+                          </div>
+                          <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[22.2px] max-w-full">
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Manager
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[94px] z-[1]">{`Enter your Manager `}</div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Select Team
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[59px] z-[1]">
+                          Select Team
+                        </div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="self-stretch flex flex-row items-start justify-end pt-0 pb-5 pr-[31px] pl-0 box-border max-w-full text-13xl text-black font-nunito">
+                <div className="flex-1 flex flex-col items-start justify-start gap-[45px] max-w-full mq450:gap-[22px]">
+                  <h1 className="m-0 w-96 relative text-inherit font-bold font-inherit inline-block max-w-full z-[3] mq1050:text-7xl mq450:text-lgi">
+                    Commission Set-up
+                  </h1>
+                  <div className="self-stretch h-[159px] relative text-sm font-inter mq1050:h-auto mq1050:min-h-[159]">
+                    <div className="absolute top-[0px] left-[0px] flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border gap-[46px] w-full text-3xs mq1050:flex-wrap mq1050:pt-0.5 mq1050:pr-0.5 mq1050:pb-0.5 mq1050:box-border mq450:gap-[23px]">
+                      <div className="flex flex-row items-start justify-start z-[3]">
+                        <img
+                          className="h-9 w-[268px] relative rounded-[5.99px]"
+                          loading="lazy"
+                          alt=""
+                          src="/bg-7.svg"
+                        />
+                        <div className="h-0 w-[77px] relative hidden">
+                          Enter your Email
+                        </div>
+                        <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                          Show
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start py-0 pl-0 pr-5">
+                        <div className="flex flex-row items-start justify-start z-[3]">
+                          <img
+                            className="h-9 w-[143px] relative rounded-[5.99px]"
+                            alt=""
+                            src="/bg-8.svg"
+                          />
+                          <div className="h-0 w-[77px] relative hidden">
+                            Enter your Email
+                          </div>
+                          <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start pt-px pb-0 pr-[13px] pl-0">
+                        <div className="flex flex-row items-start justify-start z-[3]">
+                          <img
+                            className="h-9 w-[143px] relative rounded-[5.99px]"
+                            alt=""
+                            src="/bg-8.svg"
+                          />
+                          <div className="h-0 w-[77px] relative hidden">
+                            Enter your Email
+                          </div>
+                          <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-start justify-start z-[3]">
+                        <img
+                          className="h-9 w-[143px] relative rounded-[5.99px]"
+                          alt=""
+                          src="/bg-8.svg"
+                        />
+                        <div className="h-0 w-[77px] relative hidden">
+                          Enter your Email
+                        </div>
+                        <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                          Show
+                        </div>
+                      </div>
+                      <img
+                        className="h-9 w-full absolute !m-[0] top-[0px] right-[0px] left-[0px] max-w-full overflow-hidden z-[4]"
+                        alt=""
+                        src="/rectangle-1664.svg"
+                      />
+                      <div className="h-[11px] w-[184px] absolute !m-[0] top-[calc(50%_-_5.5px)] left-[14px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Commission Opportunity
+                      </div>
+                      <div className="h-[11px] w-[102px] absolute !m-[0] top-[calc(50%_-_5.5px)] left-[316px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Frequency
+                      </div>
+                      <div className="h-[11px] w-[57px] absolute !m-[0] top-[calc(50%_-_5.5px)] right-[284px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Target
+                      </div>
+                      <div className="h-[11px] absolute !m-[0] top-[12px] right-[39px] text-mini font-medium text-center flex items-center justify-center min-w-[90px] z-[5]">
+                        Target Value
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[2px] w-[268px] flex flex-row items-start justify-start pt-[10.3px] px-3 pb-[10.7px] box-border z-[3] text-3xs">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg-11.svg"
+                      />
+                      <div className="relative inline-block min-w-[65px] z-[1]">
+                        Enter Amount
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[316px] w-[143px] flex flex-row items-end justify-start pt-1.5 pb-[34.5px] pr-2.5 pl-[11px] box-border gap-[25px]">
+                      <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[3] border-[1px] border-solid border-silver" />
+                      <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[10.5px]">
+                        <div className="self-stretch flex flex-col items-start justify-start gap-[30px]">
+                          <div className="w-16 h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Month
+                          </div>
+                          <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Quarter
+                          </div>
+                          <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Year
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start gap-[8.5px] z-[4]">
+                        <div className="w-[22px] h-[21.5px] relative">
+                          <img
+                            className="absolute top-[2.8px] left-[2px] w-[17.9px] h-[14.6px] object-contain"
+                            alt=""
+                            src="/add-agent-action.svg"
+                          />
+                          <div className="absolute top-[0px] left-[0px] box-border w-full h-full z-[1] border-[2px] border-solid border-black" />
+                        </div>
+                        <input
+                          className="m-0 w-[22px] h-[21.5px] relative box-border border-[2px] border-solid border-black"
+                          type="checkbox"
+                        />
+                        <input
+                          className="m-0 w-[22px] h-[21.5px] relative box-border border-[2px] border-solid border-black"
+                          type="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[525px] w-[143px] flex flex-col items-start justify-start pt-1.5 px-2.5 pb-[17.3px] box-border gap-[29.5px]">
+                      <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[4] border-[1px] border-solid border-silver" />
+                      <div className="self-stretch flex flex-row items-end justify-start gap-[26px]">
+                        <div className="h-[40.5px] flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[10.5px] box-border">
+                          <div className="self-stretch flex-1 flex flex-col items-start justify-start gap-[30px]">
+                            <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[5]">
+                              Revenue
+                            </div>
+                            <div className="self-stretch flex-1 flex flex-row items-start justify-start py-0 pr-2.5 pl-px">
+                              <div className="h-0 flex-1 relative leading-[0%] font-medium inline-block z-[5]">
+                                Units
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="h-[51.5px] w-[22px] relative z-[5]">
+                          <img
+                            className="absolute top-[2.8px] left-[2px] w-[17.9px] h-[14.6px] object-contain"
+                            alt=""
+                            src="/add-agent-action.svg"
+                          />
+                          <div className="absolute top-[0px] left-[0px] box-border w-[22px] h-[21.5px] z-[1] border-[2px] border-solid border-black" />
+                          <input
+                            className="m-0 absolute top-[30px] left-[0px] box-border w-[22px] h-[21.5px] border-[2px] border-solid border-black"
+                            type="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-start justify-start py-0 px-[29px] text-[13px] text-white font-nunito">
+                        <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9px] pb-[8.4px] pr-4 pl-[21px] z-[5]">
+                          <div className="h-[17.7px] w-[65px] relative rounded-4xs bg-darkslategray hidden" />
+                          <b className="relative leading-[0%] font-bold inline-block [transform:_rotate(-0.6deg)] min-w-[27.6px] z-[1]">
+                            Add
+                          </b>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-[36px] left-[727px] w-[143px] flex flex-row items-start justify-start pt-[9px] px-[17px] pb-2 box-border">
+                      <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[5] border-[1px] border-solid border-silver" />
+                      <div className="relative inline-block min-w-[45px] whitespace-nowrap z-[6]">
+                        $1,000
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button className="cursor-pointer [border:none] pt-7 pb-[27px] pr-[37px] pl-[38px] bg-darkslategray w-[297.1px] rounded-8xs flex flex-row items-start justify-start box-border whitespace-nowrap z-[3] hover:bg-teal-200">
+                <div className="h-[75px] w-[297.1px] relative rounded-8xs bg-darkslategray hidden" />
+                <b className="flex-1 relative text-base font-nunito text-white text-left z-[1]">{`Add to Team & Invite Agent`}</b>
               </button>
-            </TooltipComponent>
-          </div> */}
-          {activeMenu ? (
-            <div className="fixed bg-white w-72 sidebar dark:bg-secondary-dark-bg ">
-              <Sidebar />
             </div>
-          ) : (
-            <div className="w-0 dark:bg-[#1a1a1a6b]">
-              <Sidebar />
-            </div>
-          )}
-          <div
-            className={
-              activeMenu
-                ? "dark:bg-[#1a1a1a6b] bg-main-bg min-h-screen md:ml-72 w-full  "
-                : "bg-main-bg dark:bg-[#1a1a1a6b] w-full min-h-screen flex-2 "
-            }
-          >
-            <div className="fixed w-fpx-4 py-2 border-r-2 border-[#072D20]ull md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
-              <Navbar />
-            </div>
-            <div>
-              {themeSettings && <ThemeSettings />}
-
-
-        <div className="mt-24 px-3 md:px-2">
-
-            <label htmlFor="modal-1" className="flex justify-around mt-8 mr-6 items-center p-4 ml-auto text-white bg-[#072D20] border-2 border-white rounded-md cursor-pointer w-fit">
-                <FaPlusCircle className="w-6 h-6" />
-                <span htmlFor="modal-1" className="ml-8 font-bold" >Add New Sales Agent</span>
-    </label>
-
-            {/* Render your table with mySalesAgent data */}
-            <div className="flex h-screen">
-                    <div className="container mx-auto">
-                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full">
-                            <colgroup>
-                              <col />
-                              <col />
-                              <col />
-                              <col />
-                              <col />
-                              <col />
-                              <col />
-                            </colgroup>
-                            <thead>
-                                <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">First Name</th> 
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Last Name</th>
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Email</th>
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Password</th>
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Team Id</th>
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Status</th>
-                                    <th className="px-4 py-2 border-r-2 border-[#072D20]">Actions</th>
-                                </tr>
-                            </thead>
-                            {mySalesAgent.map((item, index) => (
-                            <tr className="bg-black/65" key={index}>
-                                {/* <td className="px-4 py-2 text-center text-black border border-black">{item.id}</td> */}
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.first_name}</td>
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.last_name}</td>
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.email}</td>
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.password}</td>
-
-                                {/* this will show the team id  */}
-
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.team_id}</td>
-
-
-                                {/* this will show the team id  */}
-
-                                {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.status}</td> */}
-                                <td className={`px-4 py-2 text-center dark:border-white text-white border-2 border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-700 text-white font-bold'}`}>{item.status}</td>
-                                <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
-                                  <label htmlFor="my-modal" className="bg-[#072D20]  btn border border-white" onClick={() => handleEditClick(item)}>Update</label>
-                                </td>
-                            </tr>
-                        ))}
-                        </table>
-                        </div>
-                       </div>
-                    </div>
-                </div>
-   
-       
-
-
-<article>
-	{/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
-	<input className="modal-state" id="modal-1" type="checkbox" />
-	<div className="modal">
-		<label className="modal-overlay" htmlFor="modal-1"></label>
-		<div className="flex flex-col w-full gap-5 modal-content p-7 dark:bg-[#B2BEBA]">
-			<label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</label>
-			<div className="flex flex-col gap-2">
-				<h2 className="text-2xl font-semibold text-center text-[#B2BEBA] dark:text-gray-800">Add New Sales Agent</h2>
-				<p className="max-w-xs mx-auto text-sm text-content text-[#B2BEBA] dark:text-gray-800">Enter new Sales Agent Data</p>
-			</div>
-			<section>
-                <form  onSubmit={handle_New_Agent}>
-				<div className="form-group">
-                <div className="form-field">
-						<label className="font-semibold form-label dark:text-gray-800">First Name</label>
-						<input placeholder="Type here" type="text" className="max-w-full input dark:bg-[#B2BEBA] dark:text-gray-800" value={formData.first_name} onChange={handleChange}  name="first_name" />
-						<label className="form-label">
-							<span className="form-label-alt">Please enter your first name</span>
-						</label>
-					</div>
-                    <div className="form-field">
-						<label className="font-semibold form-label dark:text-gray-800">Last Name</label>
-						<input placeholder="Type here" type="textt" className="max-w-full input dark:bg-[#B2BEBA] dark:text-gray-800" value={formData.last_name} onChange={handleChange}  name="last_name" />
-						<label className="form-label">
-							<span className="form-label-alt">Please enter your last name</span>
-						</label>
-					</div>
-					<div className="form-field">
-						<label className="font-semibold form-label dark:text-gray-800">Email address</label>
-						<input placeholder="Type here" type="email" className="max-w-full input dark:bg-[#B2BEBA] dark:text-gray-800" value={formData.email} onChange={handleChange}  name="email"/>
-						<label className="form-label">
-							<span className="form-label-alt">Please enter a valid email.</span>
-						</label>
-					</div>
-					
-                    
-                    {/* toggle functionality */}
-                    
-                    <div className="form-field">
-						<label htmlFor="password" className="font-semibold form-label dark:text-gray-800">
-							<span>Password</span>
-						</label>
-
-						<div className="form-control">
-
-							<input 
-                            placeholder="Type here" 
-                            type={isPasswordVisible1 ? 'text' : 'password'}
-                            className="max-w-full input dark:bg-[#B2BEBA] dark:text-gray-800"  
-                            value={formData.password} 
-                            onChange={handleChange}  
-                            name="password"/>
-
-                                <button
-                                type="button"
-                                className="absolute top-3 right-2"
-                                onClick={togglePasswordVisibility1}>
-                                {isPasswordVisible1 ? <FaEyeSlash className="text-[#B2BEBA]"/> : <FaEye className="text-[#B2BEBA]"/>}
-                            </button>
-						</div>
-					</div>
-
-                    {/* toggle functionality */}
-
-
-
-
-					<div className="pt-5 form-field">
-						<div className="justify-between form-control">
-							<button type="submit" className="w-full btn btn-primary bg-[#26473c] hover:bg-[#072D20] dark:bg-gray-800 dark:hover:bg-gray-600">Register Sales Agent</button>
-						</div>
-					</div>
-				</div>
-                </form>
-			</section>
-		</div>
-	</div>
-</article>
-
-
-
-
-{selectedRow && (
-<div className="update-div">
-
-<input class="modal-state" id="my-modal" type="checkbox" />
-<div class="modal" >
-    
-	<label class="modal-overlay" for="my-modal"></label>
-	<div class="modal-content flex flex-col gap-6 dark:bg-[#B2BEBA]">
-		<label for="my-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-		
-   
-                <div>
-                    <div className="flex flex-col gap-8 ">
-                    <h2 className="mt-8 text-xl text-center text-[#B2BEBA]"><b>Updating</b></h2>
-                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">First Name:
-                      <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="first_name" value={formData.first_name} onChange={handleInputChange} />
-                    </label>
-                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Last Name:
-                      <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="last_name" value={formData.last_name} onChange={handleInputChange} />
-                    </label>
-                    <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Email:
-                      <input type="text" className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="email" value={formData.email} onChange={handleInputChange} />
-                    </label>
-       
-        
-                    <div className="flex flex-row items-center">
-                        <label htmlFor="password" className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Password :</label>
-                        <div className="relative flex">
-                            <input
-                              type={isPasswordVisible ? 'text' : 'password'}
-                              className="w-[200px] input p-2 ml-5 dark:bg-[#B2BEBA] dark:text-gray-800"
-                              name="password"
-                              value={formData.password}// Update value to reflect formData
-                              onChange={handleInputChange} />
-                            <button
-                              type="button"
-                              className="absolute top-3 right-2 "
-                              onClick={togglePasswordVisibility}>
-                              {isPasswordVisible ? <FaEyeSlash className="text-[#B2BEBA]" /> : <FaEye className="text-[#B2BEBA]" />}
-                            </button>
-                        </div>
-                    </div>
-
-
-                        {/* <label className="font-bold text-md">Status:
-                        <input type="text" className="p-2 ml-4 font-normal" name="status" value={formData.status} onChange={handleInputChange} />  </label> */}
-
-                  <label className="flex justify-between items-center font-bold text-md text-[#B2BEBA]">Status:
-                      <select className="w-[200px] input p-2 ml-4 dark:bg-[#B2BEBA] dark:text-gray-800" name="status" value={formData.status} onChange={handleInputChange}>
-                        <option value="approved" className="bg-transparent">Approved</option>
-                        <option value="pending" className="bg-transparent">Pending</option>
-                      </select>
-                  </label>
-           
-                        <div className="flex gap-3">
-                            <button className="btn btn-block btn-primary bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleSave}>Update</button>
-                            <button className="btn btn-error btn-block bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete}>Delete</button>
-                        </div>
-                    </div>
-                </div>
-  
-
-	</div>
-</div>
-  
-
-</div>
-)} 
-
-        </div>
-
-
-                   
-        </div>
-            <Footer />
           </div>
-        </div>
-
-    </div>
-    );
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState,useEffect } from "react";
-// import { FaPlusCircle, FaMoon, FaSun } from 'react-icons/fa';
-// import axios from 'axios';
-// import { useLocation } from 'react-router-dom';
-// import bcrypt from "bcryptjs";
-// import { useNavigate } from 'react-router-dom';
-// import CryptoJS from 'crypto-js';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
-
-
-// import { useStateContext } from "../contexts/ContextProvider";
-
-// import { FiSettings } from "react-icons/fi";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-// import { Navbar, Footer, Sidebar, ThemeSettings } from "../components";
-
-
-
-
-
-
-// export default function Page3() {
-
-
-
-//     const {
-//         setCurrentColor,
-//         setCurrentMode,
-//         currentMode,
-//         activeMenu,
-//         currentColor,
-//         themeSettings,
-//         setThemeSettings,
-//       } = useStateContext();
-
-
-//     useEffect(() => {
-//         const currentThemeColor = localStorage.getItem("colorMode");
-//         const currentThemeMode = localStorage.getItem("themeMode");
-//         if (currentThemeColor && currentThemeMode) {
-//           setCurrentColor(currentThemeColor);
-//           setCurrentMode(currentThemeMode);
-//         }
-//       }, []);
-
-      
-
-
-//     const [mySalesOfficer, setMySalesOfficer] = useState([]);
-//     const [showPopup, setShowPopup] = useState(false);
-      
-   
-    
-//         const handle_New_Officer = async (e) => {
-//           e.preventDefault();
-//           console.log("The is new user");
-      
-//           try {
-//               const password = formData.password;
-      
-//               const encryptedPassword = CryptoJS.AES.encrypt(password, 'DBBDRSSR54321').toString();
-      
-//               const dataToSend = { ...formData, password: encryptedPassword }; 
-      
-//               const response = await axios.post('http://localhost:8000/api/sales-agents', dataToSend);
-//               console.log(response.data);
-              
-//               // Fetch the updated list of sales officers
-//               const updatedResponse = await axios.get('http://localhost:8000/api/sales-agents');
-//               const decryptedData = updatedResponse.data.filter(agent => agent.status === 'approved').map(agent => {
-//                   const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
-//                   const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-//                   return { ...agent, password: decryptedPassword };
-//               });
-//               setMySalesOfficer(decryptedData);
-              
-//               // Clear form data after successful addition
-//               setFormData({
-//                   first_name: '',
-//                   last_name: '',
-//                   email: '',
-//                   password: '',
-//                   status: 'approved'
-//               });
-//               setShowPopup(false);
-//             } catch (error) {
-//                 console.error('Error:', error);
-//             }
-//         }
-      
-    
-//         const togglePasswordVisibility = () => {
-//             setIsPasswordVisible(prevState => !prevState);
-//           };
-    
-//         const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    
-//         const [isPasswordVisible1, setIsPasswordVisible1] = useState(false);
-        
-      
-//           const handleChange = (e) => {
-//             setFormData({ ...formData, [e.target.name]: e.target.value });
-//           };
-    
-//           //--------------------------------------------------------------------//
-        
-//         const [selectedRow, setSelectedRow] = useState(null);
-      
-//         const [formData, setFormData] = useState({
-         
-//          first_name: '',
-//             last_name: '',
-//             email: '',
-//             password: '',
-//             status: 'approved'
-//         });
-    
-    
-    
-//         useEffect(() => {
-//             const fetchData = async () => {
-//                 try {
-//                     const response = await axios.get('http://localhost:8000/api/sales-agents');
-//                     const decryptedData = response.data.filter(agent => agent.status === 'approved').map(agent => {
-//                         const bytes = CryptoJS.AES.decrypt(agent.password, 'DBBDRSSR54321');
-//                         const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-//                         console.log("My password is: ",decryptedPassword)
-//                         return { ...agent, password: "wajid" };
-//                     });
-//                     setMySalesOfficer(decryptedData);
-//                 } catch (error) {
-//                     console.error('Error fetching data:', error);
-//                 }
-//             };
-//             fetchData();
-//         }, []);
-    
-    
-        
-//         const handleEditClick = (rowData) => {
-//             setSelectedRow(rowData);
-//             setFormData({ ...rowData });
-//         };
-    
-//         const handleInputChange = (e) => {
-//             const { name, value } = e.target;
-//             setFormData({ ...formData, [name]: value });
-//         };
-      
-//         const [isUpdating, setIsUpdating] = useState(false);
-    
-
-//         const handleSave = () => {
-//           if (!selectedRow || isUpdating) return;
-    
-//           setIsUpdating(true); // Set isUpdating to true when update operation starts
-    
-//           // Encrypt the password
-//           const encryptedPassword = CryptoJS.AES.encrypt(formData.password, 'DBBDRSSR54321').toString();
-//           // Update the formData object with the encrypted password
-//           const encryptedFormData = { ...formData, password: encryptedPassword };
-    
-//           axios.put(`http://localhost:8000/api/sales-agents/${selectedRow.id}`, encryptedFormData)
-//               .then(response => {
-//                   console.log('Record updated successfully:', response.data);
-//                   // Update the data in mySalesOfficer state
-//                   setMySalesOfficer(mySalesOfficer.map(agent =>
-//                       agent.id === selectedRow.id ? { ...agent, ...formData } : agent
-//                   ));
-//                   setSelectedRow(null); // Clear selectedRow state
-//                   if (formData.status) {
-//                     window.location.reload(); // Reload page only if status is updated
-//                 }
-//               })
-//               .catch(error => {
-//                   console.error('Failed to update record:', error);
-//               })
-//               .finally(() => {
-//                   setIsUpdating(false);
-                  
-//                   // Reset isUpdating to false after update operation completes
-//               });
-//       };
-    
-    
-//         const handleDelete = () => {
-//             if (!selectedRow) return;
-    
-//             axios.delete(`http://localhost:8000/api/sales-agents${selectedRow.id}`)
-//                 .then(response => {
-//                     console.log('Record deleted successfully');
-//                     setMySalesOfficer(mySalesOfficer.filter(agent => agent.id !== selectedRow.id));
-//                     setSelectedRow(null); // Clear selectedRow state
-//                 })
-//                 .catch(error => {
-//                     console.error('Failed to delete record:', error);
-//                 });
-//         };
-    
-//         const togglePasswordVisibility1 = () => {
-//             setIsPasswordVisible1(prevState => !prevState);
-//           };
-    
-//         return (
-
-
-// <div className={currentMode === "Dark" ? "dark" : ""}>
-//         <div className="relative flex dark:bg-main-dark-bg">
-//           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-//             <TooltipComponent content="Settings" position="Top">
-//               <button
-//                 type="button"
-//                 onClick={() => setThemeSettings(true)}
-//                 style={{ background: currentColor, borderRadius: "50%" }}
-//                 className="p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray"
-//               >
-//                 <FiSettings />
-//               </button>
-//             </TooltipComponent>
-//           </div>
-//           {activeMenu ? (
-//             <div className="fixed bg-white w-72 sidebar dark:bg-secondary-dark-bg ">
-//               <Sidebar />
-//             </div>
-//           ) : (
-//             <div className="w-0 dark:bg-[#1a1a1a6b]">
-//               <Sidebar />
-//             </div>
-//           )}
-//           <div
-//             className={
-//               activeMenu
-//                 ? "dark:bg-[#1a1a1a6b] bg-main-bg min-h-screen md:ml-72 w-full  "
-//                 : "bg-main-bg dark:bg-[#1a1a1a6b] w-full min-h-screen flex-2 "
-//             }
-//           >
-//             <div className="fixed w-full md:static bg-[#072D20] dark:bg-[#072D20] navbar ">
-//               <Navbar />
-//             </div>
-//             <div>
-//               {themeSettings && <ThemeSettings />}
-
-
-//             <div>
-    
-//                 <label htmlFor="modal-1" className="flex mt-8 mr-6 items-center p-4 ml-auto  bg-gray-400 hover:bg-[#305b4c] hover:text-white hover:border-white/40 dark:text-white dark:hover:bg-gray-600 dark:bg-[#305b4c]  border-2 rounded-md cursor-pointer w-72 border-black/40  e hover:border-2 ">
-//                     <span htmlFor="modal-1" className="ml-8 font-bold " >Add New Sales Officer</span>
-//                     <FaPlusCircle className="w-6 h-6 ml-4" />
-//         </label>
-    
-//                 {/* Render your table with mySalesOfficer data */}
-//                 <div className="flex h-screen">
-//                         <div className="container mx-auto">
-//                             <table className="w-full mt-16 border border-solid table-auto">
-//                                 <thead>
-//                                     <tr className="text-white bg-[#305b4c] dark:bg-[#072D20]">
-                                    
-//                                         <th className="px-4 py-4 border-b-2 border-r-2  border-[#072D20] dark:border-white">First Names</th>
-//                                         <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Last Name</th>
-//                                         <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Email</th>
-//                                         <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Password</th>
-//                                         <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Status</th>
-//                                         <th className="px-4 py-2 border-b-2 border-r-2 border-[#072D20] dark:border-white">Actions</th>
-//                                     </tr>
-//                                 </thead>
-//                                 {mySalesOfficer.map((item, index) => (
-//                                 <tr className="bg-black/65" key={index}>
-                                    
-//                                     <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.first_name}</td>
-//                                     <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.last_name}</td>
-//                                     <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.email}</td>
-//                                     <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">{item.password}</td>
-//                                     {/* <td className="px-4 py-2 text-center text-white border-2 border-white">{item.status}</td> */}
-//                                     <td className={`px-4 py-2 text-center dark:border-white  text-white border-2 border-[#072D20] ${item.status === 'pending' ? 'bg-red-600 text-white font-bold' : 'bg-green-700 text-white font-bold'}`}>{item.status}</td>
-//                                     <td className="px-4 py-2 text-center  dark:border-white border-2 bg-white text-black border-[#072D20] dark:text-white dark:bg-gray-100/10">
-//                                       <label htmlFor="my-modal" className="bg-[#072D20]  btn btn-primary" onClick={() => handleEditClick(item)}>Update</label>
-//                                     </td>
-//                                 </tr>
-//                             ))}
-//                             </table>
-//                         </div>
-//                     </div>
-       
-           
-    
-    
-//     <article>
-//         {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
-//         <input className="modal-state" id="modal-1" type="checkbox"  />
-        
-//         <div className="modal">
-//             <label className="modal-overlay" htmlFor="modal-1"></label>
-    
-//             <div className="flex flex-col w-full gap-5 modal-content p-7 dark:bg-[#B2BEBA]">
-//                 <label htmlFor="modal-1" className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</label>
-//                 <div className="flex flex-col gap-2">
-//                     <h2 className="text-2xl font-semibold text-center">Add New Sales Officer</h2>
-//                     <p className="max-w-xs mx-auto text-sm text-content2">Enter new Sales Officer Data</p>
-//                 </div>
-//                 <section>
-//                     <form  onSubmit={handle_New_Officer}>
-//                     <div className="form-group">
-//                     <div className="form-field">
-//                             <label className="font-semibold form-label">First Name</label>
-//                             <input placeholder="Type here" type="text" className="max-w-full input" value={formData.first_name} onChange={handleChange}  name="first_name" />
-//                             <label className="form-label">
-//                                 <span className="form-label-alt">Please enter your first name</span>
-//                             </label>
-//                         </div>
-//                         <div className="form-field">
-//                             <label className="font-semibold form-label">Last Name</label>
-//                             <input placeholder="Type here" type="textt" className="max-w-full input" value={formData.last_name} onChange={handleChange}  name="last_name" />
-//                             <label className="form-label">
-//                                 <span className="form-label-alt">Please enter your last name</span>
-//                             </label>
-//                         </div>
-//                         <div className="form-field">
-//                             <label className="font-semibold form-label">Email address</label>
-//                             <input placeholder="Type here" type="email" className="max-w-full input" value={formData.email} onChange={handleChange}  name="email"/>
-//                             <label className="form-label">
-//                                 <span className="form-label-alt">Please enter a valid email.</span>
-//                             </label>
-//                         </div>
-    
-    
-//                         <div className="form-field">
-//                             <label htmlFor="password" className="font-semibold form-label">
-//                                 <span>Password</span>
-//                             </label>
-    
-//                             <div className="form-control">
-    
-//                                 <input 
-//                                 placeholder="Type here" 
-//                                 type={isPasswordVisible1 ? 'text' : 'password'}
-//                                 className="max-w-full input"  
-//                                 value={formData.password} 
-//                                 onChange={handleChange}  
-//                                 name="password"/>
-    
-//                                 <button
-//                                     type="button"
-//                                     className="absolute top-3 right-2"
-//                                     onClick={togglePasswordVisibility1}>
-//                                     {isPasswordVisible1 ? <FaEyeSlash /> : <FaEye />}
-//                                 </button>
-//                             </div>
-//                         </div>
-    
-    
-    
-    
-    
-//                         <div className="pt-5 form-field">
-//                             <div className="justify-between form-control">
-//                                 <button type="submit" className="w-full btn btn-primary bg-[#26473c] hover:bg-[#072D20] dark:bg-gray-800 dark:hover:bg-gray-600">Register Sales Officer</button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     </form>
-//                 </section>
-//             </div>
-//         </div>
-//     </article>
-    
-    
-    
-    
-//     {selectedRow && (
-//     <div className="update-div">
-    
-//     <input class="modal-state" id="my-modal" type="checkbox" />
-//     <div class="modal" >
-        
-//         <label class="modal-overlay" for="my-modal"></label>
-//         <div class="modal-content flex flex-col gap-6 dark:bg-[#B2BEBA]">
-//             <label for="my-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-            
-       
-//                     <div>
-//                         <div className="flex flex-col gap-8 ">
-//                             <h2 className="mt-8 text-xl text-center"><b>Updating : </b>{selectedRow.first_name}</h2>
-//                             <label className="font-bold text-md">First Name:
-//                             <input type="text" className="p-2 ml-4 font-normal border border-gray-300" name="first_name" value={formData.first_name} onChange={handleInputChange} /> </label>
-//                             <label className="font-bold text-md">Last Name:
-//                             <input type="text" className="p-2 ml-4 font-normal border border-gray-300"  name="last_name" value={formData.last_name} onChange={handleInputChange} />  </label>
-//                             <label className="font-bold text-md">Email:
-//                             <input type="text" className="p-2 ml-4 font-normal border border-gray-300"  name="email" value={formData.email} onChange={handleInputChange} />  </label>
-               
-           
-            
-//            <div className="flex flex-row items-center">
-//                             <label htmlFor="password" className="font-bold text-md">Password :</label>
-//                             <div className="relative flex">
-//                                 <input
-//                                     type={isPasswordVisible ? 'text' : 'password'}
-//                                     className="p-2 ml-4 font-normal border border-gray-300"
-//                                     name="password"
-//                                     value={formData.password}// Update value to reflect formData
-//                                     onChange={handleInputChange} />
-//                                 <button
-//                                     type="button"
-//                                     className="absolute top-3 right-2 "
-//                                     onClick={togglePasswordVisibility}>
-//                                     {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-//                                 </button>
-//                             </div>
-//         </div>
-    
-    
-//                             {/* <label className="font-bold text-md">Status:
-//                             <input type="text" className="p-2 ml-4 font-normal" name="status" value={formData.status} onChange={handleInputChange} />  </label> */}
-    
-    
-//     <label className="font-bold text-md">Status:
-//         <select className="p-2 ml-4 font-normal border border-gray-300" name="status" value={formData.status} onChange={handleInputChange}>
-//             <option value="approved">Approved</option>
-//             <option value="pending">Pending</option>
-//         </select>
-//     </label>
-               
-//                             <div className="flex gap-3">
-//                                 <button className="btn btn-block btn-primary bg-[#26473c] hover:bg-[#072D20] dark:bg-[#072D20] dark:hover:bg-[#26473c]" onClick={handleSave}>Update</button>
-//                                 <button className="btn btn-error btn-block bg-[#843a3b] hover:bg-red-800 dark:bg-red-800 dark:hover:bg-[#843a3b]" onClick={handleDelete}>Delete</button>
-//                             </div>
-//                         </div>
-//                     </div>
-      
-    
-//         </div>
-//     </div>
-      
-    
-//     </div>
-//     )} 
-    
-//             </div>
-
-            
-//             </div>
-//             <Footer />
-//           </div>
-//         </div>
-
-//     </div>
-//         );
-    
-    
-    
-    
-    
-    
-//     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
+
+
+        <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
+          <GroupComponent />
+        </section>
+
+
+
+</div>
+
+
+
+      {/* <main className="flex-1 arounded-tl-21xl rounded-tr-none rounded-b-none bg-orange-600 flex flex-col items-start justify-start pt-6 pb-[653px] pr-[34px] pl-[47px] box-border gap-[25px] max-w-[calc(100%_-_329px)] z-[1] lg:pl-[23px] lg:pt-5 lg:pb-[276px] lg:box-border mq1050:max-w-full mq750:pb-[179px] mq750:box-border">
+        <div className="w-[1093px] h-[2596px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
+        <section className="self-stretch flex flex-col items-start justify-start gap-[14px] max-w-full text-left text-13xl text-black font-nunito">
+          <div className="flex flex-col items-start justify-start gap-[1px] max-w-full">
+            <a className="[text-decoration:none] w-[134px] relative font-bold text-[inherit] inline-block z-[2] mq1050:text-7xl mq450:text-lgi">
+              Agents
+            </a>
+            <div className="relative text-base font-medium z-[2]">{`Manager > Sale Agents > List of current agents/List of pending agents`}</div>
+          </div>
+          <Separator />
+        </section>
+        <section className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+          <div className="w-96 flex flex-col items-start justify-start gap-[6px] max-w-full">
+            <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] mq1050:text-7xl mq450:text-lgi">
+              Add New Agent
+            </h1>
+            <div className="relative text-base font-medium z-[2]">{`Manager > Sale Agents > Add New Agent`}</div>
+          </div>
+          <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
+            <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-end justify-start pt-7 px-[55px] pb-[63px] gap-[85px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver mq1050:gap-[42px] mq1050:pt-5 mq1050:px-[27px] mq1050:pb-[41px] mq1050:box-border mq450:pb-[27px] mq450:box-border mq750:gap-[21px]">
+              <div className="w-[1011px] h-[860.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver" />
+              <div className="self-stretch flex flex-col items-start justify-start gap-[13.2px] max-w-full">
+                <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[9px] max-w-full">
+                    <div className="w-[212px] relative font-medium inline-block z-[3]">
+                      First Name
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg.svg"
+                      />
+                      <div className="relative inline-block min-w-[103px] z-[1]">
+                        Enter your First Name
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[10px] max-w-full">
+                    <div className="w-[212px] relative font-medium inline-block z-[3]">
+                      Last Name
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-[11px] pb-[16.5px] relative z-[3] text-3xs text-black">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg.svg"
+                      />
+                      <div className="relative inline-block min-w-[103px] z-[1]">
+                        Enter your Last Name
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[19.2px] max-w-full">
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Email
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[77px] z-[1]">
+                          Enter your Email
+                        </div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                    <div className="self-stretch flex flex-row items-start justify-start gap-[23px] mq450:flex-wrap">
+                      <div className="flex-1 flex flex-col items-start justify-start gap-[9px] min-w-[123px]">
+                        <div className="relative font-medium inline-block min-w-[88px] z-[3]">
+                          Start Date
+                        </div>
+                        <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.7px] relative z-[3] text-3xs text-black">
+                          <img
+                            className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                            alt=""
+                            src="/bg-3.svg"
+                          />
+                          <div className="relative inline-block min-w-[74px] z-[1]">
+                            Enter your Date
+                          </div>
+                          <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex-1 flex flex-col items-start justify-start gap-[9px] min-w-[123px]">
+                        <div className="w-[90px] flex flex-row items-start justify-start py-0 px-px box-border">
+                          <div className="flex-1 relative font-medium z-[3]">
+                            Campaign
+                          </div>
+                        </div>
+                        <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.7px] relative z-[3] text-3xs text-black">
+                          <img
+                            className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                            alt=""
+                            src="/bg-3.svg"
+                          />
+                          <div className="relative inline-block min-w-[100px] z-[1]">
+                            Enter your Campaign
+                          </div>
+                          <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-[401px] flex flex-col items-start justify-start gap-[22.2px] max-w-full">
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Manager
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[94px] z-[1]">{`Enter your Manager `}</div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                    <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
+                      <div className="w-[212px] relative font-medium inline-block z-[3]">
+                        Select Team
+                      </div>
+                      <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                        <img
+                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                          alt=""
+                          src="/bg.svg"
+                        />
+                        <div className="relative inline-block min-w-[59px] z-[1]">
+                          Select Team
+                        </div>
+                        <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                          Show
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="self-stretch flex flex-row items-start justify-end pt-0 pb-5 pr-[31px] pl-0 box-border max-w-full text-13xl text-black font-nunito">
+                <div className="flex-1 flex flex-col items-start justify-start gap-[45px] max-w-full mq450:gap-[22px]">
+                  <h1 className="m-0 w-96 relative text-inherit font-bold font-inherit inline-block max-w-full z-[3] mq1050:text-7xl mq450:text-lgi">
+                    Commission Set-up
+                  </h1>
+                  <div className="self-stretch h-[159px] relative text-sm font-inter mq1050:h-auto mq1050:min-h-[159]">
+                    <div className="absolute top-[0px] left-[0px] flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border gap-[46px] w-full text-3xs mq1050:flex-wrap mq1050:pt-0.5 mq1050:pr-0.5 mq1050:pb-0.5 mq1050:box-border mq450:gap-[23px]">
+                      <div className="flex flex-row items-start justify-start z-[3]">
+                        <img
+                          className="h-9 w-[268px] relative rounded-[5.99px]"
+                          loading="lazy"
+                          alt=""
+                          src="/bg-7.svg"
+                        />
+                        <div className="h-0 w-[77px] relative hidden">
+                          Enter your Email
+                        </div>
+                        <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                          Show
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start py-0 pl-0 pr-5">
+                        <div className="flex flex-row items-start justify-start z-[3]">
+                          <img
+                            className="h-9 w-[143px] relative rounded-[5.99px]"
+                            alt=""
+                            src="/bg-8.svg"
+                          />
+                          <div className="h-0 w-[77px] relative hidden">
+                            Enter your Email
+                          </div>
+                          <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start pt-px pb-0 pr-[13px] pl-0">
+                        <div className="flex flex-row items-start justify-start z-[3]">
+                          <img
+                            className="h-9 w-[143px] relative rounded-[5.99px]"
+                            alt=""
+                            src="/bg-8.svg"
+                          />
+                          <div className="h-0 w-[77px] relative hidden">
+                            Enter your Email
+                          </div>
+                          <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                            Show
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-start justify-start z-[3]">
+                        <img
+                          className="h-9 w-[143px] relative rounded-[5.99px]"
+                          alt=""
+                          src="/bg-8.svg"
+                        />
+                        <div className="h-0 w-[77px] relative hidden">
+                          Enter your Email
+                        </div>
+                        <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
+                          Show
+                        </div>
+                      </div>
+                      <img
+                        className="h-9 w-full absolute !m-[0] top-[0px] right-[0px] left-[0px] max-w-full overflow-hidden z-[4]"
+                        alt=""
+                        src="/rectangle-1664.svg"
+                      />
+                      <div className="h-[11px] w-[184px] absolute !m-[0] top-[calc(50%_-_5.5px)] left-[14px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Commission Opportunity
+                      </div>
+                      <div className="h-[11px] w-[102px] absolute !m-[0] top-[calc(50%_-_5.5px)] left-[316px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Frequency
+                      </div>
+                      <div className="h-[11px] w-[57px] absolute !m-[0] top-[calc(50%_-_5.5px)] right-[284px] text-mini font-medium text-center flex items-center justify-center z-[5]">
+                        Target
+                      </div>
+                      <div className="h-[11px] absolute !m-[0] top-[12px] right-[39px] text-mini font-medium text-center flex items-center justify-center min-w-[90px] z-[5]">
+                        Target Value
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[2px] w-[268px] flex flex-row items-start justify-start pt-[10.3px] px-3 pb-[10.7px] box-border z-[3] text-3xs">
+                      <img
+                        className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/bg-11.svg"
+                      />
+                      <div className="relative inline-block min-w-[65px] z-[1]">
+                        Enter Amount
+                      </div>
+                      <div className="h-0 w-8 relative text-xs font-medium text-green-primary text-right hidden z-[2]">
+                        Show
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[316px] w-[143px] flex flex-row items-end justify-start pt-1.5 pb-[34.5px] pr-2.5 pl-[11px] box-border gap-[25px]">
+                      <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[3] border-[1px] border-solid border-silver" />
+                      <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[10.5px]">
+                        <div className="self-stretch flex flex-col items-start justify-start gap-[30px]">
+                          <div className="w-16 h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Month
+                          </div>
+                          <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Quarter
+                          </div>
+                          <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[4]">
+                            Year
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start gap-[8.5px] z-[4]">
+                        <div className="w-[22px] h-[21.5px] relative">
+                          <img
+                            className="absolute top-[2.8px] left-[2px] w-[17.9px] h-[14.6px] object-contain"
+                            alt=""
+                            src="/add-agent-action.svg"
+                          />
+                          <div className="absolute top-[0px] left-[0px] box-border w-full h-full z-[1] border-[2px] border-solid border-black" />
+                        </div>
+                        <input
+                          className="m-0 w-[22px] h-[21.5px] relative box-border border-[2px] border-solid border-black"
+                          type="checkbox"
+                        />
+                        <input
+                          className="m-0 w-[22px] h-[21.5px] relative box-border border-[2px] border-solid border-black"
+                          type="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute top-[37px] left-[525px] w-[143px] flex flex-col items-start justify-start pt-1.5 px-2.5 pb-[17.3px] box-border gap-[29.5px]">
+                      <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[4] border-[1px] border-solid border-silver" />
+                      <div className="self-stretch flex flex-row items-end justify-start gap-[26px]">
+                        <div className="h-[40.5px] flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[10.5px] box-border">
+                          <div className="self-stretch flex-1 flex flex-col items-start justify-start gap-[30px]">
+                            <div className="self-stretch h-0 relative leading-[0%] font-medium inline-block z-[5]">
+                              Revenue
+                            </div>
+                            <div className="self-stretch flex-1 flex flex-row items-start justify-start py-0 pr-2.5 pl-px">
+                              <div className="h-0 flex-1 relative leading-[0%] font-medium inline-block z-[5]">
+                                Units
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="h-[51.5px] w-[22px] relative z-[5]">
+                          <img
+                            className="absolute top-[2.8px] left-[2px] w-[17.9px] h-[14.6px] object-contain"
+                            alt=""
+                            src="/add-agent-action.svg"
+                          />
+                          <div className="absolute top-[0px] left-[0px] box-border w-[22px] h-[21.5px] z-[1] border-[2px] border-solid border-black" />
+                          <input
+                            className="m-0 absolute top-[30px] left-[0px] box-border w-[22px] h-[21.5px] border-[2px] border-solid border-black"
+                            type="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-start justify-start py-0 px-[29px] text-[13px] text-white font-nunito">
+                        <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9px] pb-[8.4px] pr-4 pl-[21px] z-[5]">
+                          <div className="h-[17.7px] w-[65px] relative rounded-4xs bg-darkslategray hidden" />
+                          <b className="relative leading-[0%] font-bold inline-block [transform:_rotate(-0.6deg)] min-w-[27.6px] z-[1]">
+                            Add
+                          </b>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-[36px] left-[727px] w-[143px] flex flex-row items-start justify-start pt-[9px] px-[17px] pb-2 box-border">
+                      <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-t-8xs rounded-b-3xs bg-whitesmoke-200 box-border z-[5] border-[1px] border-solid border-silver" />
+                      <div className="relative inline-block min-w-[45px] whitespace-nowrap z-[6]">
+                        $1,000
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button className="cursor-pointer [border:none] pt-7 pb-[27px] pr-[37px] pl-[38px] bg-darkslategray w-[297.1px] rounded-8xs flex flex-row items-start justify-start box-border whitespace-nowrap z-[3] hover:bg-teal-200">
+                <div className="h-[75px] w-[297.1px] relative rounded-8xs bg-darkslategray hidden" />
+                <b className="flex-1 relative text-base font-nunito text-white text-left z-[1]">{`Add to Team & Invite Agent`}</b>
+              </button>
+            </div>
+          </div>
+        </section>
+        <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
+          <GroupComponent />
+        </section>
+      </main> */}
+    </>
+  );
+};
+
+export default SaleAgents;

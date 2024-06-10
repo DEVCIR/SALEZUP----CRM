@@ -24,19 +24,8 @@ import {
 
 
 
-import Page1 from "./pages/Dashboard";
-import Page2 from "./pages/Sales_Officer";
-import Page3 from "./pages/Sales_Agent";
+
 import { useStateContext } from "./contexts/ContextProvider";
-import Page4 from "./pages/Admin_Information";
-import Page5 from "./pages/Badge";
-import Page6 from "./pages/Spiff_Competition";
-import Page7 from "./pages/Celender";
-import Page8 from "./pages/Teams";
-import Page9 from "./pages/My_Celender";
-import Page10 from "./pages/Competition_Overview";
-import Main_Dashboard from "./pages/Ecommerce";
-import My_Home from "./pages/Home";
 
 
 
@@ -128,13 +117,13 @@ export default function Only_Dashboard() {
 
       <div className={currentMode === "Dark" ? "dark" : ""}>
         <div className="relative flex dark:bg-main-dark-bg">
-          {/* <div className="fixed right-4 bottom-4 hidden" style={{ zIndex: "1000" }}>
+          {/* <div className="fixed hidden right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
                 style={{ background: currentColor, borderRadius: "50%" }}
-                className="p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray hidden"
+                className="hidden p-3 text-3xl text-w hover:drop-shadow-xl hover:bg-light-gray"
               >
                 <FiSettings />
               </button>

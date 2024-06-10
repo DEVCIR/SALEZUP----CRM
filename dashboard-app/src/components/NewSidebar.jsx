@@ -5,10 +5,10 @@ function replaceUnderscoreWithSpace(str) {
     return str.replace(/_/g, ' ');
 }
 
-const NewSidebar = () => {
+const NewSidebar = ({setCurrentPage}) => {
     return (
         <>
-            <div class="h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-[#072D20] text-white">
+            <div class="h-screen basis-[20%] antialiased bg-[#072D20] text-white">
                 <div class="fixed flex flex-col top-0 left-0 w-72 bg-[#072D20] h-full">
                     <div class="flex items-center justify-center m-5">
                         <img
@@ -34,7 +34,7 @@ const NewSidebar = () => {
                                     </div>
                                     {link.links.map((sublink, index) => (
                                         <li key={index}>
-                                            <a href={sublink.name} class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#222926] text-white border-l-4 border-transparent hover:border-[#00FFCF]">
+                                            <a onClick={()=>{setCurrentPage(sublink.name)}} class="cursor-pointer relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#222926] text-white border-l-4 border-transparent hover:border-[#00FFCF]">
                                                 <span class="inline-flex justify-center items-center ml-4">
                                                     {sublink.icon}
                                                 </span>
