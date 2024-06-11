@@ -537,7 +537,7 @@ export const links = [
         icon: <RiUserStarLine />,
       },
       {
-        name: "Sales_Agent",
+        name: "Sales Agent",
         icon: <RiUserLine />,
       },
       {
