@@ -12,15 +12,15 @@ const Teams = ({className = ""}) => {
           <div   className={`self-stretch  flex flex-col items-start justify-start pt-0 px-0 pb-[81px] box-border gap-[40px] max-w-full text-left text-13xl text-black font-nunito mq750:gap-[20px] mq450:pb-[53px] mq450:box-border ${className}`}
     >
       <div className="flex flex-col items-start justify-start gap-[6px]">
-        <a className="[text-decoration:none] w-[134px] relative leading-[38px] font-bold text-[inherit] inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px]">
+        <a className="[text-decoration:none] w-[134px] relative leading-[38px] font-bold text-[inherit] inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px] text-4xl">
           Teams
         </a>
-        <div className="relative text-base font-medium z-[2]">{`Manager > Teams > Add New Teams`}</div>
+        <div className="relative text-xl font-medium z-[2]">{`Manager > Teams > Add New Teams`}</div>
       </div>
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border max-w-full text-xl font-inter">
         <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[9px] px-[26px] pb-[52px] gap-[31px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver-100 mq750:gap-[15px]">
           <div className="w-[1011px] h-[250.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
-          <h3 className="m-0 relative text-inherit font-semibold font-inherit z-[3] mq450:text-base">
+          <h3 className="m-0 relative text-xl font-semibold font-inherit z-[3] mq450:text-base">
             Add New Team
           </h3>
           <div className="w-[931px] flex flex-col items-end justify-start gap-[21px] max-w-full text-base text-gray-100">
@@ -28,30 +28,18 @@ const Teams = ({className = ""}) => {
               <div className="w-[666px] flex flex-row items-end justify-start gap-[15px] max-w-full mq750:flex-wrap">
                 <FrameComponent2
                   campaign="Campaign"
-                  fullName="Enter your Team Name"
+                  fullName="Enter Team Name"
                 />
                 <FrameComponent2
                   campaign="Team Name"
-                  fullName="Enter uour Team Name"
+                  fullName="Enter Team Name"
                 />
-                <div className="flex-1 flex flex-col items-start justify-start gap-[12px] min-w-[159px]">
-                  <div className="self-stretch relative font-medium z-[3]">
-                    Team Lead
-                  </div>
-                  <div className="flex flex-row items-start justify-start z-[3] text-3xs text-black">
-                    <img
-                      className="h-[33px] w-[170px] relative rounded-[5.99px]"
-                      alt=""
-                      src="/teams/bg-2.svg"
-                    />
-                    <div className="w-[109px] relative hidden">
-                      Enter uour Team Name
-                    </div>
-                    <div className="relative hidden w-8 text-xs font-medium text-right text-green-primary">
-                      Show
-                    </div>
-                  </div>
-                </div>
+                <FrameComponent2
+                  campaign="Team Lead"
+                  fullName="Enter Team Lead"
+                />
+               
+
               </div>
             </div>
             <Button
@@ -81,10 +69,10 @@ const Teams = ({className = ""}) => {
 
           <div className="flex flex-row items-start justify-start py-0 px-0.5">
             <div className="flex flex-col items-start justify-start gap-[6px]">
-              <b className="w-[134px] relative leading-[38px] font-bold inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px]">
+              <b className="w-[134px] relative leading-[38px] text-4xl font-bold inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px]">
                 Teams
               </b>
-              <div className="relative text-base font-medium z-[2]">{`Manager > Teams > Current Teams`}</div>
+              <div className="relative text-xl font-medium z-[2]">{`Manager > Teams > Current Teams`}</div>
             </div>
           </div>
           <div
