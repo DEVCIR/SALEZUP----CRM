@@ -28,26 +28,15 @@ export default function Admin_Dashboard() {
                 return <div className='h-fit'>adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id.
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim dolores facere illo distinctio neque ut exercitationem nam, voluptatum earum quaerat culpa voluptate doloremque minima aut. Consequuntur dolorem voluptatum sed quis, ad tenetur vero illo maxime atque possimus harum, repudiandae natus sit minima culpa hic, assumenda itaque deserunt. Iste, nulla expedita adipisci tenetur illum eius eveniet voluptatum, repellat deleniti recusandae, veritatis repudiandae! Error dolores debitis modi reiciendis optio rerum commodi natus ipsa quo velit aliquid nulla, eligendi ducimus. Quaerat, quos id.
                 </div>;
-<<<<<<< HEAD
             
-=======
-            // case 'Analytics':
-            //     return <div className='bg-yellow-500'><Sales_Officer_Login/></div>;
->>>>>>> 5958b5f73d30d550367db1f0cda8fb67cb79de23
             case 'Commission Management':
                 return <div className='bg-white'><Commision_Management/></div>;
             case 'Individual':
                 return <div className='bg-white'><Individual/></div>;
             case 'Leaderboard':
-<<<<<<< HEAD
                 return <div className='bg-white'><Leaderboard/></div>;
             case 'SalesAgent':
                 return <div className='bg-white'><SaleAgents/></div>;
-=======
-                return <div className='bg-yellow-500'><Leaderboard/></div>;
-            case 'Sales Agent':
-                return <div className=''><SaleAgents/></div>;
->>>>>>> 5958b5f73d30d550367db1f0cda8fb67cb79de23
             case 'Teams':
                 return <div className='bg-white'><Team/></div>;
             case 'TeamLeaders':
