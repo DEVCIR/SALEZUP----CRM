@@ -10,6 +10,7 @@ import Individual from './Individual';
 import Leaderboard from './Leaderboard';
 import SaleAgents from './Sales_Agent';
 import TeamLeaders from './Teamleaders';
+import DashboardManager from './Main_Dashboard';
 // import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
 
@@ -45,8 +46,8 @@ export default function Admin_Dashboard() {
                 return <div className='bg-teal-500'><Team/></div>;
             case 'TeamLeaders':
                 return <div className='bg-orange-300'><TeamLeaders/></div>;
-            case 'Help':
-                return <div>This is the Help page content.</div>;
+            case 'Main_Dashboard':
+                return <div><DashboardManager/></div>;
             default:
                 return <div>Page not found.</div>;
         }

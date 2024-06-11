@@ -9,7 +9,15 @@ module.exports = {
     extend: {
       fontSize: {
         14: "14px",
+
       },
+
+      borderRadius: {
+        "21xl": "40px",
+        "16xl": "35px",
+        "7xs": "6px",
+      },
+      
       backgroundColor: {
         "main-bg": "#FAFBFB",
         "main-dark-bg": "#20232A",

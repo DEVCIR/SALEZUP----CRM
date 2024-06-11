@@ -32,12 +32,8 @@ const Admin_Register = () => {
 
         try {
 
-            // Encrypt the password
+            
             const encryptedPassword = CryptoJS.AES.encrypt(password, 'DBBDRSSR54321').toString();
-
-            // const hashedPassword = await bcrypt.hash(password, 10);
-
-            // Prepare data object to send to the API
             const formData = {
                 first_name: firstname,
                 last_name: lastname,

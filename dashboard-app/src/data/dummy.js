@@ -564,6 +564,10 @@ export const links = [
         name: "TeamLeaders",
         icon: <FaChartLine />,
       },
+      {
+        name:"Main_Dashboard",
+        icon: <FaChartLine />,
+      }
     ],
   },
 

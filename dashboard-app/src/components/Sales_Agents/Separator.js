@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 const Separator = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch h-[427.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border max-w-full z-[2] text-center text-xs text-black font-inter border-t-[3.5px] border-solid border-silver mq1050:h-auto mq1050:min-h-[424] ${className}`}
+      className={`self-stretch h-[427.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-yellow-400 box-border max-w-full z-[2] text-center text-xs text-black font-inter border-t-[3.5px] border-solid border-silver mq1050:h-auto mq1050:min-h-[424] ${className}`}
     >
       <div className="absolute top-[0px] left-[0px] shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border w-full h-full hidden border-t-[3.5px] border-solid border-silver" />
+      
       <div className="absolute top-[128px] left-[40px] w-[949px] flex flex-col items-start justify-start max-w-full">
         <div className="self-stretch shadow-[0px_1px_1.04px_rgba(0,_0,_0,_0.25)] rounded-[7.81px] [background:linear-gradient(89.05deg,_#f5f5f5,_rgba(45,_128,_133,_0.35)_88.41%)] overflow-x-auto flex flex-row items-start justify-start py-[11px] px-4 z-[3]">
           <div className="h-11 w-[949px] relative shadow-[0px_1px_1.04px_rgba(0,_0,_0,_0.25)] rounded-[7.81px] [background:linear-gradient(89.05deg,_#f5f5f5,_rgba(45,_128,_133,_0.35)_88.41%)] shrink-0 hidden z-[1]" />
@@ -386,6 +387,8 @@ const Separator = ({ className = "" }) => {
           </div>
         </div>
       </div>
+
+
       <div className="absolute top-[128px] left-[136px] w-0 h-[254px] z-[5]" />
       <div className="absolute top-[128px] left-[266px] w-0 h-[254px] z-[7]" />
       <div className="absolute top-[128px] left-[396px] w-0 h-[254px] z-[7]" />
@@ -433,6 +436,8 @@ const Separator = ({ className = "" }) => {
         </div>
       </div>
     </div>
+
+    
   );
 };
 

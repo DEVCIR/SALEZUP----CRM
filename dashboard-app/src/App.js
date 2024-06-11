@@ -9,6 +9,9 @@ import Admin_login from '../src/pages/Admin_Login'
 import Admin_Dashboard from '../src/pages/Admin_Dashboard'
 import My_Home from '../src/pages/Home'
 
+import Manager_Login_SalesUp from '../src/pages/Manager_Login_SalesUp'
+import Manager_Register_SalesUp from '../src/pages/Manager_Register_SalesUp'
+
 
 // import {
 //   Ecommerce,
@@ -61,6 +64,10 @@ const App = () => {
           <Route path="/" element={<My_Home />} />
 
           <Route path="/Admin_Dashboard" element={<Admin_Dashboard />} />
+
+          <Route path="/manager_login" element={<Manager_Login_SalesUp />} />
+          <Route path="/manager_register" element={<Manager_Register_SalesUp />} />
+
         </Routes>
       </BrowserRouter>
     </div>
