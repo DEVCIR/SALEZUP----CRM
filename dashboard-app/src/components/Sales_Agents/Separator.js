@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Separator = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch h-[427.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-yellow-400 box-border max-w-full z-[2] text-center text-xs text-black font-inter border-t-[3.5px] border-solid border-silver mq1050:h-auto mq1050:min-h-[424] ${className}`}
+      className={`self-stretch h-[427.5px] bg-white relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl box-border max-w-full z-[2] text-center text-xs text-black font-inter border-t-[3.5px] border-solid border-silver mq1050:h-auto mq1050:min-h-[424] ${className}`}
     >
       <div className="absolute top-[0px] left-[0px] shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border w-full h-full hidden border-t-[3.5px] border-solid border-silver" />
       
@@ -116,7 +116,7 @@ const Separator = ({ className = "" }) => {
                 </div>
               </div>
               <div className="w-[50px] flex flex-row items-start justify-start relative text-left text-mini text-white font-nunito">
-                <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-darkslategray z-[5]" />
+                <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-[#013A2B] z-[5]" />
                 <div className="flex-1 flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
                   <b className="self-stretch h-0 relative leading-[0%] font-bold inline-block z-[6]">
                     Edit
@@ -181,7 +181,7 @@ const Separator = ({ className = "" }) => {
                     </div>
                   </div>
                   <div className="w-[50px] flex flex-row items-start justify-start relative text-left text-mini text-white font-nunito">
-                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-darkslategray z-[5]" />
+                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-[#013A2B] z-[5]" />
                     <div className="flex-1 flex flex-col items-start justify-start pt-2 px-0 pb-0">
                       <b className="self-stretch h-0 relative leading-[0%] font-bold inline-block z-[6]">
                         Edit
@@ -246,7 +246,7 @@ const Separator = ({ className = "" }) => {
                     </div>
                   </div>
                   <div className="w-[50px] flex flex-row items-start justify-start relative text-left text-mini text-white font-nunito">
-                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-darkslategray z-[5]" />
+                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-[#013A2B] z-[5]" />
                     <div className="flex-1 flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
                       <b className="self-stretch h-0 relative leading-[0%] font-bold inline-block z-[6]">
                         Edit
@@ -311,7 +311,7 @@ const Separator = ({ className = "" }) => {
                     </div>
                   </div>
                   <div className="w-[50px] flex flex-row items-start justify-start relative text-left text-mini text-white font-nunito">
-                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-darkslategray z-[5]" />
+                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-[#013A2B] z-[5]" />
                     <div className="flex-1 flex flex-col items-start justify-start pt-2 px-0 pb-0">
                       <b className="self-stretch h-0 relative leading-[0%] font-bold inline-block z-[6]">
                         Edit
@@ -374,7 +374,7 @@ const Separator = ({ className = "" }) => {
                     </div>
                   </div>
                   <div className="w-[50px] flex flex-row items-start justify-start relative text-left text-mini text-white font-nunito">
-                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-darkslategray z-[5]" />
+                    <div className="h-[29px] w-[63.7px] absolute !m-[0] bottom-[-14px] left-[-19px] rounded-4xs bg-[#013A2B] z-[5]" />
                     <div className="flex-1 flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
                       <b className="self-stretch h-0 relative leading-[0%] font-bold inline-block z-[6]">
                         Edit
@@ -397,38 +397,38 @@ const Separator = ({ className = "" }) => {
       <div className="absolute top-[128px] left-[788px] w-0 h-[254px] z-[7]" />
       <div className="absolute top-[128px] left-[894px] w-0 h-[254px] z-[7]" />
       <div className="absolute top-[24px] left-[40px] w-[869.3px] flex flex-col items-start justify-start gap-[18px] max-w-full text-left text-xl">
-        <h2 className="m-0 w-[283px] relative text-inherit font-semibold font-inherit inline-block z-[3] mq450:text-base">
+        <h2 className="m-0 w-[283px] relative text-inherit font-semibold font-inherit inline-block z-[3] text-2xl">
           Current Agents
         </h2>
         <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
           <button className="cursor-pointer [border:none] pt-[15px] px-6 pb-3.5 bg-seagreen rounded-4xs flex flex-row items-start justify-start whitespace-nowrap z-[3] hover:bg-lightseagreen">
             <div className="h-[29px] w-[120.1px] relative rounded-4xs bg-seagreen hidden" />
-            <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-white text-left inline-block min-w-[72px] z-[1]">
+            <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-black text-left inline-block min-w-[72px] z-[1]">
               All Teams
             </b>
           </button>
           <nav className="m-0 flex flex-row items-start justify-start gap-[58px] max-w-full whitespace-nowrap mq750:flex-wrap">
             <button className="cursor-pointer [border:none] pt-[15px] px-[30px] pb-3.5 bg-darkslategray rounded-4xs flex flex-row items-start justify-start z-[3] hover:bg-teal-200">
               <div className="h-[29px] w-[120.1px] relative rounded-4xs bg-darkslategray hidden" />
-              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-white text-left inline-block min-w-[60px] z-[1]">
+              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-black text-left inline-block min-w-[60px] z-[1]">
                 Inobund
               </b>
             </button>
             <button className="cursor-pointer [border:none] pt-[15px] px-[23px] pb-3.5 bg-darkslategray rounded-4xs flex flex-row items-start justify-start z-[3] hover:bg-teal-200">
               <div className="h-[29px] w-[120.1px] relative rounded-4xs bg-darkslategray hidden" />
-              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-white text-left inline-block min-w-[74px] z-[1]">
+              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-black text-left inline-block min-w-[74px] z-[1]">
                 Outbound
               </b>
             </button>
             <button className="cursor-pointer [border:none] pt-[15px] px-[34px] pb-3.5 bg-darkslategray rounded-4xs flex flex-row items-start justify-start z-[3] hover:bg-teal-200">
               <div className="h-[29px] w-[120.1px] relative rounded-4xs bg-darkslategray hidden" />
-              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-white text-left inline-block min-w-[52px] z-[1]">
+              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-black text-left inline-block min-w-[52px] z-[1]">
                 Vetting
               </b>
             </button>
             <button className="cursor-pointer [border:none] pt-[15px] pb-3.5 pr-[43px] pl-11 bg-darkslategray rounded-4xs flex flex-row items-start justify-start z-[3] hover:bg-teal-200">
               <div className="h-[29px] w-[120.1px] relative rounded-4xs bg-darkslategray hidden" />
-              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-white text-left inline-block min-w-[33px] z-[1]">
+              <b className="h-0 relative text-mini leading-[0%] font-bold font-nunito text-black text-left inline-block min-w-[33px] z-[1]">
                 BDR
               </b>
             </button>

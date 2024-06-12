@@ -129,8 +129,8 @@ const GroupComponent = ({ className = "" }) => {
               </div>
             </div>
             <div className="flex flex-col items-start justify-start pt-px px-0 pb-0 text-left text-mini text-white font-nunito">
-              <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2]">
-                <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-darkslategray hidden" />
+              <div className="rounded-4xs bg-[#013A2B] flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2]">
+                <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-[#013A2B] hidden" />
                 <b className="h-0 relative leading-[0%] font-bold inline-block min-w-[24.5px] z-[1]">
                   Yes
                 </b>
@@ -192,8 +192,8 @@ const GroupComponent = ({ className = "" }) => {
                   Yes
                 </div>
               </div>
-              <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
-                <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-darkslategray hidden" />
+              <div className="rounded-4xs bg-[#013A2B] flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
+                <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-[#013A2B] hidden" />
                 <b className="h-0 relative leading-[0%] font-bold inline-block min-w-[24.5px] z-[1]">
                   Yes
                 </b>
@@ -254,8 +254,8 @@ const GroupComponent = ({ className = "" }) => {
                     Yes
                   </div>
                 </div>
-                <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
-                  <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-darkslategray hidden" />
+                <div className="rounded-4xs bg-[#013A2B] flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
+                  <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-[#013A2B] hidden" />
                   <b className="h-0 relative leading-[0%] font-bold inline-block min-w-[24.5px] z-[1]">
                     Yes
                   </b>
@@ -316,8 +316,8 @@ const GroupComponent = ({ className = "" }) => {
                       Yes
                     </div>
                   </div>
-                  <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[8.4px] pb-[9.3px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
-                    <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-darkslategray hidden" />
+                  <div className="rounded-4xs bg-[#013A2B] flex flex-row items-start justify-start pt-[8.4px] pb-[9.3px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
+                    <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-[#013A2B] hidden" />
                     <b className="h-0 relative leading-[0%] font-bold inline-block min-w-[24.5px] z-[1]">
                       Yes
                     </b>
@@ -377,8 +377,8 @@ const GroupComponent = ({ className = "" }) => {
                       Yes
                     </div>
                   </div>
-                  <div className="rounded-4xs bg-darkslategray flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
-                    <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-darkslategray hidden" />
+                  <div className="rounded-4xs bg-[#013A2B] flex flex-row items-start justify-start pt-[9.3px] pb-[8.4px] pr-7 pl-[29px] z-[2] text-left text-mini text-white font-nunito">
+                    <div className="h-[17.7px] w-[83px] relative rounded-4xs bg-[#013A2B] hidden" />
                     <b className="h-0 relative leading-[0%] font-bold inline-block min-w-[24.5px] z-[1]">
                       Yes
                     </b>

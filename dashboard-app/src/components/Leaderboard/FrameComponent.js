@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const FrameComponent = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch flex flex-row items-start justify-end pt-0 px-[55px] pb-[63px] box-border max-w-full lg:pl-[27px] lg:pr-[27px] lg:box-border mq750:pb-[41px] mq750:box-border ${className}`}
+      className={`self-stretch flex flex-row  ml-20  pt-0 px-[55px] pb-[63px] box-border max-w-full lg:pl-[27px] lg:pr-[27px] lg:box-border mq750:pb-[41px] mq750:box-border ${className}`}
     >
       <div className="h-[580px] w-[1011px] relative max-w-full">
         <img
