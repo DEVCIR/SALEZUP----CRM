@@ -161,20 +161,16 @@ const SaleAgents = () => {
             <br></br>
             <div className="relative ml-4 text-xl text-black font-medium z-[2]">{`Manager > Sale Agents > List of current agents/List of pending agents`}</div>
           </div>
-
-{/* Current Agents div */}
+          {/* Current Agents div */}
           <Separator />
-{/* Current Agents div */}
-
-
+          {/* Current Agents div */}
         </section>
 
 
 
 
-        <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px]  text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
-        
-          <form onSubmit={register_sales_agent} className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px]  text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+        <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+          
           <div className="w-96 flex flex-col  ml-4 gap-[6px] max-w-full ">
             <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] text-3xl">
               Add New Agent
@@ -182,7 +178,6 @@ const SaleAgents = () => {
             <br></br>
             <div className="relative text-xl text-black font-medium z-[2]">{`Manager > Sale Agents > Add New Agent`}</div>
           </div>
-
           <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
 
             {/* _____________________________________ Add Sales Agent __________________________________________________________ */}
@@ -515,14 +510,8 @@ const SaleAgents = () => {
           </div>
 
 
-          
-</form>
+
         </section>
-
-
-
-
-
         <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
           <GroupComponent />
         </section>

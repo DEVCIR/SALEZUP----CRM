@@ -32,6 +32,7 @@ import Manager_Register_SalesUp from '../src/pages/Manager_Register_SalesUp'
 // } from "../src/pages";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
+import Individual from "./pages/Individual";
 
 
 const App = () => {
@@ -64,7 +65,7 @@ const App = () => {
           <Route path="/" element={<My_Home />} />
 
           <Route path="/Admin_Dashboard" element={<Admin_Dashboard />} />
-
+          {/* <Route path="/Individual" element={<Individual />} /> */}
           <Route path="/manager_login" element={<Manager_Login_SalesUp />} />
           <Route path="/manager_register" element={<Manager_Register_SalesUp />} />
 

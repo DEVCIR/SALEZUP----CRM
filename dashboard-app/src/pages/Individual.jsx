@@ -7,20 +7,11 @@ import GroupComponent from "../components/Individual/GroupComponent";
 import { useState } from "react";
 
 const Individual = () => {
-
-
-
-   
-
-
-
   return (
-   
-<>
-    
+    <>
       <main className=" rounded-tl-21xl rounded-tr-none rounded-b-none bg-white w-[1093px] flex flex-col items-end justify-start pt-6 px-[35px] pb-[627px] box-border gap-[37px] max-w-full z-[1]">
         <div className="w-[1093px] h-[3314px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
-        <section className="w-[1011px] flex flex-col items-start justify-start pt-0 px-0 pb-1 box-border gap-[23px] max-w-full shrink-0 text-left text-13xl text-black font-nunito">
+        <section className=" flex flex-col items-start justify-start pt-0 px-0 pb-1 box-border gap-[23px] max-w-full shrink-0 text-left text-13xl text-black font-nunito">
           <div className="w-[264px] flex flex-col items-start justify-start gap-[1px]">
             <h2 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] mq450:text-lgi mq950:text-7xl">
               Individual
@@ -29,49 +20,13 @@ const Individual = () => {
           </div>
           <ContestRules />
         </section>
-        <section className="w-[1011px] flex flex-row items-start justify-start pt-0 px-0 pb-1 box-border max-w-full shrink-0">
+        <section className="flex flex-row items-start justify-start pt-0 px-0 pb-1 box-border max-w-full shrink-0">
           <GroupComponent2 />
         </section>
         <GroupComponent1 />
-        <section className="w-[1011px] flex flex-row items-start justify-start pt-0 px-0 pb-1 box-border max-w-full shrink-0">
+        <section className="flex flex-row items-start justify-start pt-0 px-0 pb-1 box-border w-full shrink-0">
           <PrizeOptions />
         </section>
-
-
-
-<div className="flex flex-row w-full space-x-16 bg-slate-500" >
-
-<div> 
-<h2 className="font-bold tracking-spacing">Cash Prize</h2>
-
-
-
-
-</div>
-
-
-<div>
-<h2 className="font-bold tracking-spacing">Voucher</h2></div>
-
-
-<div>
-<h2 className="font-bold tracking-spacing">Food </h2>
-
-
-
-</div>
-
-<div>
-<h2 className="font-bold tracking-spacing">Experience</h2>
-
-
-</div>
-
-
-</div>
-
-
-
         <section className="self-stretch flex flex-col items-start justify-start gap-[25px] max-w-full shrink-0 text-left text-xl text-black font-inter">
           <GroupComponent />
           <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-1.5 box-border max-w-full">
@@ -137,8 +92,8 @@ const Individual = () => {
           </div>
         </section>
       </main>
-      </>
-    
+    </>
+
   );
 };
 
