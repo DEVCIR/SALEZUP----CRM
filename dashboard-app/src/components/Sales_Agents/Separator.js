@@ -37,6 +37,7 @@ const Separator = ({ className = "" }) => {
               <th className="border border-gray-600 px-4 py-2">ID</th>
               <th className="border border-gray-600 px-4 py-2">Name</th>
               <th className="border border-gray-600 px-4 py-2">Surname</th>
+              <th className="border border-gray-600 px-4 py-2">Start Date</th>
               <th className="border border-gray-600 px-4 py-2">Team ID</th>
               <th className="border border-gray-600 px-4 py-2">Team Leader</th>
               <th className="border border-gray-600 px-4 py-2">Commission</th>
@@ -44,7 +45,7 @@ const Separator = ({ className = "" }) => {
               <th className="border border-gray-600 px-4 py-2">Frequency</th>
               <th className="border border-gray-600 px-4 py-2">Campaign</th>
               <th className="border border-gray-600 px-4 py-2">Active</th>
-              <th className="border border-gray-600 px-4 py-2">Start Date</th>
+              
            
             </tr>
           </thead>
@@ -54,6 +55,7 @@ const Separator = ({ className = "" }) => {
                 <td className="border border-gray-600 px-4 py-2">{agent.id}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.name}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.surname}</td>
+                <td className="border border-gray-600 px-4 py-2">{agent.start_date}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.team_id}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.teamleader}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.commission}</td>
@@ -61,7 +63,7 @@ const Separator = ({ className = "" }) => {
                 <td className="border border-gray-600 px-4 py-2">{agent.frequency}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.campaign}</td>
                 <td className="border border-gray-600 px-4 py-2">{agent.active}</td>
-                <td className="border border-gray-600 px-4 py-2">{agent.start_date}</td>
+                
               </tr>
             ))}
           </tbody>

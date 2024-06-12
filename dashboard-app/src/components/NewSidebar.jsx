@@ -34,11 +34,12 @@ const NewSidebar = ({ setCurrentPage }) => {
             name: "saleAgents",
             icon: <IoPerson />,
             children: [
-                { name: "Current Agents", link: "/current-agents" },
-                { name: "Add New Agent", link: "/add-agent" },
-                { name: "Pending Requests", link: "/pending-requests" },
-                { name: "Current Team Leaders", link: "/current-team-leaders" },
-                { name: "Add New Team Leader", link: "/add-leader" },
+                { name: "Current Agents", link: "SalesAgent" },
+                { name: "Add New Agent", link: "Add_New_Agent" },
+                { name: "Pending Requests", link: "Pending_Request" },
+                { name: "Current_Team_Leader", link: "Current_Team_Leader" },
+                { name: "Add_New_Team_Leader", link: "Add_New_Team_Leader" },
+                { name: "Pending_Request_Team_Leader", link: "Pending_Request_Team_Leader" },
             ],
         },
         {
@@ -50,11 +51,17 @@ const NewSidebar = ({ setCurrentPage }) => {
             parent: "Teams",
             name: "teams",
             icon: <IoPeopleSharp />,
+            children: [
+                { name: "Add_New_Teams", link: "Add_New_Teams" },
+                { name: "Current_Teams", link: "Current_Teams" },
+            ],
+            
         },
         {
             parent: "Set Contest",
             name: "setContest",
             icon: <IoRocketOutline />,
+            
         },
         {
             parent: "Prize",

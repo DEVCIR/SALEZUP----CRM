@@ -33,6 +33,7 @@ import Manager_Register_SalesUp from '../src/pages/Manager_Register_SalesUp'
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import Individual from "./pages/Individual";
+import SaleAgents from "./pages/Sales_Agent";
 
 
 const App = () => {
@@ -68,6 +69,8 @@ const App = () => {
           {/* <Route path="/Individual" element={<Individual />} /> */}
           <Route path="/manager_login" element={<Manager_Login_SalesUp />} />
           <Route path="/manager_register" element={<Manager_Register_SalesUp />} />
+
+          <Route path='/sales_agent' element={<SaleAgents/>}/>
 
         </Routes>
       </BrowserRouter>

@@ -1,7 +1,9 @@
-import PropTypes from "prop-types";
+import Container from "../components/Sales_Agents/Container";
+import Separator from "../components/Sales_Agents/Separator";
+import GroupComponent from "../components/Sales_Agents/GroupComponent";
 import React, { useState, useEffect } from 'react';
 
-const FrameComponent = ({ className = "" }) => {
+const Add_New_Agent = () => {
 
 
   const [firstName, setFirstName] = useState('');
@@ -27,92 +29,97 @@ const FrameComponent = ({ className = "" }) => {
     setSelectedFrequency(event.target.value);
   };
 
-  console.log("1",firstName)
-  console.log("2",lastName)
-  console.log("3",email)
-  console.log("4",startDate)
-  console.log("5",campaign)
-  console.log("6",manager)
-  console.log("7",team)
-  console.log("9",comission_opurtunity)
-  console.log("10",target_value)
-  console.log("11",selectedTarget)
-  console.log("12",selectedFrequency)
 
-  const register_sales_agent = async (e) => {
-    e.preventDefault();
-  
-    // Validation checks
-    if (!firstName || !lastName || !email || !startDate || !campaign || !manager || !team || !comission_opurtunity || !target_value || !selectedTarget || !selectedFrequency) {
-      alert('Please fill in all fields');
-      return;
-    }
-  
-    const payload = {
-      name: firstName,
-      surname: lastName,
-      email: email,
-      team_id: team,
-      manager: manager,
-      commission: comission_opurtunity,
-      target: target_value,
-      frequency: selectedFrequency,
-      campaign: campaign,
-      start_date: startDate
-    };
-  
-    console.log("Payload to be sent:", payload);
-  
-    try {
-      const response = await fetch('http://localhost:8000/api/team_leaders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      const data = await response.json();
-      console.log("Response from API:", data);
-  
-      // Reset the form after successful submission
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setStartDate('');
-      setCampaign('');
-      setManager('');
-      setTeam('');
-      setSelectedTarget('');
-      setSelectedFrequency('');
-      setcomission_opurtunity('');
-      settarget_value('');
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-    }
+ console.log("1",firstName)
+ console.log("2",lastName)
+ console.log("3",email)
+ console.log("4",startDate)
+ console.log("5",campaign)
+ console.log("6",manager)
+ console.log("7",team)
+ console.log("9",comission_opurtunity)
+ console.log("10",target_value)
+ console.log("11",selectedTarget)
+ console.log("12",selectedFrequency)
+ 
+ const register_sales_agent = async (e) => {
+  e.preventDefault();
+
+  // Validation checks
+  if (!firstName || !lastName || !email || !startDate || !campaign || !manager || !team || !comission_opurtunity || !target_value || !selectedTarget || !selectedFrequency) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  const payload = {
+    name: firstName,
+    surname: lastName,
+    email: email,
+    team_id: team,
+    teamleader: manager,
+    commission: comission_opurtunity,
+    target: target_value,
+    frequency: selectedFrequency,
+    campaign: campaign,
+    start_date: startDate
   };
 
+  console.log("Payload to be sent:", payload);
 
+  try {
+    const response = await fetch('http://localhost:8000/api/sales_agents', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
 
+    const data = await response.json();
+    console.log("Response from API:", data);
 
+    // Reset the form after successful submission
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setStartDate('');
+    setCampaign('');
+    setManager('');
+    setTeam('');
+    setSelectedTarget('');
+    setSelectedFrequency('');
+    setcomission_opurtunity('');
+    settarget_value('');
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+};
 
 
   return (
-    
-
-    <div className="w-full">
+<>
+<div className="w-full">
 
         <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+          
+          <div className="w-96 flex flex-col  ml-4 gap-[6px] max-w-full ">
+            <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] text-3xl">
+              Add New Agent
+            </h1>
+            <br></br>
+            <div className="relative text-xl text-black font-medium z-[2]">{`Manager > Sale Agents > Add New Agent`}</div>
+          </div>
           <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
 
-                     
+            {/* _____________________________________ Add Sales Agent __________________________________________________________ */}
+           
+           
             <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-2xl border bg-white  box-border flex flex-col items-end justify-start pt-7 px-[55px] pb-[63px] gap-[85px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver mq1050:gap-[42px] mq1050:pt-5 mq1050:px-[27px] mq1050:pb-[41px] mq1050:box-border mq450:pb-[27px] mq450:box-border mq750:gap-[21px]">
-            <form onSubmit={register_sales_agent}> 
+             <form onSubmit={register_sales_agent}> 
               <div className="w-[1200px] h-[860.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver" />
               <div className="self-stretch flex flex-col items-start justify-start gap-[13.2px] max-w-full">
                 <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] mq1050:flex-wrap">
@@ -272,7 +279,7 @@ const FrameComponent = ({ className = "" }) => {
                             Enter your Email
                           </div>
                           <div className="relative hidden w-8 h-0 text-xs font-medium text-right text-green-primary">
-                            Shows
+                            Show
                           </div>
                         </div>
                       </div>
@@ -435,8 +442,7 @@ const FrameComponent = ({ className = "" }) => {
                 <b className="flex-1 relative text-base font-nunito text-white  text-left z-[1]">{`Add to Team & Invite Agent`}</b>
               </button>
 
-              </form>
-
+</form>
 
             </div>
 
@@ -449,11 +455,11 @@ const FrameComponent = ({ className = "" }) => {
         </section>
 </div>
 
+
+
+      
+    </>
   );
 };
 
-FrameComponent.propTypes = {
-  className: PropTypes.string,
-};
-
-export default FrameComponent;
+export default Add_New_Agent;

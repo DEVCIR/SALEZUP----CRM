@@ -169,7 +169,7 @@ const SaleAgents = () => {
 
 
 
-        <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
+        {/* <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
           
           <div className="w-96 flex flex-col  ml-4 gap-[6px] max-w-full ">
             <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] text-3xl">
@@ -180,7 +180,8 @@ const SaleAgents = () => {
           </div>
           <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
 
-            {/* _____________________________________ Add Sales Agent __________________________________________________________ */}
+   
+           
            
             <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-2xl border bg-white  box-border flex flex-col items-end justify-start pt-7 px-[55px] pb-[63px] gap-[85px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver mq1050:gap-[42px] mq1050:pt-5 mq1050:px-[27px] mq1050:pb-[41px] mq1050:box-border mq450:pb-[27px] mq450:box-border mq750:gap-[21px]">
               <div className="w-[1200px] h-[860.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver" />
@@ -230,11 +231,7 @@ const SaleAgents = () => {
                         Email
                       </div>
                       <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
-                        {/* <img
-                          className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
-                          alt=""
-                          src="/bg.svg"
-                        /> */}
+                        
                         <input
               type="email"
               value={email}
@@ -490,7 +487,7 @@ const SaleAgents = () => {
               type="text"
               value={target_value}
               onChange={(e) => settarget_value(e.target.value)}
-              placeholder="Enter your Manager"
+              placeholder="Enter target value"
             />
                       </div>
 
@@ -507,14 +504,19 @@ const SaleAgents = () => {
 
 
             </div>
+
+           
+
           </div>
 
 
 
-        </section>
-        <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
+        </section> */}
+       
+       
+        {/* <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
           <GroupComponent />
-        </section>
+        </section> */}
 
 
 
