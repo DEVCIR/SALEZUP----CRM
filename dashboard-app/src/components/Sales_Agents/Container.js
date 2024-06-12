@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Container = ({ className = "" }) => {
   return (
     <div
-      className={`w-[305px] flex flex-col items-start justify-start gap-[70px] text-left text-13xl text-aquamarine font-inter mq1050:hidden mq450:gap-[35px] ${className}`}
+      className={`w-[305px] flex flex-col items-start justify-start gap-[70px]  text-left text-13xl text-aquamarine font-inter mq1050:hidden mq450:gap-[35px] ${className}`}
     >
       <div className="flex flex-row items-start justify-start py-0 px-[9px]">
         <div className="flex flex-row items-start justify-start bg-[url('/public/whatsapp-image-20240405-at-2112-4@2x.png')] bg-cover bg-no-repeat bg-[top] z-[1]">
