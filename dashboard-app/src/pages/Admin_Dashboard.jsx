@@ -26,6 +26,7 @@ export default function Admin_Dashboard() {
     const name = loggedInUserEmail ? loggedInUserEmail.split('@')[0] : '';
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        console.log(currentPage)
     };
 
     const renderPageContent = () => {
