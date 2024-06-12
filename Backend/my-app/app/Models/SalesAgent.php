@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SalesOfficerRegistration extends Model
+class SalesAgent extends Model
 {
     use HasFactory;
 
-    protected $table = 'sales_officer_registration';
-
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
+        'name',
+        'surname',
         'team_id',
-        'status',
+        'teamleader',
+        'commission',
+        'target',
+        'frequency',
+        'campaign',
+        'active',
     ];
 }

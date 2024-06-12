@@ -1,16 +1,22 @@
 <?php
-// app/Http/Controllers/TeamController.php
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class TeamController extends Controller
 {
+    // Get all teams
     public function index()
     {
         return Team::all();
+    }
+
+    // Get a single team by ID
+    public function show($id)
+    {
+        return Team::findOrFail($id);
     }
 
     public function store(Request $request)
@@ -18,30 +24,32 @@ class TeamController extends Controller
         return Team::create($request->all());
     }
 
-    public function show($id)
-    {
-        return Team::findOrFail($id);
-    }
-
+    // Update an existing team by ID
     public function update(Request $request, $id)
     {
         $team = Team::findOrFail($id);
         $team->update($request->all());
+
         return $team;
     }
 
+    // Delete a team by ID
     public function destroy($id)
     {
-        $team = Team::findOrFail($id);
-        $team->delete();
-        return 204;
+        Team::findOrFail($id)->delete();
+
+        return response()->json(['message' => 'Team deleted successfully']);
     }
 
-
-
-    public function getTeamIdByName($name)
+    // Update all teams
+    public function updateAll(Request $request)
     {
-        $team = Team::where('team_name', $name)->firstOrFail();
-        return response()->json(['id' => $team->id]);
+        $request->validate([
+            'status' => 'required|string|in:active,no active',
+        ]);
+
+        Team::query()->update(['status' => $request->status]);
+
+        return response()->json(['message' => 'All teams updated successfully']);
     }
 }
