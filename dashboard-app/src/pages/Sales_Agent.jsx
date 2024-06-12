@@ -4,10 +4,9 @@ import GroupComponent from "../components/Sales_Agents/GroupComponent";
 
 const SaleAgents = () => {
   return (
-<>
-<div className="w-full">
-
-<section className="self-stretch flex flex-col items-start justify-start gap-[14px] bg-pink-500 max-w-full text-left text-13xl text-black font-nunito">
+    <>
+      <div className="w-full">
+        <section className="self-stretch flex flex-col items-start justify-start gap-[14px] bg-pink-500 max-w-full text-left text-13xl text-black font-nunito">
           <div className="flex flex-col items-start justify-start gap-[1px] max-w-full">
             <a className="[text-decoration:none] w-[134px] relative font-bold text-[inherit] inline-block z-[2] text-3xl">
               Agents
@@ -15,19 +14,11 @@ const SaleAgents = () => {
             <br></br>
             <div className="relative text-xl text-black font-medium z-[2]">{`Manager > Sale Agents > List of current agents/List of pending agents`}</div>
           </div>
-
-{/* Current Agents div */}
+          {/* Current Agents div */}
           <Separator />
-{/* Current Agents div */}
-
-
+          {/* Current Agents div */}
         </section>
-
-
-
-
         <section className="mt-8 self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[43px] box-border gap-[34px] max-w-full text-left text-13xl text-black font-nunito mq1050:pb-7 mq1050:box-border mq750:gap-[17px] mq750:pb-5 mq750:box-border">
-          
           <div className="w-96 flex flex-col items-start justify-start gap-[6px] max-w-full bg-blue-400">
             <h1 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] text-3xl">
               Add New Agent
@@ -35,9 +26,7 @@ const SaleAgents = () => {
             <br></br>
             <div className="relative text-xl text-black font-medium z-[2]">{`Manager > Sale Agents > Add New Agent`}</div>
           </div>
-
           <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0 text-base text-gray font-inter">
-           
             <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-2xl border bg-purple-400 box-border flex flex-col items-end justify-start pt-7 px-[55px] pb-[63px] gap-[85px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver mq1050:gap-[42px] mq1050:pt-5 mq1050:px-[27px] mq1050:pb-[41px] mq1050:box-border mq450:pb-[27px] mq450:box-border mq750:gap-[21px]">
               <div className="w-[1011px] h-[860.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver" />
               <div className="self-stretch flex flex-col items-start justify-start gap-[13.2px] max-w-full">
@@ -178,7 +167,6 @@ const SaleAgents = () => {
                   </div>
                 </div>
               </div>
-
               <div className="self-stretch flex flex-row items-start bg-yellow-300 justify-end pt-0 pb-5 pr-[31px] pl-0 box-border max-w-full text-13xl text-black font-nunito">
                 <div className="flex-1 flex flex-col items-start justify-start gap-[45px] max-w-full mq450:gap-[22px]">
                   <h1 className="m-0 w-96 relative text-inherit font-bold font-inherit inline-block max-w-full z-[3] text-3xl">
@@ -354,34 +342,17 @@ const SaleAgents = () => {
                   </div>
                 </div>
               </div>
-
               <button className="cursor-pointer [border:none] pt-7 pb-[27px] pr-[37px] pl-[38px] bg-darkslategray w-[297.1px] rounded-8xs flex flex-row items-start justify-start box-border whitespace-nowrap z-[3] hover:bg-teal-200">
                 <div className="h-[75px] w-[297.1px] relative rounded-8xs bg-darkslategray hidden" />
                 <b className="flex-1 relative text-base font-nunito text-white text-left z-[1]">{`Add to Team & Invite Agent`}</b>
               </button>
             </div>
-
-
           </div>
-
-
-
         </section>
-
-
-
-
-
         <section className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-px pr-0">
           <GroupComponent />
         </section>
-
-
-
-</div>
-
-
-
+      </div>
       {/* <main className="flex-1 arounded-tl-21xl rounded-tr-none rounded-b-none bg-orange-600 flex flex-col items-start justify-start pt-6 pb-[653px] pr-[34px] pl-[47px] box-border gap-[25px] max-w-[calc(100%_-_329px)] z-[1] lg:pl-[23px] lg:pt-5 lg:pb-[276px] lg:box-border mq1050:max-w-full mq750:pb-[179px] mq750:box-border">
         <div className="w-[1093px] h-[2596px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
         <section className="self-stretch flex flex-col items-start justify-start gap-[14px] max-w-full text-left text-13xl text-black font-nunito">
