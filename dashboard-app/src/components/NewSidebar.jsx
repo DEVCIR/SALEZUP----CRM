@@ -44,8 +44,9 @@ const NewSidebar = ({ setCurrentPage }) => {
         },
         {
             parent: "Commission Management",
-            name: "commissionManagement",
+            name: "CommissionManagement",
             icon: <IoIosHelpCircle />,
+            link: "Commission_Management"
         },
         {
             parent: "Teams",
@@ -102,18 +103,28 @@ const NewSidebar = ({ setCurrentPage }) => {
                     </div>
                     <div class="overflow-y-auto overflow-x-hidden flex-grow">
                         <ul class="flex flex-col py-4 space-y-1">
-                            {links.map((link, index) => (
+                        {links.map((link, index) => (
                                 <li key={index} className=''>
-                                    <div class="flex flex-row items-center cursor-pointer h-8 px-5" onClick={() => {
-                                        setIsLinkExpanded({ ...isLinkExpanded, [link.name]: !isLinkExpanded[link.name] });
-                                    }}>
+                                    <div
+                                        className="flex flex-row items-center cursor-pointer h-8 px-5"
+                                        onClick={() => {
+                                            if (link.children) {
+                                                setIsLinkExpanded({ ...isLinkExpanded, [link.name]: !isLinkExpanded[link.name] });
+                                            } else {
+                                                setCurrentPage(link.link);
+                                            }
+                                        }}
+                                    >
                                         <span className='mr-2'>{link.icon}</span>
-                                        <div class="text-md font-light tracking-wide text-gray-50">{link.parent}</div>
+                                        <div className="text-md font-light tracking-wide text-gray-50">{link.parent}</div>
                                     </div>
-                                    {link.children && link.children.map((sublink, index) => (
-                                        <li key={index} className={isLinkExpanded[link.name] ? "block" : "hidden"}>
-                                            <a onClick={() => { setCurrentPage(sublink.link) }} class="flex bg-[#222926] cursor-pointer relative flex-row items-center h-11 focus:outline-none hover:bg-[#222926] text-white border-l-4 border-transparent hover:border-[#00FFCF]">
-                                                <span class="ml-12 text-sm tracking-wide truncate">{replaceUnderscoreWithSpace(sublink.name)}</span>
+                                    {link.children && link.children.map((sublink, subIndex) => (
+                                        <li key={subIndex} className={isLinkExpanded[link.name] ? "block" : "hidden"}>
+                                            <a
+                                                onClick={() => { setCurrentPage(sublink.link) }}
+                                                className="flex bg-[#222926] cursor-pointer relative flex-row items-center h-11 focus:outline-none hover:bg-[#222926] text-white border-l-4 border-transparent hover:border-[#00FFCF]"
+                                            >
+                                                <span className="ml-12 text-sm tracking-wide truncate">{replaceUnderscoreWithSpace(sublink.name)}</span>
                                             </a>
                                         </li>
                                     ))}
