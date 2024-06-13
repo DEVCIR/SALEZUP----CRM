@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const FrameComponent = ({ className = "" }) => {
 
@@ -11,6 +12,20 @@ const FrameComponent = ({ className = "" }) => {
   const [campaign, setCampaign] = useState('');
   const [manager, setManager] = useState('');
   const [team, setTeam] = useState('');
+
+  const [teams, setTeams] = useState([]);
+ 
+
+  useEffect(() => {
+    // Fetching teams data from the API
+    axios.get('http://localhost:8000/api/teams')
+      .then(response => {
+        setTeams(response.data);  
+      })
+      .catch(error => {
+        console.error('Error fetching the teams:', error);
+      });
+  }, []);
 
   const [selectedTarget, setSelectedTarget] = useState('');
   const [selectedFrequency, setSelectedFrequency] = useState('');
@@ -227,19 +242,32 @@ const FrameComponent = ({ className = "" }) => {
                         
                       </div>
                     </div>
+
                     <div className="self-stretch flex flex-col items-start justify-start gap-[6px]">
                       <div className="w-[212px] relative font-medium inline-block z-[3]">
                         Select Team
                       </div>
                       <div className="self-stretch flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                     
                       <input
               type="text"
               value={team}
               onChange={(e) => setTeam(e.target.value)}
               placeholder="Select Team"
-            />
+            /> 
+
+
+{/* <select value={team} onChange={(e) => setTeam(e.target.value)}>
+        {teams.map(team => (
+          <option key={team.team_id} value={team.team_id}>
+            {team.team_name}
+          </option>
+        ))}
+      </select> */}
+
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>

@@ -16,6 +16,10 @@ import Add_New_Team_Leader from './Add_New_Team_Leader';
 import Current_Team_Leader from './Current_Team_Leader';
 import Pending_Request_Team_Leader from './Pending_Request_Team_Leader';
 
+import Add_New_Teams from './Add_New_Teams';
+import Current_Teams from './Current_Teams';
+import Pending_Teams from './Pending_Teams';
+
 // import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
 
@@ -74,6 +78,12 @@ export default function Admin_Dashboard() {
                         return <div className='bg-white'><Add_New_Team_Leader/></div>;
             case 'Pending_Request_Team_Leader':
                         return <div className='bg-white'><Pending_Request_Team_Leader/></div>;
+            case 'Add_New_Teams':
+                        return <div className='bg-white'><Add_New_Teams/></div>;
+            case 'Current_Teams':
+                        return <div className='bg-white'><Current_Teams/></div>;
+            case 'Pending_Teams':
+                        return <div className='bg-white'><Pending_Teams/></div>;
             default:
                 return <div>Page not found.</div>;
         }
