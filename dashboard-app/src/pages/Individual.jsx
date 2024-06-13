@@ -9,14 +9,13 @@ import { useState } from "react";
 const Individual = () => {
   return (
     <>
-      <main className=" rounded-tl-21xl rounded-tr-none rounded-b-none bg-white w-[1093px] flex flex-col items-end justify-start pt-6 px-[35px] pb-[627px] box-border gap-[37px] max-w-full z-[1]">
-        <div className="w-[1093px] h-[3314px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
-        <section className=" flex flex-col items-start justify-start pt-0 px-0 pb-1 box-border gap-[23px] max-w-full shrink-0 text-left text-13xl text-black font-nunito">
+      <main className="rounded-tl-21xl rounded-tr-none rounded-b-none bg-white w-full flex flex-col justify-start pt-6 px-[35px] pb-[627px] gap-[37px] max-w-full">
+        <section className=" flex flex-col items-start justify-start pt-0 px-0 pb-1 gap-[23px] max-w-full shrink-0 text-left text-13xl text-black font-nunito">
           <div className="w-[264px] flex flex-col items-start justify-start gap-[1px]">
-            <h2 className="m-0 self-stretch relative text-inherit font-bold font-inherit z-[2] mq450:text-lgi mq950:text-7xl">
+            <h2 className="m-0 relative text-inherit font-bold font-inherit z-[2] mq450:text-lgi mq950:text-7xl">
               Individual
             </h2>
-            <div className="relative text-base font-medium z-[2]">{`Manager > Set Contest > Individual`}</div>
+            <div className="text-base font-medium">{`Manager > Set Contest > Individual`}</div>
           </div>
           <ContestRules />
         </section>
@@ -98,3 +97,4 @@ const Individual = () => {
 };
 
 export default Individual;
+
