@@ -146,7 +146,7 @@ const Manager_Login_SalesUp = () => {
               </Button>
             </div>
             <div className="mx-auto text-lg">
-              Not Registered ? <a href="/admin_registration" className="text-[#346155] font-bold">Sign Up</a>
+              Not Registered ? <a href="/admin_reg" className="text-[#346155] font-bold">Sign Up</a>
             </div>
           </form>
         </div>
