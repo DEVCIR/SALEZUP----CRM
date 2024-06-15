@@ -6,7 +6,7 @@ const GroupComponent = ({ className = "" }) => {
     <div
       className={`self-stretch shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-row items-start justify-between pt-[37px] pb-[30.1px] pr-[100px] pl-[115px] max-w-full gap-[20px] z-[2] text-center text-5xl text-black font-inter border-t-[3.5px] border-solid border-silver-100 mq975:flex-wrap ${className}`}
     >
-      <div className="h-[361.5px] w-[1011px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+      <div className="h-[361.5px] htaya relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
       <div className="flex flex-col items-start justify-start gap-[14px] min-w-[229px] mq975:flex-1">
         <div className="w-[218px] flex flex-row items-start justify-start py-0 px-[18px] box-border">
           <img

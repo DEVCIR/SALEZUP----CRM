@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaMoon, FaSun } from 'react-icons/fa';
 import bcrypt from "bcryptjs";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 import axios from "axios";
 
@@ -151,7 +152,7 @@ const Manager_Register_SalesUp = () => {
                 </div>
               </div>
               <div className="mx-auto text- mt-3">
-                Already Registered ? <a href="/admin_login" className="text-[#346155] font-bold">Login</a>
+                Already Registered ? <Link to="/admin_login" className="text-[#346155] font-bold">Login</Link>
               </div>
             </div>
           </form>

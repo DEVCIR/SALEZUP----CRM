@@ -5,7 +5,7 @@ const FrameComponent = ({ className = "" }) => {
     <div
       className={`self-stretch flex flex-row  ml-20  pt-0 px-[55px] pb-[63px] box-border max-w-full lg:pl-[27px] lg:pr-[27px] lg:box-border mq750:pb-[41px] mq750:box-border ${className}`}
     >
-      <div className="h-[580px] w-[1011px] relative max-w-full">
+      <div className="h-[580px] htaya relative max-w-full">
         <img
           className="absolute top-[409px] left-[177.1px] w-[17.7px] h-[21px] object-contain z-[2]"
           loading="lazy"

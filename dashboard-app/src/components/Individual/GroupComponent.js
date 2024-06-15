@@ -6,7 +6,7 @@ const GroupComponent = ({ className = "" }) => {
     <div
       className={`self-stretch shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[26px] px-[31px] pb-[59px] gap-[45px] max-w-full z-[2] text-left text-xl text-black font-inter border-t-[3.5px] border-solid border-silver-100 ${className}`}
     >
-      <div className="w-[1011px] h-[478.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+      <div className="htaya h-[478.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
       <h2 className="m-0 w-[283px] relative text-inherit font-semibold font-inherit inline-block z-[1] mq450:text-base">
         Set Target : Team Leaders
       </h2>

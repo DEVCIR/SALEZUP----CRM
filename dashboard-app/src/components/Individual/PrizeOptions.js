@@ -35,7 +35,7 @@ const PrizeOptions = ({ className = "" }) => {
       <div
         className={`flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-row items-end justify-between pt-[9px] pb-9 pr-[77px] pl-[52px] max-w-full gap-[20px] z-[2] text-center text-xl text-black font-inter border-t-[3.5px] border-solid border-silver-100 mq975:flex-wrap ${className}`}
       >
-        <div className="h-[298.5px] w-[1011px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+        <div className="h-[298.5px] htaya relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
         <div className="w-[360px] flex flex-col items-start justify-start gap-[10px] max-w-full text-left">
           <div className="flex flex-row items-start justify-start py-0 px-2.5">
             <b className="relative font-semibold inline-block min-w-[94px] z-[3] mq450:text-base">

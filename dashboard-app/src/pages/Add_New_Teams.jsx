@@ -81,7 +81,7 @@ const Add_New_Teams = ({className = ""}) => {
       </div>
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border max-w-full text-xl font-inter">
         <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[9px] px-[26px] pb-[52px] gap-[31px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver-100 mq750:gap-[15px]">
-          <div className="w-[1011px] h-[250.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+          <div className="htaya h-[250.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
           <h3 className="m-0 relative text-xl font-semibold font-inherit z-[3] mq450:text-base">
             Add New Team
           </h3>

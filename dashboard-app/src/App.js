@@ -62,16 +62,12 @@ const App = () => {
         <Routes>
           <Route path="/admin_reg" element={<Manager_Register_SalesUp />} />
           <Route path="/admin_login" element={<Manager_Login_SalesUp />} />
-          
           <Route path="/" element={<My_Home />} />
-
           <Route path="/Admin_Dashboard" element={<Admin_Dashboard />} />
           {/* <Route path="/Individual" element={<Individual />} /> */}
           <Route path="/manager_login" element={<Manager_Login_SalesUp />} />
           <Route path="/manager_register" element={<Manager_Register_SalesUp />} />
-
-          <Route path='/sales_agent' element={<SaleAgents/>}/>
-
+          <Route path='/sales_agent' element={<SaleAgents />} />
         </Routes>
       </BrowserRouter>
     </div>

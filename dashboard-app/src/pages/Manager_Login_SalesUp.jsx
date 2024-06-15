@@ -2,6 +2,7 @@
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash, FaMoon, FaSun } from 'react-icons/fa';
 import CryptoJS from 'crypto-js';
 import { useAdminContext } from "../contexts/AdminContextProvider";
@@ -146,7 +147,7 @@ const Manager_Login_SalesUp = () => {
               </Button>
             </div>
             <div className="mx-auto text-lg">
-              Not Registered ? <a href="/admin_reg" className="text-[#346155] font-bold">Sign Up</a>
+              Not Registered ? <Link to="/admin_reg" className="text-[#346155] font-bold">Sign Up</Link>
             </div>
           </form>
         </div>
