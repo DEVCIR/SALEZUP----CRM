@@ -12,33 +12,69 @@ class SalesAgentController extends Controller
         return SalesAgent::all();
     }
 
+    public function show($id)
+    {
+        return SalesAgent::find($id);
+    }
+
     public function store(Request $request)
     {
         return SalesAgent::create($request->all());
     }
 
-    public function show($id)
-    {
-        return SalesAgent::findOrFail($id);
-    }
-
     public function update(Request $request, $id)
     {
-        $agent = SalesAgent::findOrFail($id);
-        $agent->update($request->all());
-        return $agent;
+        $salesAgent = SalesAgent::find($id);
+
+        $request->validate([
+            'name' => 'sometimes|required',
+            'surname' => 'sometimes|required',
+            'team_id' => 'sometimes|required|integer',
+            'manager' => 'sometimes|required',
+            'commission' => 'sometimes|required',
+            'target' => 'sometimes|required',
+            'target_value' => 'sometimes|required',
+            'frequency' => 'sometimes|required',
+            'campaign' => 'sometimes|required',
+            'start_date' => 'sometimes|required|date',
+            'active' => 'sometimes|in:yes,no'
+        ]);
+
+        $salesAgent->update($request->all());
+
+        return $salesAgent;
     }
 
     public function destroy($id)
     {
-        $agent = SalesAgent::findOrFail($id);
-        $agent->delete();
-        return 204;
+        return SalesAgent::destroy($id);
     }
 
     public function updateAll(Request $request)
     {
-        SalesAgent::update($request->all());
-        return SalesAgent::all();
+        $request->validate([
+            '*.id' => 'required|exists:sales_agents,id',
+            '*.name' => 'sometimes|required',
+            '*.surname' => 'sometimes|required',
+            '*.team_id' => 'sometimes|required|integer',
+            '*.manager' => 'sometimes|required',
+            '*.commission' => 'sometimes|required',
+            '*.target' => 'sometimes|required',
+            '*.target_value' => 'sometimes|required',
+            '*.frequency' => 'sometimes|required',
+            '*.campaign' => 'sometimes|required',
+            '*.start_date' => 'sometimes|required|date',
+            '*.active' => 'sometimes|in:yes,no'
+        ]);
+
+        $updatedAgents = [];
+
+        foreach ($request->all() as $agentData) {
+            $salesAgent = SalesAgent::find($agentData['id']);
+            $salesAgent->update($agentData);
+            $updatedAgents[] = $salesAgent;
+        }
+
+        return $updatedAgents;
     }
 }

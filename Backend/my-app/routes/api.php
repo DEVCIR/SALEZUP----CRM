@@ -43,14 +43,16 @@ Route::delete('/admin-registrations/{id}', [AdminRegistrationController::class, 
 // --------------------------------------------------- SALEZ UP -------------------------------------------------------//
 
 
+
 use App\Http\Controllers\SalesAgentController;
 
-Route::post('sales_agents', [SalesAgentController::class, 'store']);
-Route::get('sales_agents', [SalesAgentController::class, 'index']);
-Route::get('sales_agents/{id}', [SalesAgentController::class, 'show']);
-Route::put('sales_agents/{id}', [SalesAgentController::class, 'update']);
-Route::delete('sales_agents/{id}', [SalesAgentController::class, 'destroy']);
-Route::put('sales_agents', [SalesAgentController::class,'updateAll']);
+Route::get('sales-agents', [SalesAgentController::class, 'index']);
+Route::get('sales-agents/{id}', [SalesAgentController::class, 'show']);
+Route::post('sales-agents', [SalesAgentController::class, 'store']);
+Route::put('sales-agents/{id}', [SalesAgentController::class, 'update']);
+Route::delete('sales-agents/{id}', [SalesAgentController::class, 'destroy']);
+Route::put('sales-agents', [SalesAgentController::class, 'updateAll']);
+
 
 
 
@@ -67,11 +69,24 @@ Route::put('teams', [TeamController::class, 'updateAll']);
 use App\Http\Controllers\TeamLeaderController;
 
 Route::get('/team_leaders', [TeamLeaderController::class, 'index']);
-Route::post('/team_leaders', [TeamLeaderController::class, 'store']);
 Route::get('/team_leaders/{id}', [TeamLeaderController::class, 'show']);
+Route::post('/team_leaders', [TeamLeaderController::class, 'store']);
 Route::put('/team_leaders/{id}', [TeamLeaderController::class, 'update']);
 Route::delete('/team_leaders/{id}', [TeamLeaderController::class, 'destroy']);
 Route::put('/team_leaders', [TeamLeaderController::class, 'updateAll']);
+
+
+use App\Http\Controllers\CampaignController;
+
+Route::get('/campaign', [CampaignController::class, 'index']);
+Route::get('/campaign_by_{id}', [CampaignController::class, 'show']);
+Route::post('/campaign', [CampaignController::class, 'store']);
+Route::put('/campaign_update_by_{id}', [CampaignController::class, 'update']);
+Route::put('/campaign_update', [CampaignController::class, 'updateAll']);
+Route::delete('/campaign_delete_by_{id}', [CampaignController::class, 'destroy']);
+
+
+
 
 
 

@@ -12,34 +12,34 @@ class TeamLeaderController extends Controller
         return TeamLeader::all();
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'surname' => 'required|string',
-            'start_date' => 'required|string',
-            'team_id' => 'required|integer',
-            'manager' => 'required|string',
-            'commission' => 'required|string',
-            'target' => 'required|string',
-            'frequency' => 'required|string',
-            'campaign' => 'required|string',
-            'active' => 'in:approved,pending',
-        ]);
-
-        $teamLeader = TeamLeader::create($request->all());
-
-        return response()->json($teamLeader, 201);
-    }
-
     public function show($id)
     {
         return TeamLeader::findOrFail($id);
     }
 
+    public function store(Request $request)
+    {
+        return TeamLeader::create($request->all());
+    }
+
     public function update(Request $request, $id)
     {
         $teamLeader = TeamLeader::findOrFail($id);
+
+        $request->validate([
+            'name' => 'sometimes|string',
+            'surname' => 'sometimes|string',
+            'start_date' => 'sometimes|date',
+            'team_id' => 'sometimes|integer',
+            'manager' => 'sometimes|string',
+            'commission' => 'sometimes|string',
+            'target' => 'sometimes|string',
+            'target_value' => 'sometimes|string',
+            'frequency' => 'sometimes|string',
+            'campaign' => 'sometimes|string',
+            'active' => 'nullable|string|in:approved,pending',
+        ]);
+
         $teamLeader->update($request->all());
 
         return response()->json($teamLeader, 200);
@@ -47,15 +47,33 @@ class TeamLeaderController extends Controller
 
     public function destroy($id)
     {
-        TeamLeader::destroy($id);
+        TeamLeader::findOrFail($id)->delete();
 
         return response()->json(null, 204);
     }
 
     public function updateAll(Request $request)
     {
-        TeamLeader::query()->update($request->all());
+        $request->validate([
+            '*.name' => 'sometimes|string',
+            '*.surname' => 'sometimes|string',
+            '*.start_date' => 'sometimes|date',
+            '*.team_id' => 'sometimes|integer',
+            '*.manager' => 'sometimes|string',
+            '*.commission' => 'sometimes|string',
+            '*.target' => 'sometimes|string',
+            '*.target_value' => 'sometimes|string',
+            '*.frequency' => 'sometimes|string',
+            '*.campaign' => 'sometimes|string',
+            '*.active' => 'nullable|string|in:approved,pending',
+        ]);
 
-        return response()->json(['message' => 'All team leaders updated successfully'], 200);
+        $teamLeaders = $request->all();
+        foreach ($teamLeaders as $teamLeader) {
+            $existingTeamLeader = TeamLeader::findOrFail($teamLeader['id']);
+            $existingTeamLeader->update($teamLeader);
+        }
+
+        return response()->json(TeamLeader::all(), 200);
     }
 }

@@ -2,107 +2,180 @@ import Container from "../components/Sales_Agents/Container";
 import Separator from "../components/Sales_Agents/Separator";
 import GroupComponent from "../components/Sales_Agents/GroupComponent";
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
+import axios from 'axios';
 
 const Add_New_Agent = () => {
-
-
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [startDate, setStartDate] = useState('');
-  const [campaign, setCampaign] = useState('');
-  const [manager, setManager] = useState('');
   const [team, setTeam] = useState('');
-
   const [selectedTarget, setSelectedTarget] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [checkboxes, setCheckboxes] = useState(['Revenue', 'Units']);
   const [selectedFrequency, setSelectedFrequency] = useState('');
-
   const [comission_opurtunity, setcomission_opurtunity] = useState('');
   const [target_value, settarget_value] = useState('');
+
+  const [teams, setTeams] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+
+  const [admins, setAdmins] = useState([]);
+  const [manager, setManager] = useState(null);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    if (inputValue.trim()) {
+      setCheckboxes([...checkboxes, inputValue]);
+      setInputValue('');
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const deleteCheckbox = (index) => {
+    const newCheckboxes = checkboxes.filter((_, i) => i !== index);
+    setCheckboxes(newCheckboxes);
+  };
 
   const handleTargetChange = (event) => {
     setSelectedTarget(event.target.value);
   };
 
-
   const handleFrequencyChange = (event) => {
     setSelectedFrequency(event.target.value);
   };
 
-
- console.log("1",firstName)
- console.log("2",lastName)
- console.log("3",email)
- console.log("4",startDate)
- console.log("5",campaign)
- console.log("6",manager)
- console.log("7",team)
- console.log("9",comission_opurtunity)
- console.log("10",target_value)
- console.log("11",selectedTarget)
- console.log("12",selectedFrequency)
- 
- const register_sales_agent = async (e) => {
-  e.preventDefault();
-
-  // Validation checks
-  if (!firstName || !lastName || !email || !startDate || !campaign || !manager || !team || !comission_opurtunity || !target_value || !selectedTarget || !selectedFrequency) {
-    alert('Please fill in all fields');
-    return;
-  }
-
-  const payload = {
-    name: firstName,
-    surname: lastName,
-    email: email,
-    team_id: team,
-    teamleader: manager,
-    commission: comission_opurtunity,
-    target: target_value,
-    frequency: selectedFrequency,
-    campaign: campaign,
-    start_date: startDate
+  const handleChange = (selectedOption) => {
+    setSelectedTeam(selectedOption);
   };
 
-  console.log("Payload to be sent:", payload);
+  const handleAdminChange = (selectedOption) => {
+    setManager(selectedOption);
+  };
 
-  try {
-    const response = await fetch('http://localhost:8000/api/sales_agents', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+  const teamOptions = teams.map(team => ({
+    value: team.id,
+    label: team.team_name
+  }));
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+  const adminOptions = admins.map(admin => ({
+    value: admin.id,
+    label: admin.first_name
+  }));
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/teams')
+      .then(response => {
+        setTeams(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching the teams:', error);
+      });
+
+    axios.get('http://localhost:8000/api/admin-registrations')
+      .then(response => {
+        setAdmins(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching the admins:', error);
+      });
+  }, []);
+
+
+  const [campaign, setCampaign] = useState('');
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/campaign');
+        const campaigns = response.data.map(campaign => ({
+          value: campaign.id,
+          label: campaign.name,
+        }));
+        setOptions(campaigns);
+      } catch (error) {
+        console.error('Error fetching campaign options:', error);
+      }
+    };
+
+    fetchCampaigns();
+  }, []);
+
+  const handleCampaignChange = (selectedOption) => {
+    setCampaign(selectedOption);
+  };
+
+  const register_sales_agent = async (e) => {
+    e.preventDefault();
+
+    if (!firstName || !lastName || !email || !startDate || !campaign || !manager || !selectedTeam || !comission_opurtunity || !target_value || !selectedTarget || !selectedFrequency) {
+      alert('Please fill in all fields');
+      return;
     }
 
-    const data = await response.json();
-    console.log("Response from API:", data);
+    const payload = {
+      name: firstName,
+      surname: lastName,
+      email: email,
+      team_id: selectedTeam.value,
+      manager: manager.value,
+      commission: comission_opurtunity,
+      target: selectedTarget,
+      target_value: target_value,
+      frequency: selectedFrequency,
+      campaign: campaign.value,
+      start_date: startDate
+    };
 
-    // Reset the form after successful submission
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setStartDate('');
-    setCampaign('');
-    setManager('');
-    setTeam('');
-    setSelectedTarget('');
-    setSelectedFrequency('');
-    setcomission_opurtunity('');
-    settarget_value('');
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
+    try {
+      const response = await fetch('http://localhost:8000/api/sales-agents', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log("Response from API:", data);
+
+      // Reset the form after successful submission
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setStartDate('');
+      setCampaign('');
+      setManager(null);
+      setSelectedTeam(null);
+      setSelectedTarget('');
+      setSelectedFrequency('');
+      setcomission_opurtunity('');
+      settarget_value('');
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  };
+
+
+
 
 
   return (
-
-<>
+    <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <section className="flex flex-col items-start justify-start pt-0 px-0 pb-10 gap-8 max-w-full text-left text-2xl text-black font-nunito">
           <div className="flex flex-col gap-2">
@@ -160,32 +233,36 @@ const Add_New_Agent = () => {
               <div className="flex flex-row gap-5">
                 <div className="flex flex-col gap-2">
                   <label className="font-medium">Campaign</label>
-                  <input
-                    type="text"
+                  <Select
                     value={campaign}
-                    onChange={(e) => setCampaign(e.target.value)}
-                    placeholder="Enter your Campaign"
-                    className="p-2 border rounded bg-gray-100  border-gray-100"
+                    onChange={handleCampaignChange}
+                    options={options}
+                    placeholder="Select your Campaign"
+                    className="p-2 border rounded bg-gray-100 border-gray-100"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-medium">Manager</label>
-                  <input
-                    type="text"
+
+                  <Select
                     value={manager}
-                    onChange={(e) => setManager(e.target.value)}
-                    placeholder="Enter your manager"
+                    onChange={handleAdminChange}
+                    options={adminOptions}
+                    placeholder="Select Manager"
+                    isClearable
                     className="p-2 border rounded bg-gray-100  border-gray-100"
                   />
+
                 </div>
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-medium">Select Team</label>
-                <input
-                  type="text"
-                  value={team}
-                  onChange={(e) => setTeam(e.target.value)}
+                <Select
+                  value={selectedTeam}
+                  onChange={handleChange}
+                  options={teamOptions}
                   placeholder="Select Team"
+                  isClearable
                   className="p-2 border rounded bg-gray-100  border-gray-100"
                 />
               </div>
@@ -237,25 +314,44 @@ const Add_New_Agent = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-medium">Target</label>
-                  <div className="flex flex-col gap-1">
-                    <label>
-                      <input
-                        type="checkbox"
-                        value="Revenue"
-                        checked={selectedTarget === 'Revenue'}
-                        onChange={handleTargetChange}
-                      />{' '}
-                      Revenue
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        value="Units"
-                        checked={selectedTarget === 'Units'}
-                        onChange={handleTargetChange}
-                      />{' '}
-                      Units
-                    </label>
+                  <div>
+                    <div className="flex flex-col gap-1 h-40  p-4">
+                      {checkboxes.map((checkbox, index) => (
+                        <div key={index} className="flex items-center text-sm justify-between">
+                          <label>
+                            <input
+                              type="checkbox"
+                              value={checkbox}
+                              checked={selectedTarget === checkbox}
+                              onChange={handleTargetChange}
+                            />{' '}
+                            {checkbox}
+                          </label>
+                          <button
+                            onClick={() => deleteCheckbox(index)}
+                            className="bg-red-500 text-white text-sm rounded-sm p-1 ml-2"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))}
+                      <button onClick={openModal} className="bg-green-500 mt-10 text-white rounded-sm text-sm">Add</button>
+                    </div>
+                    {isModalOpen && (
+                      <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                        <div className="bg-white p-5 rounded-sm">
+                          <h2 className="text-sm mb-4">Add Item</h2>
+                          <input
+                            type="text"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            className="border p-2 w-full mb-4"
+                          />
+                          <button onClick={closeModal} className="bg-blue-500 text-white text-sm rounded-sm p-2 mr-2">Add</button>
+                          <button onClick={() => setIsModalOpen(false)} className="bg-red-500 text-white text-sm rounded-sm p-2">Close</button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -272,7 +368,7 @@ const Add_New_Agent = () => {
             </div>
             <button
               type="submit"
-              className="mt-4 py-3 px-6 bg-darkslategray text-black rounded-lg hover:bg-darkslategray/70"
+              className="mt-4 py-3 px-6 bg-darkslategray text-white bg-green-800 rounded-lg hover:bg-darkslategray/70"
             >
               Add to Team & Invite Agent
             </button>

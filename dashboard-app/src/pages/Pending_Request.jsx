@@ -57,18 +57,19 @@ const Pending_Request = () => {
     email: email,
     team_id: team,
     teamleader: manager,
-    commission: comission_opurtunity,
-    target: target_value,
-    frequency: selectedFrequency,
-    campaign: campaign,
+    Commision: comission_opurtunity,
+    Target: selectedTarget,
+    Target_value: target_value,
+    Frequency: selectedFrequency,
+    Campaign: campaign,
     start_date: startDate,
-    active: "Yes"
+    Active: "Yes"
   };
 
   console.log("Payload to be sent:", payload);
 
   try {
-    const response = await fetch('http://localhost:8000/api/sales_agents', {
+    const response = await fetch('http://localhost:8000/api/sales-agents', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

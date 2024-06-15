@@ -12,13 +12,15 @@ class CreateSalesAgentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->unsignedBigInteger('team_id');
-            $table->string('teamleader');
+            $table->integer('team_id');
+            $table->string('manager');
             $table->string('commission');
             $table->string('target');
+            $table->string('target_value');
             $table->string('frequency');
             $table->string('campaign');
-            $table->enum('active', ['Yes', 'No'])->default('No');
+            $table->dateTime('start_date');
+            $table->string('active')->default('No');
             $table->timestamps();
         });
     }
