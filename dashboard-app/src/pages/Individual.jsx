@@ -9,9 +9,9 @@ import GroupComponent5 from "../components/Individual/GroupComponent5";
 const Individual = () => {
   return (
     <>
-      <main className="rounded-tl-21xl rounded-tr-none rounded-b-none bg-white w-full flex flex-col justify-start pt-6 px-[30px] pb-10 gap-[37px] mt-16">
-        <div className="w-[264px] flex flex-col items-start justify-start gap-[1px]">
-          <h2 className="m-0 relative text-inherit font-bold font-inherit z-[2] mq450:text-lgi mq950:text-7xl">
+      <main className="rounded-tl-21xl bg-white w-full flex flex-col justify-start pt-6 px-[30px] pb-10 gap-[37px] mt-16">
+        <div className="w-fit flex flex-col items-start justify-start">
+          <h2 className="font-bold z-[2]">
             Individual
           </h2>
           <div className="text-sm font-normal">{`Manager / Set Contest / Individual`}</div>
@@ -24,9 +24,7 @@ const Individual = () => {
         <GroupComponent5 />
       </main>
     </>
-
   );
 };
 
 export default Individual;
-

@@ -42,7 +42,7 @@ const PrizeOptions = ({ className = "" }) => {
           </b>
         </div>
         <div className="w-full flex flex-row items-center justify-around gap-[46px] text-center mq700:flex-wrap">
-          <div className="flex flex-col items-center justify-center pt-0 px-0 pb-2">
+          <div className={`flex flex-col items-center justify-center pb-2`}>
             <div onClick={() => {
               if (isExpanded && currentDiv === 'Cash') {
                 setIsExpanded(false);
