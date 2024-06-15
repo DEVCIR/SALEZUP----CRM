@@ -5,12 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 import axios from "axios";
 
-
-
 const Admin_Register = () => {
     const navigate = useNavigate();
-
-
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -23,16 +19,11 @@ const Admin_Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
         if (password !== confirmpassword) {
             console.error("Password and confirm password do not match");
             return;
         }
-
         try {
-
-            
             const encryptedPassword = CryptoJS.AES.encrypt(password, 'DBBDRSSR54321').toString();
             const formData = {
                 first_name: firstname,
@@ -77,9 +68,7 @@ const Admin_Register = () => {
 
 
     return (
-
-
-        <div className={`min-h-screen ${isDarkMode ? 'dark bg-gray-700' : 'bg-gray-200'}`}>
+        <div className={`min-h-screen bg-gray-200`}>
             <div className="flex items-center justify-end p-4">
                 <button onClick={toggleTheme} className="text-xl bg-transparent hover:bg-transparent">
                     {isDarkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-800" />}

@@ -109,7 +109,8 @@ const NewSidebar = ({ setCurrentPage }) => {
 
     return (
         <main className='duration-100 bg-[#072D20]'>
-            <div class="h-screen antialiased text-white">
+            {/* was h-screen */}
+            <div class="antialiased text-white">
                 <div class="flex flex-col w-72 h-full">
                     <div className="text-white text-2xl p-3 cursor-pointer" onClick={() => setIsOpen((prev) => !prev)}>
                         <FaArrowRight className='inline rotate-180' />

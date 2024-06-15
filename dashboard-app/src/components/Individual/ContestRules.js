@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ContestRules = ({ className = "" }) => {
   return (
-    <div className={`shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl w-[95%] box-border flex flex-row items-center justify-between p-5 relative z-[2] text-center text-sm text-black border-t-[3.5px] border-solid border-silver-100 flex-wrap ${className}`}>
+    <div className={`shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl w-[95%] box-border flex flex-row items-center justify-between p-5 relative z-[2] text-center text-sm text-black border-t-[3.5px] border-solid flex-wrap ${className}`}>
       <div className="flex  flex-col items-center justify-center min-w-[150px]">
         <div className="flex flex-col items-center justify-center gap-[5px]">
           <div className="flex flex-row items-center justify-center ">
