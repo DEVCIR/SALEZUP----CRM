@@ -37,7 +37,7 @@ const GroupComponent = ({ className = "" }) => {
     <div
       className={`self-stretch shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-end justify-start pt-[22px] pb-[66px] pr-[66px] pl-[30px] gap-[103px] max-w-full z-[2] text-left text-xl text-black font-inter border-t-[3.5px] border-solid border-silver-100 ${className}`}
     >
-      <div className="w-[1011px] h-[938.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+      <div className="htaya h-[938.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
       <div className="self-stretch flex flex-row items-start justify-end py-0 pr-1.5 pl-0 box-border max-w-full">
         <div className="flex-1 flex flex-col items-start justify-start gap-[45px] max-w-full">
           <div className="w-[285px] flex flex-row items-start justify-start py-0 px-px box-border">

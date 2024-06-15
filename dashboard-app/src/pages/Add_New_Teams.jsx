@@ -147,47 +147,37 @@ const Add_New_Teams = ({ className = "" }) => {
       <main className="flex-1 flex flex-col items-start justify-start pt-0.5 px-0 pb-0 box-border min-w-[710px] max-w-full mq750:min-w-full">
         <section className="self-stretch rounded-tl-21xl rounded-tr-none rounded-b-none bg-white flex flex-col items-start justify-start pt-[22px] pb-[236px] pr-[33px] pl-[47px] box-border gap-[70px] max-w-full z-[1] text-left text-13xl text-black font-nunito mq750:gap-[17px] mq750:pb-[99px] mq750:box-border mq1125:gap-[35px] mq1125:pl-[23px] mq1125:pt-5 mq1125:pb-[153px] mq1125:box-border">
           <form onSubmit={register_teams}>
-            <div className="w-[1093px] h-[1159px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
-
-            <div className={`self-stretch  flex flex-col items-start justify-start pt-0 px-0 pb-[81px] box-border gap-[40px] max-w-full text-left text-13xl text-black font-nunito mq750:gap-[20px] mq450:pb-[53px] mq450:box-border ${className}`}
-            >
-              <div className="flex flex-col items-start justify-start gap-[6px]">
-                <a className="[text-decoration:none] w-[134px] relative leading-[38px] font-bold text-[inherit] inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px] text-4xl">
-                  Teams
-                </a>
-                <div className="relative text-xl font-medium z-[2]">{`Manager > Teams > Add New Teams`}</div>
-              </div>
-              <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border max-w-full text-xl font-inter">
-                <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[9px] px-[26px] pb-[52px] gap-[31px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver-100 mq750:gap-[15px]">
-                  <div className="w-[1011px] h-[250.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
-                  <h3 className="m-0 relative text-xl font-semibold font-inherit z-[3] mq450:text-base">
-                    Add New Team
-                  </h3>
-                  <div className="w-[931px] flex flex-col items-end justify-start gap-[21px] max-w-full text-base text-gray-100">
-                    <div className="flex flex-row items-start self-stretch justify-start max-w-full">
-                      <div className="w-[666px] flex flex-row items-end justify-start gap-[15px] max-w-full mq750:flex-wrap">
-
-                        <div className="self-stretch relative font-medium  text-black text-xl top-[-20px]  z-[3]">Campaign</div>
-                        {/* <div className="self-stretch flex flex-row left-[-124px] top-[20px] pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
-
-                          <input
-                            type="text"
-                            value={campaignName}
-                            onChange={(e) => setCampaignName(e.target.value)}
-                            placeholder="Enter campaign name"
-
-                          />
-                        </div> */}
-
-                        <div className="self-stretch flex flex-row left-[-124px] top-[20px] pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
-                          <Select
-                            value={selectedOption}
-                            onChange={handleCampaignChange}
-                            options={options}
-                            placeholder="Select campaign"
-                            className="w-60"
-                          />
-                        </div>
+          <div className="w-[1093px] h-[1159px] relative rounded-tl-21xl rounded-tr-none rounded-b-none bg-white hidden max-w-full" />
+          
+          <div   className={`self-stretch  flex flex-col items-start justify-start pt-0 px-0 pb-[81px] box-border gap-[40px] max-w-full text-left text-13xl text-black font-nunito mq750:gap-[20px] mq450:pb-[53px] mq450:box-border ${className}`}
+    >
+      <div className="flex flex-col items-start justify-start gap-[6px]">
+        <a className="[text-decoration:none] w-[134px] relative leading-[38px] font-bold text-[inherit] inline-block z-[2] mq450:text-lgi mq450:leading-[23px] mq1050:text-7xl mq1050:leading-[30px] text-4xl">
+          Teams
+        </a>
+        <div className="relative text-xl font-medium z-[2]">{`Manager > Teams > Add New Teams`}</div>
+      </div>
+      <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 box-border max-w-full text-xl font-inter">
+        <div className="flex-1 shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[9px] px-[26px] pb-[52px] gap-[31px] max-w-full z-[2] border-t-[3.5px] border-solid border-silver-100 mq750:gap-[15px]">
+          <div className="htaya h-[250.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
+          <h3 className="m-0 relative text-xl font-semibold font-inherit z-[3] mq450:text-base">
+            Add New Team
+          </h3>
+          <div className="w-[931px] flex flex-col items-end justify-start gap-[21px] max-w-full text-base text-gray-100">
+            <div className="flex flex-row items-start self-stretch justify-start max-w-full">
+              <div className="w-[666px] flex flex-row items-end justify-start gap-[15px] max-w-full mq750:flex-wrap">
+               
+              <div className="self-stretch relative font-medium  text-black text-xl top-[-20px]  z-[3]">Campaign</div>
+              <div className="self-stretch flex flex-row left-[-124px] top-[20px] pt-[15.3px] px-3 pb-[16.5px] relative z-[3] text-3xs text-black">
+                     
+              <input
+              type="text"
+              value={campaignName}
+              onChange={(e) => setCampaignName(e.target.value)}
+              placeholder="Enter campaign name"
+              
+            />
+                   </div>
 
 
 
@@ -228,7 +218,7 @@ const Add_New_Teams = ({ className = "" }) => {
                             options={teamOptions}
                             placeholder="Select TeamLead"
                             isClearable
-                            className="p-2 rounded bg-gray-100 w-48 z-20"
+                            className="z-20 w-48 p-2 bg-gray-100 rounded"
                           />
                         </div>
 

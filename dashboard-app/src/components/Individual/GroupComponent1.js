@@ -4,22 +4,20 @@ import {
   MenuItem,
   FormHelperText,
   FormControl,
-  InputAdornment,
 } from "@mui/material";
 import PropTypes from "prop-types";
 
 const GroupComponent1 = ({ className = "" }) => {
   return (
-    <section
-      className={`w-[1011px] shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border flex flex-col items-start justify-start pt-[42px] px-[61px] pb-[62px] gap-[53px] max-w-full shrink-0 z-[2] text-left text-xl text-black font-inter border-t-[3.5px] border-solid border-silver-100 ${className}`}
-    >
-      <div className="w-[1011px] h-[575.5px] relative shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl bg-white box-border hidden max-w-full border-t-[3.5px] border-solid border-silver-100" />
-      <b className="w-80 relative font-semibold inline-block z-[1] mq450:text-base">
-        Information
-      </b>
-      <div className="w-[869px] flex flex-row items-start justify-between max-w-full gap-[20px] text-base text-gray-100 mq950:flex-wrap">
+    <div className={`shadow-[0px_20px_26.4px_-6px_rgba(0,_0,_0,_0.25)] rounded-16xl w-[95%] box-border items-center justify-between p-5 relative z-[2] text-center text-sm text-black border-t-[3.5px] border-solid border-silver-100 flex-wrap ${className}`}>
+      <div className="w-80 flex flex-col items-start justify-start box-border">
+        <b className="font-semibold z-[1]">
+          Information
+        </b>
+      </div>
+      <div className="flex flex-row items-start justify-between max-w-full gap-[20px] text-base text-gray-100 mq950:flex-wrap">
         <div className="w-[401px] flex flex-col items-start justify-start pt-[9px] px-0 pb-0 box-border min-w-[401px] max-w-full mq700:min-w-full mq950:flex-1">
-          <div className="self-stretch flex flex-col items-start justify-start gap-[18.6px]">
+          <div className=" flex flex-col items-start justify-start gap-[18.6px]">
             <div className="w-[302px] flex flex-row items-start justify-between gap-[20px]">
               <div className="w-[97px] relative font-medium inline-block shrink-0 z-[1]">
                 Start Date
@@ -28,7 +26,7 @@ const GroupComponent1 = ({ className = "" }) => {
                 End Date
               </div>
             </div>
-            <div className="self-stretch flex flex-row items-end justify-start [row-gap:20px] mq700:flex-wrap">
+            <div className=" flex flex-row items-end justify-start [row-gap:20px] mq700:flex-wrap">
               <div className="flex-1 flex flex-col items-start justify-start gap-[32.4px] min-w-[138px]">
                 <FormControl
                   className="w-[196px] h-11 relative font-inter text-3xs text-black"
@@ -102,11 +100,11 @@ const GroupComponent1 = ({ className = "" }) => {
                   </Select>
                   <FormHelperText />
                 </FormControl>
-                <div className="self-stretch flex flex-col items-start justify-start gap-[15px]">
-                  <div className="self-stretch h-6 relative font-medium inline-block shrink-0 z-[1]">
+                <div className=" flex flex-col items-start justify-start gap-[15px]">
+                  <div className=" h-6 relative font-medium inline-block shrink-0 z-[1]">
                     Set Start Time
                   </div>
-                  <div className="self-stretch flex flex-col items-start justify-start text-3xs text-black">
+                  <div className=" flex flex-col items-start justify-start text-3xs text-black">
                     <div className="flex flex-row items-start justify-start z-[1]">
                       <img
                         className="h-11 w-[196px] relative rounded-[5.99px]"
@@ -120,8 +118,8 @@ const GroupComponent1 = ({ className = "" }) => {
                         Show
                       </div>
                     </div>
-                    <div className="self-stretch flex flex-col items-start justify-start pt-[22px] px-0 pb-[79px] relative gap-[19px] text-base">
-                      <div className="self-stretch relative font-medium text-gray-100 z-[1]">
+                    <div className=" flex flex-col items-start justify-start pt-[22px] px-0 pb-[79px] relative gap-[19px] text-base">
+                      <div className=" relative font-medium text-gray-100 z-[1]">
                         Contest Formula
                       </div>
                       <div className="flex flex-row items-start justify-start z-[1] text-3xs">
@@ -200,7 +198,7 @@ const GroupComponent1 = ({ className = "" }) => {
                 </div>
               </div>
               <div className="w-[196px] flex flex-col items-start justify-start gap-[35px] min-w-[196px] ml-[-7px] text-3xs text-black mq450:ml-0 mq700:flex-1">
-                <div className="self-stretch h-11 relative">
+                <div className=" h-11 relative">
                   <div className="absolute top-[0px] left-[0px] w-full flex flex-row items-start justify-start pt-[15.3px] px-3 pb-[16.7px] box-border h-full z-[1]">
                     <img
                       className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-[5.99px] max-w-full overflow-hidden max-h-full"
@@ -305,7 +303,7 @@ const GroupComponent1 = ({ className = "" }) => {
         </div>
         <div className="w-[291px] shadow-[0px_12px_15px_rgba(0,_0,_0,_0.26)] rounded-7xl bg-whitesmoke-100 flex flex-col items-start justify-start pt-[46.9px] px-2.5 pb-[55.9px] box-border gap-[23.5px] min-w-[291px] z-[1] text-sm text-darkslategray-200 mq950:flex-1">
           <div className="w-[291px] h-[376.4px] relative shadow-[0px_12px_15px_rgba(0,_0,_0,_0.26)] rounded-7xl bg-whitesmoke-100 hidden" />
-          <div className="self-stretch flex flex-row items-start justify-start pt-0 pb-[13.6px] pr-[68px] pl-[67px]">
+          <div className=" flex flex-row items-start justify-start pt-0 pb-[13.6px] pr-[68px] pl-[67px]">
             <div className="flex-1 flex flex-row items-end justify-start gap-[23.4px] mq450:flex-wrap">
               <img
                 className="h-[12.8px] w-[19.7px] relative object-contain shrink-0 [debug_commit:bf4bc93] z-[1]"
@@ -314,7 +312,7 @@ const GroupComponent1 = ({ className = "" }) => {
               />
               <div className="flex-1 flex flex-row items-start justify-start gap-[6.5px] min-w-[60px] shrink-0 [debug_commit:bf4bc93] mq450:flex-wrap">
                 <div className="flex-1 flex flex-col items-start justify-start pt-[7.1px] px-0 pb-0 box-border min-w-[44px]">
-                  <b className="self-stretch h-0 relative leading-[0%] font-semibold inline-block z-[1]">
+                  <b className=" h-0 relative leading-[0%] font-semibold inline-block z-[1]">
                     MARCH
                   </b>
                 </div>
@@ -373,9 +371,9 @@ const GroupComponent1 = ({ className = "" }) => {
               />
             </div>
           </div>
-          <div className="self-stretch flex flex-row items-start justify-start pt-0 pb-[5.5px] pr-3.5 pl-[11px]">
+          <div className=" flex flex-row items-start justify-start pt-0 pb-[5.5px] pr-3.5 pl-[11px]">
             <div className="flex-1 flex flex-col items-start justify-start gap-[23.2px]">
-              <div className="self-stretch flex flex-row items-start justify-center gap-[18.2px] min-h-[9px] mq700:flex-wrap">
+              <div className=" flex flex-row items-start justify-center gap-[18.2px] min-h-[9px] mq700:flex-wrap">
                 <div className="w-[22.5px] flex flex-col items-start justify-start py-0 pr-2.5 pl-0 box-border">
                   <img
                     className="w-[12.5px] h-[8.4px] relative z-[1]"
@@ -422,8 +420,8 @@ const GroupComponent1 = ({ className = "" }) => {
                   src="/day-cells1.svg"
                 />
               </div>
-              <div className="self-stretch flex flex-col items-start justify-start gap-[19.5px]">
-                <div className="self-stretch flex flex-row items-end justify-center gap-[15.5px] mq700:flex-wrap">
+              <div className=" flex flex-col items-start justify-start gap-[19.5px]">
+                <div className=" flex flex-row items-end justify-center gap-[15.5px] mq700:flex-wrap">
                   <div className="w-[21.5px] flex flex-col items-start justify-end pt-0 pb-[7px] pr-[7px] pl-0 box-border">
                     <img
                       className="w-3.5 h-[8.6px] relative z-[1]"
@@ -625,14 +623,14 @@ const GroupComponent1 = ({ className = "" }) => {
             </div>
           </div>
           <img
-            className="self-stretch h-[1.5px] relative max-w-full overflow-hidden shrink-0 z-[1]"
+            className=" h-[1.5px] relative max-w-full overflow-hidden shrink-0 z-[1]"
             loading="lazy"
             alt=""
             src="/vector-19-stroke.svg"
           />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdOutlineDashboard } from "react-icons/md";
 import { IoPeopleSharp, IoRocketOutline, IoPerson } from "react-icons/io5";
 // import { PiHandCoinsFill } from "react-icons/pi";
-// import { FaGift } from "react-icons/fa6";
+import { FaArrowRight, FaGift } from "react-icons/fa";
 import { CgNotes } from "react-icons/cg";
 import { IoIosHelpCircle } from "react-icons/io";
 // import { links } from "../data/dummy";
+import { RiArrowDropDownLine } from "react-icons/ri";
+
 
 function replaceUnderscoreWithSpace(str) {
     return str.replace(/_/g, ' ');
@@ -57,18 +59,18 @@ const NewSidebar = ({ setCurrentPage }) => {
                 { name: "Current_Teams", link: "Current_Teams" },
                 { name: "Pending_Teams", link: "Pending_Teams" },
             ],
-            
+
         },
         {
             parent: "Set Contest",
             name: "setContest",
             icon: <IoRocketOutline />,
-            
+
         },
         {
             parent: "Prize",
             name: "prize",
-            icon: <IoIosHelpCircle />,
+            icon: <FaGift />,
         },
         {
             parent: "Summary",
@@ -82,10 +84,37 @@ const NewSidebar = ({ setCurrentPage }) => {
         },
     ];
 
+    const [isOpen, setIsOpen] = useState(true);
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 480) {
+                setIsOpen(true);
+            } else {
+                setIsOpen(false);
+            }
+        };
+        handleResize();
+        // Add resize event listener
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    if (!isOpen) return (
+        <div className="bg-[#072D20] fixed z-50 text-white text-2xl cursor-pointer w-fit my-3 p-3 flex items-center rounded-tr-md rounded-br-md" onClick={() => setIsOpen((prev) => !prev)}>
+            <FaArrowRight className='inline my-auto' />
+        </div>
+    );
+
     return (
-        <>
-            <div class="h-screen basis-[20%] antialiased bg-[#072D20] text-white">
-                <div class="fixed flex flex-col top-0 left-0 w-72 bg-[#072D20] h-full">
+        <main className='duration-100 bg-[#072D20]'>
+            {/* was h-screen */}
+            <div class="antialiased text-white">
+                <div class="flex flex-col w-72 h-full">
+                    <div className="text-white text-2xl p-3 cursor-pointer" onClick={() => setIsOpen((prev) => !prev)}>
+                        <FaArrowRight className='inline rotate-180' />
+                    </div>
                     <div class="flex items-center justify-center m-5">
                         <img
                             src={"/logo.png"}
@@ -101,10 +130,10 @@ const NewSidebar = ({ setCurrentPage }) => {
                         />
                         <h1 className="font-extrabold text-3xl text-[#00FFCF]">Manager</h1>
                     </div>
-                    <div class="overflow-y-auto overflow-x-hidden flex-grow">
+                    <div class="overflow-y-auto overflow-x-hidden">
                         <ul class="flex flex-col py-4 space-y-1">
-                        {links.map((link, index) => (
-                                <li key={index} className=''>
+                            {links.map((link, index) => (
+                                <li key={index} className='py-1'>
                                     <div
                                         className="flex flex-row items-center cursor-pointer h-8 px-5"
                                         onClick={() => {
@@ -116,7 +145,14 @@ const NewSidebar = ({ setCurrentPage }) => {
                                         }}
                                     >
                                         <span className='mr-2'>{link.icon}</span>
-                                        <div className="text-md font-light tracking-wide text-gray-50">{link.parent}</div>
+                                        <div className="text-md font-light tracking-wide text-gray-50 flex flex-row justify-between w-full">
+                                            <li>
+                                                {link.parent}
+                                            </li>
+                                            <li>
+                                                {link.children && <span className="ml-2">{isLinkExpanded[link.name] ? <RiArrowDropDownLine className='inline rotate-180 text-3xl' /> : <RiArrowDropDownLine className='inline text-3xl' />}</span>}
+                                            </li>
+                                        </div>
                                     </div>
                                     {link.children && link.children.map((sublink, subIndex) => (
                                         <li key={subIndex} className={isLinkExpanded[link.name] ? "block" : "hidden"}>
@@ -162,7 +198,7 @@ const NewSidebar = ({ setCurrentPage }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </main>
     )
 }
 
